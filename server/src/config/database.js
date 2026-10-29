@@ -6,15 +6,25 @@ import path from 'path';
 let mongoMemoryServer = null;
 
 export async function connectDatabase() {
+  if (mongoose.connection.readyState >= 1) {
+    return;
+  }
+
   const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/employee_management';
 
   try {
-    // Attempt standard connection with 2 second timeout for local/Atlas
+    // Standard connection (local or MongoDB Atlas)
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 2500,
+      serverSelectionTimeoutMS: 5000,
     });
-    console.log(`[Database] MongoDB connected successfully to ${uri}`);
+    console.log(`[Database] MongoDB connected successfully to ${uri.replace(/\/\/([^:]+):([^@]+)@/, '//$1:****@')}`);
   } catch (error) {
+    // In production or on Vercel, don't attempt MongoMemoryServer
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+      console.error(`[Database] MongoDB connection failed in production/Vercel: ${error.message}`);
+      throw error;
+    }
+
     console.warn(`[Database] Could not connect to external MongoDB (${error.message}).`);
     console.log('[Database] Initializing fallback in-memory MongoDB server for development...');
 
