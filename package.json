@@ -1,0 +1,29 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "Full-Stack Responsive Employee Management System",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "test:server": "npm run test --prefix server",
+    "test:client": "npm run test --prefix client",
+    "test": "npm run test:server && npm run test:client",
+    "build:client": "npm run build --prefix client"
+  },
+  "keywords": [
+    "employee-management",
+    "react",
+    "express",
+    "mongodb",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT"
+}
