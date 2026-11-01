@@ -21,10 +21,11 @@ class EmailService {
           },
         });
       } catch (err) {
-        console.warn('[EmailService] Could not initialize Gmail transporter:', err.message);
+        console.error('[EmailService] Could not initialize Gmail transporter:', err.message);
         return null;
       }
     }
+    console.warn('[EmailService] GMAIL_USER or GMAIL_PASS is not detected in environment variables. user present:', !!user, 'pass present:', !!pass);
     return null;
   }
 
