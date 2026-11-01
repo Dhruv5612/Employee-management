@@ -11,12 +11,14 @@ export const setDemoMode = () => {
   localStorage.removeItem('ems_use_demo_mode');
 };
 
-// Clear any previous demo mode flag
-localStorage.removeItem('ems_use_demo_mode');
+// Ensure demo mode is cleared from browser storage
+if (typeof window !== 'undefined') {
+  localStorage.removeItem('ems_use_demo_mode');
+}
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
+  timeout: 20000, // 20s timeout for live API and real SMTP email delivery
   headers: {
     'Content-Type': 'application/json',
   },

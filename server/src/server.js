@@ -1,6 +1,11 @@
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config();
-dotenv.config({ path: './server/.env' });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 import app from './app.js';
 import { connectDatabase } from './config/database.js';
 import { seedDatabase } from './seed/seedData.js';

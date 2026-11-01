@@ -346,7 +346,46 @@ export default function SignUpPage() {
             </div>
           )}
 
-
+          {/* Development / Offline OTP Hint if returned */}
+          {devOtp && (
+            <div
+              style={{
+                padding: '0.65rem 0.85rem',
+                backgroundColor: '#ecfdf5',
+                border: '1px solid #a7f3d0',
+                borderRadius: '8px',
+                color: '#065f46',
+                fontSize: '0.8rem',
+                marginBottom: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <CheckCircle2 size={16} color="#059669" />
+                <span>
+                  Dev / Console OTP Code: <strong style={{ letterSpacing: '1px' }}>{devOtp}</strong>
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOtp(devOtp)}
+                style={{
+                  background: '#059669',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '4px',
+                  padding: '2px 8px',
+                  fontSize: '0.725rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                Auto Fill
+              </button>
+            </div>
+          )}
 
           {step === 'FORM' ? (
             /* --- STEP 1: REGISTRATION DETAILS --- */

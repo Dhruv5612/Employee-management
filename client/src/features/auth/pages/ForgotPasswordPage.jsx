@@ -388,7 +388,7 @@ export default function ForgotPasswordPage() {
               >
                 <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
                 <div>
-                  <strong>Email dispatched!</strong> A secure password reset link has been sent to <strong>{email.trim()}</strong>. Please check your inbox and spam folder.
+                  <strong>Email sent!</strong> A password reset link has been dispatched to <strong>{email.trim()}</strong>. Please check your inbox or spam folder.
                 </div>
               </div>
 

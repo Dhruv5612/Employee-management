@@ -488,7 +488,7 @@ export default function LoginPage() {
               >
                 <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
                 <div>
-                  <strong>Email dispatched!</strong> A 6-digit approval code was sent directly to your inbox at <strong>{otpEmail}</strong>. Please check your inbox or spam folder.
+                  <strong>Email sent!</strong> A 6-digit approval code was dispatched directly to your Gmail (<strong>{otpEmail}</strong>). Please check your inbox or spam folder.
                 </div>
               </div>
 
