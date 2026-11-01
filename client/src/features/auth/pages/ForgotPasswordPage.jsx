@@ -143,11 +143,12 @@ export default function ForgotPasswordPage() {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#0f172a',
-        padding: '2rem 1.5rem',
+        padding: '3rem 1.5rem',
         backgroundImage: 'radial-gradient(circle at 50% 15%, rgba(99, 102, 241, 0.22) 0%, transparent 65%)',
+        overflowY: 'auto',
       }}
     >
-      <div style={{ width: '100%', maxWidth: '480px' }}>
+      <div style={{ width: '100%', maxWidth: '480px', margin: 'auto 0' }}>
         {/* Back Link */}
         <div style={{ marginBottom: '1.25rem' }}>
           <Link
