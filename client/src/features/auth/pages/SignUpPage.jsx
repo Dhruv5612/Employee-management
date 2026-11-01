@@ -310,40 +310,6 @@ export default function SignUpPage() {
                 ? 'Confirm your work email to finish registration'
                 : 'Sign up for enterprise workspace access'}
             </p>
-
-            {/* Mode Switcher */}
-            <div style={{ marginTop: '0.65rem' }}>
-              <button
-                type="button"
-                onClick={toggleMode}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.2rem 0.65rem',
-                  borderRadius: '9999px',
-                  border: `1px solid ${demoActive ? '#f59e0b' : '#10b981'}`,
-                  backgroundColor: demoActive ? 'rgba(245, 158, 11, 0.08)' : 'rgba(16, 185, 129, 0.08)',
-                  color: demoActive ? '#b45309' : '#047857',
-                  fontSize: '0.725rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                }}
-                title="Click to toggle between Live API and Local Demo Storage Mode"
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: demoActive ? '#f59e0b' : '#10b981',
-                  }}
-                />
-                {demoActive ? 'Demo Storage Mode' : 'Live API Mode'}
-                <span style={{ fontSize: '0.65rem', opacity: 0.75 }}>(Click to switch)</span>
-              </button>
-            </div>
           </div>
 
           {errorBanner && (
@@ -380,46 +346,7 @@ export default function SignUpPage() {
             </div>
           )}
 
-          {/* Development / Offline OTP Hint if returned */}
-          {devOtp && (
-            <div
-              style={{
-                padding: '0.65rem 0.85rem',
-                backgroundColor: '#ecfdf5',
-                border: '1px solid #a7f3d0',
-                borderRadius: '8px',
-                color: '#065f46',
-                fontSize: '0.8rem',
-                marginBottom: '1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                <CheckCircle2 size={16} color="#059669" />
-                <span>
-                  Dev / Console OTP Code: <strong style={{ letterSpacing: '1px' }}>{devOtp}</strong>
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setOtp(devOtp)}
-                style={{
-                  background: '#059669',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '4px',
-                  padding: '2px 8px',
-                  fontSize: '0.725rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                }}
-              >
-                Auto Fill
-              </button>
-            </div>
-          )}
+
 
           {step === 'FORM' ? (
             /* --- STEP 1: REGISTRATION DETAILS --- */

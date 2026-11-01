@@ -199,40 +199,6 @@ export default function ResetPasswordPage() {
                 ? 'Your password has been securely updated. You can now log into your workspace.'
                 : 'Create a new secure password for your workspace account'}
             </p>
-
-            {/* Mode Switcher */}
-            <div style={{ marginTop: '0.75rem' }}>
-              <button
-                type="button"
-                onClick={toggleMode}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.2rem 0.65rem',
-                  borderRadius: '9999px',
-                  border: `1px solid ${demoActive ? '#f59e0b' : '#10b981'}`,
-                  backgroundColor: demoActive ? 'rgba(245, 158, 11, 0.08)' : 'rgba(16, 185, 129, 0.08)',
-                  color: demoActive ? '#b45309' : '#047857',
-                  fontSize: '0.725rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                }}
-                title="Click to toggle between Live API and Local Demo Storage Mode"
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: demoActive ? '#f59e0b' : '#10b981',
-                  }}
-                />
-                {demoActive ? 'Demo Storage Mode' : 'Live API Mode'}
-                <span style={{ fontSize: '0.65rem', opacity: 0.75 }}>(Click to switch)</span>
-              </button>
-            </div>
           </div>
 
           {/* Success State View */}

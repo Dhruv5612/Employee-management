@@ -5,21 +5,18 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   (import.meta.env.PROD ? '/api/v1' : 'http://localhost:5000/api/v1');
 
-export const isDemoMode = () => {
-  return localStorage.getItem('ems_use_demo_mode') === 'true';
+export const isDemoMode = () => false;
+
+export const setDemoMode = () => {
+  localStorage.removeItem('ems_use_demo_mode');
 };
 
-export const setDemoMode = (val) => {
-  if (val) {
-    localStorage.setItem('ems_use_demo_mode', 'true');
-  } else {
-    localStorage.removeItem('ems_use_demo_mode');
-  }
-};
+// Clear any previous demo mode flag
+localStorage.removeItem('ems_use_demo_mode');
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 3500, // Responsive fallback if backend server is not running
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -216,40 +216,6 @@ export default function ForgotPasswordPage() {
                 ? 'We have sent password changing instructions directly to your email'
                 : 'Enter your registered email address to receive a secure password reset link'}
             </p>
-
-            {/* Mode Switcher */}
-            <div style={{ marginTop: '0.75rem' }}>
-              <button
-                type="button"
-                onClick={toggleMode}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.2rem 0.65rem',
-                  borderRadius: '9999px',
-                  border: `1px solid ${demoActive ? '#f59e0b' : '#10b981'}`,
-                  backgroundColor: demoActive ? 'rgba(245, 158, 11, 0.08)' : 'rgba(16, 185, 129, 0.08)',
-                  color: demoActive ? '#b45309' : '#047857',
-                  fontSize: '0.725rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                }}
-                title="Click to toggle between Live API and Local Demo Storage Mode"
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: demoActive ? '#f59e0b' : '#10b981',
-                  }}
-                />
-                {demoActive ? 'Demo Storage Mode' : 'Live API Mode'}
-                <span style={{ fontSize: '0.65rem', opacity: 0.75 }}>(Click to switch)</span>
-              </button>
-            </div>
           </div>
 
           {/* Error Banner */}
@@ -405,91 +371,26 @@ export default function ForgotPasswordPage() {
                 </p>
               </div>
 
-              {/* Real vs Simulated status badge */}
-              {submittedResult?.delivered ? (
-                <div
-                  style={{
-                    padding: '0.75rem 0.9rem',
-                    backgroundColor: '#f0fdf4',
-                    border: '1px solid #bbf7d0',
-                    borderRadius: '8px',
-                    color: '#166534',
-                    fontSize: '0.8rem',
-                    marginBottom: '1.25rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                  }}
-                >
-                  <CheckCircle2 size={18} color="#16a34a" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>Delivered to Gmail:</strong> A password change message was successfully dispatched to{' '}
-                    <strong>{email.trim()}</strong>.
-                  </div>
+              {/* Delivery notification badge */}
+              <div
+                style={{
+                  padding: '0.85rem 1rem',
+                  backgroundColor: '#f0fdf4',
+                  border: '1px solid #bbf7d0',
+                  borderRadius: '10px',
+                  color: '#166534',
+                  fontSize: '0.825rem',
+                  marginBottom: '1.25rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                }}
+              >
+                <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
+                <div>
+                  <strong>Email dispatched!</strong> A secure password reset link has been sent to <strong>{email.trim()}</strong>. Please check your inbox and spam folder.
                 </div>
-              ) : (
-                /* Development / Demo Mode Direct Reset Link Box */
-                submittedResult?.resetUrl && (
-                  <div
-                    style={{
-                      padding: '0.85rem 1rem',
-                      backgroundColor: '#fffbeb',
-                      border: '1px solid #fde68a',
-                      borderRadius: '10px',
-                      marginBottom: '1.25rem',
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginBottom: '0.4rem',
-                      }}
-                    >
-                      <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#92400e', textTransform: 'uppercase' }}>
-                        Development / Demo Mode:
-                      </span>
-                      <span
-                        style={{
-                          backgroundColor: '#fef3c7',
-                          color: '#b45309',
-                          fontSize: '0.7rem',
-                          fontWeight: 700,
-                          padding: '2px 6px',
-                          borderRadius: '4px',
-                        }}
-                      >
-                        Direct Link Available
-                      </span>
-                    </div>
-                    <p style={{ fontSize: '0.775rem', color: '#78350f', margin: '0 0 0.5rem 0', lineHeight: 1.4 }}>
-                      In demo/simulated mode, you can jump directly to the password reset form right now:
-                    </p>
-                    <Link
-                      to={submittedResult.resetUrl}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        backgroundColor: '#d97706',
-                        color: '#ffffff',
-                        textDecoration: 'none',
-                        padding: '0.45rem 0.85rem',
-                        borderRadius: '6px',
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        transition: 'background-color 0.2s',
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#b45309')}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d97706')}
-                    >
-                      <span>Click to Change Password Now</span>
-                      <ExternalLink size={14} />
-                    </Link>
-                  </div>
-                )
-              )}
+              </div>
 
               {/* Step-by-Step Instructions */}
               <div

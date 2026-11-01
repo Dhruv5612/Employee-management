@@ -1,4 +1,6 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config();
+dotenv.config({ path: './server/.env' });
 import app from './app.js';
 import { connectDatabase } from './config/database.js';
 import { seedDatabase } from './seed/seedData.js';
