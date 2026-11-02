@@ -1,19 +1,23 @@
 import app from '../server/src/app.js';
+import mongoose from 'mongoose';
 import { connectDatabase } from '../server/src/config/database.js';
 import { seedDatabase } from '../server/src/seed/seedData.js';
 
-let isInitialized = false;
+let isSeeded = false;
 
 export default async function handler(req, res) {
-  if (!isInitialized) {
+  if (mongoose.connection.readyState !== 1) {
     try {
       await connectDatabase();
-      await seedDatabase();
-      isInitialized = true;
+      if (!isSeeded) {
+        await seedDatabase().catch((err) => console.error('[Seed error]:', err));
+        isSeeded = true;
+      }
     } catch (error) {
-      console.error('[Vercel Serverless API] Initialization error:', error);
+      console.error('[Vercel Serverless API] Database connection error:', error.message);
     }
   }
 
   return app(req, res);
 }
+

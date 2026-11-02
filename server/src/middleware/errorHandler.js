@@ -26,6 +26,13 @@ export function errorHandler(err, req, res, next) {
     error = ApiError.badRequest('Validation failed', errors);
   }
 
+  // Handle Mongoose DB buffering timeout (MongoDB Atlas unreachable or wrong credentials)
+  if (err.message && err.message.includes('buffering timed out')) {
+    error = ApiError.internal(
+      'Database connection failed. Please check MONGODB_URI in your Vercel Environment Variables and verify username/password, and ensure MongoDB Atlas Network Access has 0.0.0.0/0 enabled.'
+    );
+  }
+
   const statusCode = error.statusCode || 500;
   const message = error.message || 'Internal server error';
   const errors = error.errors || [];
