@@ -40,6 +40,7 @@ app.get('/health', (_req, res) => {
 });
 
 app.use('/api/v1', routes);
+app.use('/v1', routes);
 app.use(notFound);
 app.use(errorHandler);
 
