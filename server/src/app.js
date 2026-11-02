@@ -31,7 +31,14 @@ app.use(
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
-app.get('/health', (_req, res) => {
+app.use((req, _res, next) => {
+  if (req.url.startsWith('/api') || req.url.startsWith('/v1') || req.url.includes('health')) {
+    console.log(`[API Request] ${req.method} ${req.url} (matched: ${req.headers['x-matched-path'] || 'direct'})`);
+  }
+  next();
+});
+
+app.get(['/health', '/api/health', '/v1/health', '/api/v1/health'], (_req, res) => {
   res.json({
     success: true,
     status: 'ok',
