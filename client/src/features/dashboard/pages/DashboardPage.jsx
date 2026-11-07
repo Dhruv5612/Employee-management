@@ -26,6 +26,7 @@ import {
   Activity,
   ShieldCheck,
   Sparkles,
+  Crown,
   Calendar,
   CalendarClock,
   CalendarDays,
