@@ -10,8 +10,8 @@ const getApiBaseUrl = () => {
   if (import.meta.env.PROD) {
     return '/api/v1';
   }
-  // Local development fallback to port 5001
-  return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api/v1';
+  // Local development fallback to port 5000
+  return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
 };
 
 const API_BASE_URL = getApiBaseUrl();

@@ -242,119 +242,188 @@ export default function DashboardPage() {
 
   return (
     <div>
-      {/* Top Greeting & Date Header */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: '1.75rem',
-          flexWrap: 'wrap',
-          gap: '1rem',
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              fontSize: '1.85rem',
-              fontWeight: 800,
-              color: '#0f172a',
-              letterSpacing: '-0.025em',
-              lineHeight: 1.2,
-            }}
-          >
-            Welcome, {displayName}!
-          </h1>
-          <p style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.35rem' }}>
-            {viewMode === 'executive'
-              ? "Here's an executive summary of your organization's workforce and activities."
-              : "Here's a summary of your activities."}
-          </p>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-          {/* Date Box (From Image: e.g. 📅 August 27, 2025) */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.55rem',
-              backgroundColor: '#ffffff',
-              border: '1px solid #cbd5e1',
-              borderRadius: '8px',
-              padding: '0.5rem 1rem',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              color: '#334155',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
-            }}
-          >
-            <Calendar size={17} color="#64748b" />
-            <span>{formattedDate}</span>
-          </div>
-
-          {/* Quick Apply Leave Button */}
-          <Button
-            variant="primary"
-            icon={Plus}
-            onClick={() => setIsApplyModalOpen(true)}
-            style={{ padding: '0.5rem 0.95rem', fontSize: '0.85rem' }}
-          >
-            Apply Leave
-          </Button>
-
-          {/* Admin Switcher Toggle */}
-          {isAdminOrHR && (
-            <div
+      {/* Gen Z Ambient Executive Hero Banner */}
+      <div className="genz-hero-card" style={{ marginBottom: '1.75rem', padding: '1.75rem 2rem' }}>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+            <span
               style={{
                 display: 'inline-flex',
-                backgroundColor: '#f1f5f9',
-                borderRadius: '8px',
-                padding: '0.2rem',
-                border: '1px solid #e2e8f0',
+                alignItems: 'center',
+                gap: '0.35rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                backdropFilter: 'blur(8px)',
+                padding: '0.2rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.7rem',
+                fontWeight: 800,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: '#e0e7ff',
               }}
             >
-              <button
-                type="button"
-                onClick={() => setViewMode('executive')}
+              <Sparkles size={11} color="#fbbf24" />
+              <span>Workforce HQ • Live Matrix</span>
+            </span>
+
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                padding: '0.2rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.7rem',
+                fontWeight: 700,
+                color: '#6ee7b7',
+                border: '1px solid rgba(16, 185, 129, 0.3)',
+              }}
+            >
+              <span className="pulse-dot online" />
+              <span>All Systems Green</span>
+            </span>
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '1.25rem',
+            }}
+          >
+            <div>
+              <h1
                 style={{
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '6px',
-                  border: 'none',
-                  backgroundColor: viewMode === 'executive' ? '#ffffff' : 'transparent',
-                  color: viewMode === 'executive' ? '#0f172a' : '#64748b',
-                  fontSize: '0.775rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  boxShadow: viewMode === 'executive' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
+                  fontSize: '2rem',
+                  fontWeight: 900,
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1.15,
+                  margin: 0,
+                  color: '#ffffff',
                 }}
               >
-                Executive View
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode('employee')}
+                Welcome back, {displayName}! 🚀
+              </h1>
+              <p
                 style={{
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '6px',
-                  border: 'none',
-                  backgroundColor: viewMode === 'employee' ? '#ffffff' : 'transparent',
-                  color: viewMode === 'employee' ? '#0f172a' : '#64748b',
-                  fontSize: '0.775rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  boxShadow: viewMode === 'employee' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
+                  fontSize: '0.925rem',
+                  color: '#cbd5e1',
+                  marginTop: '0.45rem',
+                  maxWidth: '650px',
+                  lineHeight: 1.45,
                 }}
               >
-                My Employee View
-              </button>
+                {viewMode === 'executive'
+                  ? "Real-time command center for squad allocations, leaves approvals, and company operations."
+                  : "Here is your personal time-off, attendance log, and company updates."}
+              </p>
             </div>
-          )}
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+              {/* Date Box */}
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(8px)',
+                  borderRadius: '10px',
+                  padding: '0.45rem 0.85rem',
+                  fontSize: '0.825rem',
+                  fontWeight: 600,
+                  color: '#ffffff',
+                }}
+              >
+                <Calendar size={15} color="#c7d2fe" />
+                <span>{formattedDate}</span>
+              </div>
+
+              {/* Quick Apply Leave Button */}
+              <button
+                type="button"
+                onClick={() => setIsApplyModalOpen(true)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  padding: '0.45rem 1rem',
+                  borderRadius: '10px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #f97316 0%, #ec4899 100%)',
+                  color: '#ffffff',
+                  fontSize: '0.825rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(249, 115, 22, 0.4)',
+                }}
+              >
+                <Plus size={16} />
+                <span>Apply Leave</span>
+              </button>
+
+              {/* Admin Switcher Toggle */}
+              {isAdminOrHR && (
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    borderRadius: '10px',
+                    padding: '0.2rem',
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('executive')}
+                    style={{
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '8px',
+                      border: 'none',
+                      backgroundColor: viewMode === 'executive' ? '#ffffff' : 'transparent',
+                      color: viewMode === 'executive' ? '#0f172a' : '#cbd5e1',
+                      fontSize: '0.75rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      boxShadow: viewMode === 'executive' ? '0 2px 8px rgba(0,0,0,0.2)' : 'none',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    👑 Executive HQ
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('employee')}
+                    style={{
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '8px',
+                      border: 'none',
+                      backgroundColor: viewMode === 'employee' ? '#ffffff' : 'transparent',
+                      color: viewMode === 'employee' ? '#0f172a' : '#cbd5e1',
+                      fontSize: '0.75rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      boxShadow: viewMode === 'employee' ? '0 2px 8px rgba(0,0,0,0.2)' : 'none',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    💼 My View
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 4 VIBRANT STAT CARDS (EXACT MATCH TO USER'S UPLOADED IMAGE)               */}
+      {/* 4 VIBRANT STAT CARDS (BENTO GRADIENT GEN Z DESIGN)                         */}
       {/* ========================================================================= */}
       <div
         style={{
@@ -364,36 +433,37 @@ export default function DashboardPage() {
           marginBottom: '2rem',
         }}
       >
-        {/* Card 1: Pending Leave Requests (Yellow / Amber #f59e0b) */}
+        {/* Card 1: Pending Leave Requests (Amber-Sunset Gradient) */}
         <Link to="/leave-approvals" style={{ textDecoration: 'none' }}>
           <div
             style={{
-              backgroundColor: '#f59e0b',
-              borderRadius: '12px',
-              padding: '1.25rem 1.4rem',
+              background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+              borderRadius: '16px',
+              padding: '1.35rem 1.4rem',
               color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               gap: '1.1rem',
-              boxShadow: '0 4px 14px rgba(245, 158, 11, 0.28)',
+              boxShadow: '0 8px 24px -4px rgba(245, 158, 11, 0.35)',
               cursor: 'pointer',
-              transition: 'transform 0.15s, box-shadow 0.15s',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 18px rgba(245, 158, 11, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(245, 158, 11, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 14px rgba(245, 158, 11, 0.28)';
+              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(245, 158, 11, 0.35)';
             }}
           >
             <div
               style={{
                 width: '52px',
                 height: '52px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                borderRadius: '14px',
+                backgroundColor: 'rgba(255, 255, 255, 0.22)',
+                backdropFilter: 'blur(6px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -404,46 +474,47 @@ export default function DashboardPage() {
             </div>
 
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, opacity: 0.95 }}>
-                Pending Leave Requests
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Pending Leaves
               </div>
-              <div style={{ fontSize: '2.1rem', fontWeight: 800, lineHeight: 1.15, marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
                 {leaveStats.pending}
               </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 2: Approved Leaves (This Month) (Green #10b981) */}
+        {/* Card 2: Approved Leaves (Emerald-Teal Gradient) */}
         <Link to="/leave-approvals" style={{ textDecoration: 'none' }}>
           <div
             style={{
-              backgroundColor: '#10b981',
-              borderRadius: '12px',
-              padding: '1.25rem 1.4rem',
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+              borderRadius: '16px',
+              padding: '1.35rem 1.4rem',
               color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               gap: '1.1rem',
-              boxShadow: '0 4px 14px rgba(16, 185, 129, 0.28)',
+              boxShadow: '0 8px 24px -4px rgba(16, 185, 129, 0.35)',
               cursor: 'pointer',
-              transition: 'transform 0.15s, box-shadow 0.15s',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 18px rgba(16, 185, 129, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(16, 185, 129, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 14px rgba(16, 185, 129, 0.28)';
+              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(16, 185, 129, 0.35)';
             }}
           >
             <div
               style={{
                 width: '52px',
                 height: '52px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                borderRadius: '14px',
+                backgroundColor: 'rgba(255, 255, 255, 0.22)',
+                backdropFilter: 'blur(6px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -454,46 +525,47 @@ export default function DashboardPage() {
             </div>
 
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, opacity: 0.95 }}>
-                Approved Leaves (This Month)
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Approved (Month)
               </div>
-              <div style={{ fontSize: '2.1rem', fontWeight: 800, lineHeight: 1.15, marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
                 {leaveStats.approved}
               </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 3: Attendance (Today) (Blue #3b82f6) */}
+        {/* Card 3: Attendance (Cyan-Blue Gradient) */}
         <Link to="/attendance" style={{ textDecoration: 'none' }}>
           <div
             style={{
-              backgroundColor: '#3b82f6',
-              borderRadius: '12px',
-              padding: '1.25rem 1.4rem',
+              background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)',
+              borderRadius: '16px',
+              padding: '1.35rem 1.4rem',
               color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               gap: '1.1rem',
-              boxShadow: '0 4px 14px rgba(59, 130, 246, 0.28)',
+              boxShadow: '0 8px 24px -4px rgba(59, 130, 246, 0.35)',
               cursor: 'pointer',
-              transition: 'transform 0.15s, box-shadow 0.15s',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 18px rgba(59, 130, 246, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(59, 130, 246, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 14px rgba(59, 130, 246, 0.28)';
+              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(59, 130, 246, 0.35)';
             }}
           >
             <div
               style={{
                 width: '52px',
                 height: '52px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                borderRadius: '14px',
+                backgroundColor: 'rgba(255, 255, 255, 0.22)',
+                backdropFilter: 'blur(6px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -504,46 +576,47 @@ export default function DashboardPage() {
             </div>
 
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, opacity: 0.95 }}>
-                {viewMode === 'executive' ? 'Present Staff Today' : 'Attendance (This Month)'}
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                {viewMode === 'executive' ? 'Present Staff Today' : 'Attendance (Month)'}
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, lineHeight: 1.15, marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
                 {attendanceCount} {viewMode === 'executive' ? 'Present' : 'Days'}
               </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 4: Announcements (Purple #a855f7) */}
+        {/* Card 4: Announcements (Purple-Rose Gradient) */}
         <Link to="/announcements" style={{ textDecoration: 'none' }}>
           <div
             style={{
-              backgroundColor: '#a855f7',
-              borderRadius: '12px',
-              padding: '1.25rem 1.4rem',
+              background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+              borderRadius: '16px',
+              padding: '1.35rem 1.4rem',
               color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               gap: '1.1rem',
-              boxShadow: '0 4px 14px rgba(168, 85, 247, 0.28)',
+              boxShadow: '0 8px 24px -4px rgba(139, 92, 246, 0.35)',
               cursor: 'pointer',
-              transition: 'transform 0.15s, box-shadow 0.15s',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 18px rgba(168, 85, 247, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(139, 92, 246, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 14px rgba(168, 85, 247, 0.28)';
+              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(139, 92, 246, 0.35)';
             }}
           >
             <div
               style={{
                 width: '52px',
                 height: '52px',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                borderRadius: '14px',
+                backgroundColor: 'rgba(255, 255, 255, 0.22)',
+                backdropFilter: 'blur(6px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -554,10 +627,10 @@ export default function DashboardPage() {
             </div>
 
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, opacity: 0.95 }}>
-                Announcements
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Broadcasts
               </div>
-              <div style={{ fontSize: '2.1rem', fontWeight: 800, lineHeight: 1.15, marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
                 {announcements.length || 3}
               </div>
             </div>
@@ -575,46 +648,72 @@ export default function DashboardPage() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem',
+              gap: '0.65rem',
               flexWrap: 'wrap',
               marginBottom: '1.75rem',
             }}
           >
             <Link to="/employees" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" icon={UserPlus} style={{ fontSize: '0.825rem', padding: '0.45rem 0.85rem' }}>
-                Manage Employees
-              </Button>
+              <button
+                type="button"
+                className="genz-tab-pill active"
+                style={{ padding: '0.55rem 1rem' }}
+              >
+                <Users size={15} />
+                <span>Manage Squad</span>
+              </button>
             </Link>
             <Link to="/leave-approvals" style={{ textDecoration: 'none' }}>
-              <Button
-                variant="outline"
-                icon={ClipboardList}
+              <button
+                type="button"
+                className="genz-tab-pill"
                 style={{
-                  fontSize: '0.825rem',
-                  padding: '0.45rem 0.85rem',
-                  borderColor: '#f59e0b',
-                  color: '#b45309',
+                  padding: '0.55rem 1rem',
                   backgroundColor: '#fffbeb',
+                  color: '#b45309',
+                  borderColor: '#fde68a',
                 }}
               >
-                Pending Approvals ({leaveStats.pending})
-              </Button>
+                <ClipboardList size={15} color="#b45309" />
+                <span>Pending Reviews ({leaveStats.pending})</span>
+              </button>
             </Link>
             <Link to="/payroll" style={{ textDecoration: 'none' }}>
-              <Button variant="outline" icon={Banknote} style={{ fontSize: '0.825rem', padding: '0.45rem 0.85rem' }}>
-                Run Payroll
-              </Button>
+              <button
+                type="button"
+                className="genz-tab-pill"
+                style={{ padding: '0.55rem 1rem' }}
+              >
+                <Banknote size={15} />
+                <span>Run Payroll 💸</span>
+              </button>
             </Link>
             <Link to="/announcements" style={{ textDecoration: 'none' }}>
-              <Button variant="outline" icon={Megaphone} style={{ fontSize: '0.825rem', padding: '0.45rem 0.85rem' }}>
-                Post Announcement
-              </Button>
+              <button
+                type="button"
+                className="genz-tab-pill"
+                style={{ padding: '0.55rem 1rem' }}
+              >
+                <Megaphone size={15} />
+                <span>Post Notice 📢</span>
+              </button>
             </Link>
             {user?.role === 'Admin' && (
               <Link to="/admin/users" style={{ textDecoration: 'none' }}>
-                <Button variant="outline" icon={UserCog} style={{ fontSize: '0.825rem', padding: '0.45rem 0.85rem' }}>
-                  User Admin
-                </Button>
+                <button
+                  type="button"
+                  className="genz-tab-pill"
+                  style={{
+                    padding: '0.55rem 1rem',
+                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                    color: '#ffffff',
+                    border: 'none',
+                    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+                  }}
+                >
+                  <Crown size={15} />
+                  <span>User Admin Matrix 👑</span>
+                </button>
               </Link>
             )}
           </div>

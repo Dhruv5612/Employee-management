@@ -115,7 +115,7 @@ export default function ResetPasswordPage() {
     info(
       next
         ? 'Switched to Demo Storage Mode (Runs locally in your browser)'
-        : 'Switched to Live API Mode (Connecting to port 5001)'
+        : 'Switched to Live API Mode (Connecting to port 5000)'
     );
   };
 

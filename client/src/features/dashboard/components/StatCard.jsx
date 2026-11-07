@@ -9,53 +9,109 @@ export default function StatCard({
 }) {
   const schemeStyles = {
     indigo: {
-      bg: 'rgba(99, 102, 241, 0.1)',
-      iconColor: '#4f46e5',
-      borderLeft: '4px solid #4f46e5',
+      gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+      lightBg: '#eef2ff',
+      textColor: '#4f46e5',
+      borderColor: 'rgba(99, 102, 241, 0.2)',
     },
     emerald: {
-      bg: 'rgba(16, 185, 129, 0.1)',
-      iconColor: '#10b981',
-      borderLeft: '4px solid #10b981',
+      gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+      lightBg: '#ecfdf5',
+      textColor: '#059669',
+      borderColor: 'rgba(16, 185, 129, 0.2)',
     },
     amber: {
-      bg: 'rgba(245, 158, 11, 0.1)',
-      iconColor: '#f59e0b',
-      borderLeft: '4px solid #f59e0b',
+      gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+      lightBg: '#fffbeb',
+      textColor: '#b45309',
+      borderColor: 'rgba(245, 158, 11, 0.2)',
     },
     slate: {
-      bg: 'rgba(100, 116, 139, 0.1)',
-      iconColor: '#64748b',
-      borderLeft: '4px solid #64748b',
+      gradient: 'linear-gradient(135deg, #64748b 0%, #334155 100%)',
+      lightBg: '#f1f5f9',
+      textColor: '#475569',
+      borderColor: 'rgba(100, 116, 139, 0.2)',
     },
     violet: {
-      bg: 'rgba(139, 92, 246, 0.1)',
-      iconColor: '#8b5cf6',
-      borderLeft: '4px solid #8b5cf6',
+      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+      lightBg: '#faf5ff',
+      textColor: '#7e22ce',
+      borderColor: 'rgba(139, 92, 246, 0.2)',
     },
   }[colorScheme] || {
-    bg: 'rgba(99, 102, 241, 0.1)',
-    iconColor: '#4f46e5',
-    borderLeft: '4px solid #4f46e5',
+    gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+    lightBg: '#eef2ff',
+    textColor: '#4f46e5',
+    borderColor: 'rgba(99, 102, 241, 0.2)',
   };
 
   return (
-    <div className="stat-card" style={{ borderLeft: schemeStyles.borderLeft }}>
+    <div
+      className="bento-card"
+      style={{
+        padding: '1.35rem 1.4rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        border: `1px solid ${schemeStyles.borderColor}`,
+      }}
+    >
       <div>
-        <span className="stat-label">{title}</span>
-        <div className="stat-value">{value ?? 0}</div>
+        <span
+          style={{
+            fontSize: '0.8rem',
+            fontWeight: 800,
+            color: '#64748b',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+          }}
+        >
+          {title}
+        </span>
+        <div
+          style={{
+            fontSize: '2.1rem',
+            fontWeight: 900,
+            color: '#0f172a',
+            lineHeight: 1.15,
+            marginTop: '0.3rem',
+            letterSpacing: '-0.03em',
+          }}
+        >
+          {value ?? 0}
+        </div>
         {trend && (
-          <span style={{ fontSize: '0.775rem', color: '#64748b', marginTop: '0.25rem', display: 'block' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              marginTop: '0.6rem',
+              backgroundColor: schemeStyles.lightBg,
+              color: schemeStyles.textColor,
+              padding: '0.2rem 0.55rem',
+              borderRadius: '9999px',
+              fontSize: '0.725rem',
+              fontWeight: 700,
+            }}
+          >
             {trend}
-          </span>
+          </div>
         )}
       </div>
 
       <div
-        className="stat-icon-wrapper"
         style={{
-          backgroundColor: schemeStyles.bg,
-          color: schemeStyles.iconColor,
+          width: '52px',
+          height: '52px',
+          borderRadius: '16px',
+          background: schemeStyles.gradient,
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: `0 8px 18px -4px ${schemeStyles.textColor}40`,
+          flexShrink: 0,
         }}
       >
         {Icon && <Icon size={24} />}

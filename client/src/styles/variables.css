@@ -66,6 +66,15 @@
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
   --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
   --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.25);
+  --shadow-genz: 0 12px 36px -4px rgba(99, 102, 241, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+
+  /* Gen Z Radiant Gradients */
+  --grad-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --grad-sunset: linear-gradient(135deg, #f97316 0%, #f43f5e 100%);
+  --grad-emerald: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  --grad-cyber: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #a855f7 100%);
+  --grad-dark-mesh: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+  --grad-card-glow: radial-gradient(100% 100% at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
 
   /* Border Radii */
   --radius-sm: 6px;

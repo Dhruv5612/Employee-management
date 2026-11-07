@@ -118,6 +118,23 @@ export default function Sidebar({ user, isOpen, onClose }) {
         >
           <LayoutGrid size={18} />
           <span style={{ flex: 1 }}>Dashboard</span>
+          <span
+            style={{
+              fontSize: '0.65rem',
+              fontWeight: 800,
+              backgroundColor: '#ecfdf5',
+              color: '#059669',
+              padding: '0.1rem 0.45rem',
+              borderRadius: '9999px',
+              border: '1px solid #a7f3d0',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.25rem',
+            }}
+          >
+            <span className="pulse-dot online" style={{ width: '5px', height: '5px' }} />
+            LIVE
+          </span>
         </NavLink>
 
         <NavLink
@@ -222,7 +239,20 @@ export default function Sidebar({ user, isOpen, onClose }) {
               onClick={onClose}
             >
               <UserCog size={18} />
-              <span>User Admin</span>
+              <span style={{ flex: 1 }}>User Admin</span>
+              <span
+                style={{
+                  fontSize: '0.625rem',
+                  fontWeight: 800,
+                  background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                  color: '#ffffff',
+                  padding: '0.1rem 0.45rem',
+                  borderRadius: '9999px',
+                  boxShadow: '0 2px 6px rgba(99, 102, 241, 0.3)',
+                }}
+              >
+                MATRIX
+              </span>
             </NavLink>
           </>
         )}
