@@ -647,6 +647,22 @@ a:hover {
   pointer-events: none;
 }
 
+.genz-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.95fr);
+  gap: 2.25rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 990px) {
+  .genz-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 .gradient-heading {
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #e0e7ff 100%);
   -webkit-background-clip: text;

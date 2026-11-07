@@ -27,6 +27,7 @@ import {
   ShieldCheck,
   Sparkles,
   Crown,
+  Zap,
   Calendar,
   CalendarClock,
   CalendarDays,
@@ -243,108 +244,96 @@ export default function DashboardPage() {
 
   return (
     <div>
-      {/* Gen Z Ambient Executive Hero Banner */}
-      <div className="genz-hero-card" style={{ marginBottom: '1.75rem', padding: '1.75rem 2rem' }}>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                backdropFilter: 'blur(8px)',
-                padding: '0.2rem 0.65rem',
-                borderRadius: '9999px',
-                fontSize: '0.7rem',
-                fontWeight: 800,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#e0e7ff',
-              }}
-            >
-              <Sparkles size={11} color="#fbbf24" />
-              <span>Workforce HQ • Live Matrix</span>
-            </span>
-
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                padding: '0.2rem 0.65rem',
-                borderRadius: '9999px',
-                fontSize: '0.7rem',
-                fontWeight: 700,
-                color: '#6ee7b7',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
-              }}
-            >
-              <span className="pulse-dot online" />
-              <span>All Systems Green</span>
-            </span>
-          </div>
-
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              flexWrap: 'wrap',
-              gap: '1.25rem',
-            }}
-          >
-            <div>
-              <h1
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: 900,
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1.15,
-                  margin: 0,
-                  color: '#ffffff',
-                }}
-              >
-                Welcome back, {displayName}! 🚀
-              </h1>
-              <p
-                style={{
-                  fontSize: '0.925rem',
-                  color: '#cbd5e1',
-                  marginTop: '0.45rem',
-                  maxWidth: '650px',
-                  lineHeight: 1.45,
-                }}
-              >
-                {viewMode === 'executive'
-                  ? "Real-time command center for squad allocations, leaves approvals, and company operations."
-                  : "Here is your personal time-off, attendance log, and company updates."}
-              </p>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
-              {/* Date Box */}
-              <div
+      {/* ========================================================================= */}
+      {/* 🚀 EXECUTIVE COMMAND DECK HERO (BALANCED 2-COLUMN WITH QUICK HUD)          */}
+      {/* ========================================================================= */}
+      <div
+        className="genz-hero-card"
+        style={{
+          marginBottom: '2rem',
+          padding: '2.25rem 2.5rem',
+          background: 'linear-gradient(135deg, #0b0f19 0%, #171836 50%, #221a44 100%)',
+          borderRadius: '24px',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: '0 24px 48px -12px rgba(11, 15, 25, 0.6), 0 0 40px rgba(99, 102, 241, 0.12)',
+        }}
+      >
+        <div className="genz-hero-grid">
+          {/* Left Column: Greeting, Badges, and Action Strip */}
+          <div>
+            {/* Top Nano Badges */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
+              <span
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
+                  gap: '0.4rem',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
                   backdropFilter: 'blur(8px)',
-                  borderRadius: '10px',
-                  padding: '0.45rem 0.85rem',
-                  fontSize: '0.825rem',
-                  fontWeight: 600,
-                  color: '#ffffff',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  color: '#e0e7ff',
                 }}
               >
-                <Calendar size={15} color="#c7d2fe" />
-                <span>{formattedDate}</span>
-              </div>
+                <Sparkles size={12} color="#fbbf24" />
+                <span>Workforce HQ • Live Matrix</span>
+              </span>
 
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                  padding: '0.25rem 0.7rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 700,
+                  color: '#6ee7b7',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                }}
+              >
+                <span className="pulse-dot online" />
+                <span>All Systems Operational</span>
+              </span>
+            </div>
+
+            {/* Bold Heading */}
+            <h1
+              style={{
+                fontSize: '2.35rem',
+                fontWeight: 900,
+                letterSpacing: '-0.035em',
+                lineHeight: 1.15,
+                margin: 0,
+                color: '#ffffff',
+              }}
+            >
+              Welcome back, {displayName}! 🚀
+            </h1>
+
+            {/* Subtext */}
+            <p
+              style={{
+                fontSize: '0.95rem',
+                color: '#cbd5e1',
+                marginTop: '0.6rem',
+                lineHeight: 1.55,
+                maxWidth: '620px',
+              }}
+            >
+              {viewMode === 'executive'
+                ? "Your real-time workforce command deck is synchronized. Review pending staff time-off, monitor active duty rosters, and control team velocity."
+                : "Welcome to your personal workstation. Track attendance logs, review time-off applications, and catch up on company broadcasts."}
+            </p>
+
+            {/* Actions Bar */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
               {/* Quick Apply Leave Button */}
               <button
                 type="button"
@@ -352,31 +341,60 @@ export default function DashboardPage() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.45rem 1rem',
-                  borderRadius: '10px',
+                  gap: '0.45rem',
+                  padding: '0.6rem 1.25rem',
+                  borderRadius: '12px',
                   border: 'none',
                   background: 'linear-gradient(135deg, #f97316 0%, #ec4899 100%)',
                   color: '#ffffff',
-                  fontSize: '0.825rem',
-                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  fontWeight: 800,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(249, 115, 22, 0.4)',
+                  boxShadow: '0 8px 20px -4px rgba(249, 115, 22, 0.45)',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 24px -4px rgba(249, 115, 22, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px -4px rgba(249, 115, 22, 0.45)';
                 }}
               >
                 <Plus size={16} />
                 <span>Apply Leave</span>
               </button>
 
+              {/* Date Box */}
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.16)',
+                  backdropFilter: 'blur(8px)',
+                  borderRadius: '12px',
+                  padding: '0.55rem 0.95rem',
+                  fontSize: '0.825rem',
+                  fontWeight: 600,
+                  color: '#e2e8f0',
+                }}
+              >
+                <Calendar size={15} color="#c7d2fe" />
+                <span>{formattedDate}</span>
+              </div>
+
               {/* Admin Switcher Toggle */}
               {isAdminOrHR && (
                 <div
                   style={{
                     display: 'inline-flex',
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    borderRadius: '10px',
-                    padding: '0.2rem',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.07)',
+                    borderRadius: '12px',
+                    padding: '0.25rem',
+                    border: '1px solid rgba(255, 255, 255, 0.14)',
                     backdropFilter: 'blur(8px)',
                   }}
                 >
@@ -384,15 +402,15 @@ export default function DashboardPage() {
                     type="button"
                     onClick={() => setViewMode('executive')}
                     style={{
-                      padding: '0.35rem 0.75rem',
-                      borderRadius: '8px',
+                      padding: '0.35rem 0.85rem',
+                      borderRadius: '9px',
                       border: 'none',
                       backgroundColor: viewMode === 'executive' ? '#ffffff' : 'transparent',
                       color: viewMode === 'executive' ? '#0f172a' : '#cbd5e1',
-                      fontSize: '0.75rem',
+                      fontSize: '0.775rem',
                       fontWeight: 800,
                       cursor: 'pointer',
-                      boxShadow: viewMode === 'executive' ? '0 2px 8px rgba(0,0,0,0.2)' : 'none',
+                      boxShadow: viewMode === 'executive' ? '0 2px 8px rgba(0,0,0,0.25)' : 'none',
                       transition: 'all 0.15s ease',
                     }}
                   >
@@ -402,15 +420,15 @@ export default function DashboardPage() {
                     type="button"
                     onClick={() => setViewMode('employee')}
                     style={{
-                      padding: '0.35rem 0.75rem',
-                      borderRadius: '8px',
+                      padding: '0.35rem 0.85rem',
+                      borderRadius: '9px',
                       border: 'none',
                       backgroundColor: viewMode === 'employee' ? '#ffffff' : 'transparent',
                       color: viewMode === 'employee' ? '#0f172a' : '#cbd5e1',
-                      fontSize: '0.75rem',
+                      fontSize: '0.775rem',
                       fontWeight: 800,
                       cursor: 'pointer',
-                      boxShadow: viewMode === 'employee' ? '0 2px 8px rgba(0,0,0,0.2)' : 'none',
+                      boxShadow: viewMode === 'employee' ? '0 2px 8px rgba(0,0,0,0.25)' : 'none',
                       transition: 'all 0.15s ease',
                     }}
                   >
@@ -420,219 +438,506 @@ export default function DashboardPage() {
               )}
             </div>
           </div>
+
+          {/* Right Column: Executive Pulse Check HUD (Fills the previous blank space!) */}
+          <div
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              borderRadius: '20px',
+              backdropFilter: 'blur(16px)',
+              padding: '1.35rem 1.45rem',
+              boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingBottom: '0.85rem',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                marginBottom: '1rem',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <Zap size={15} color="#fbbf24" />
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: '#e0e7ff',
+                  }}
+                >
+                  Executive Pulse Check
+                </span>
+              </div>
+              <span
+                style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  color: '#6ee7b7',
+                  padding: '0.15rem 0.5rem',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                }}
+              >
+                LIVE
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {/* Tile 1: Active Duty */}
+              <Link
+                to="/attendance"
+                style={{
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)')}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <span className="pulse-dot online" />
+                  <span style={{ fontSize: '0.825rem', color: '#cbd5e1', fontWeight: 600 }}>Active Roster</span>
+                </div>
+                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#ffffff' }}>
+                  {attendanceCount} Present Today &rarr;
+                </span>
+              </Link>
+
+              {/* Tile 2: Pending Approvals */}
+              <Link
+                to="/leave-approvals"
+                style={{
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '12px',
+                  backgroundColor: leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.05)',
+                  border: leaveStats.pending > 0 ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid rgba(255, 255, 255, 0.08)',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(245, 158, 11, 0.2)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.05)')}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <ClipboardList size={14} color="#fbbf24" />
+                  <span style={{ fontSize: '0.825rem', color: '#fef3c7', fontWeight: 600 }}>Time-Off Requests</span>
+                </div>
+                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fbbf24' }}>
+                  {leaveStats.pending} Pending Review &rarr;
+                </span>
+              </Link>
+
+              {/* Tile 3: Announcements */}
+              <Link
+                to="/announcements"
+                style={{
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)')}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <Megaphone size={14} color="#c084fc" />
+                  <span style={{ fontSize: '0.825rem', color: '#cbd5e1', fontWeight: 600 }}>Company Notices</span>
+                </div>
+                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#ffffff' }}>
+                  {announcements.length || 3} Bulletins &rarr;
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 4 VIBRANT STAT CARDS (BENTO GRADIENT GEN Z DESIGN)                         */}
+      {/* 4 HIGH-CRAFT BENTO STATS CARDS (PORCELAIN GLASS WITH RADIANT ACCENTS)     */}
       {/* ========================================================================= */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '1.25rem',
           marginBottom: '2rem',
         }}
       >
-        {/* Card 1: Pending Leave Requests (Amber-Sunset Gradient) */}
+        {/* Card 1: Pending Leave Requests */}
         <Link to="/leave-approvals" style={{ textDecoration: 'none' }}>
           <div
+            className="bento-card"
             style={{
-              background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
-              borderRadius: '16px',
-              padding: '1.35rem 1.4rem',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.1rem',
-              boxShadow: '0 8px 24px -4px rgba(245, 158, 11, 0.35)',
+              padding: '1.5rem',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #f59e0b',
+              position: 'relative',
               cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(245, 158, 11, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(245, 158, 11, 0.35)';
             }}
           >
-            <div
-              style={{
-                width: '52px',
-                height: '52px',
-                borderRadius: '14px',
-                backgroundColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(6px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <ClipboardList size={26} color="#ffffff" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 8px 18px -4px rgba(245, 158, 11, 0.45)',
+                  flexShrink: 0,
+                }}
+              >
+                <ClipboardList size={24} />
+              </div>
+
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  backgroundColor: '#fffbeb',
+                  color: '#b45309',
+                  border: '1px solid #fde68a',
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                }}
+              >
+                Action Needed ⚡
+              </span>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ marginTop: '1.15rem' }}>
+              <span
+                style={{
+                  fontSize: '0.775rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  color: '#64748b',
+                }}
+              >
                 Pending Leaves
-              </div>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
+              </span>
+              <div
+                style={{
+                  fontSize: '2.35rem',
+                  fontWeight: 900,
+                  color: '#0f172a',
+                  lineHeight: 1.1,
+                  marginTop: '0.35rem',
+                  letterSpacing: '-0.03em',
+                }}
+              >
                 {leaveStats.pending}
               </div>
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  color: '#ea580c',
+                  fontWeight: 700,
+                  marginTop: '0.65rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                }}
+              >
+                <span>Review requests</span>
+                <ArrowRight size={13} />
+              </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 2: Approved Leaves (Emerald-Teal Gradient) */}
+        {/* Card 2: Approved Leaves */}
         <Link to="/leave-approvals" style={{ textDecoration: 'none' }}>
           <div
+            className="bento-card"
             style={{
-              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-              borderRadius: '16px',
-              padding: '1.35rem 1.4rem',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.1rem',
-              boxShadow: '0 8px 24px -4px rgba(16, 185, 129, 0.35)',
+              padding: '1.5rem',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #10b981',
+              position: 'relative',
               cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(16, 185, 129, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(16, 185, 129, 0.35)';
             }}
           >
-            <div
-              style={{
-                width: '52px',
-                height: '52px',
-                borderRadius: '14px',
-                backgroundColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(6px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <CalendarCheck size={26} color="#ffffff" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 8px 18px -4px rgba(16, 185, 129, 0.45)',
+                  flexShrink: 0,
+                }}
+              >
+                <CalendarCheck size={24} />
+              </div>
+
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  backgroundColor: '#ecfdf5',
+                  color: '#059669',
+                  border: '1px solid #a7f3d0',
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                }}
+              >
+                This Month 🌴
+              </span>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ marginTop: '1.15rem' }}>
+              <span
+                style={{
+                  fontSize: '0.775rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  color: '#64748b',
+                }}
+              >
                 Approved (Month)
-              </div>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
+              </span>
+              <div
+                style={{
+                  fontSize: '2.35rem',
+                  fontWeight: 900,
+                  color: '#0f172a',
+                  lineHeight: 1.1,
+                  marginTop: '0.35rem',
+                  letterSpacing: '-0.03em',
+                }}
+              >
                 {leaveStats.approved}
               </div>
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  color: '#059669',
+                  fontWeight: 700,
+                  marginTop: '0.65rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                }}
+              >
+                <span>View scheduled time-off</span>
+                <ArrowRight size={13} />
+              </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 3: Attendance (Cyan-Blue Gradient) */}
+        {/* Card 3: Attendance (Today) */}
         <Link to="/attendance" style={{ textDecoration: 'none' }}>
           <div
+            className="bento-card"
             style={{
-              background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)',
-              borderRadius: '16px',
-              padding: '1.35rem 1.4rem',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.1rem',
-              boxShadow: '0 8px 24px -4px rgba(59, 130, 246, 0.35)',
+              padding: '1.5rem',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #3b82f6',
+              position: 'relative',
               cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(59, 130, 246, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(59, 130, 246, 0.35)';
             }}
           >
-            <div
-              style={{
-                width: '52px',
-                height: '52px',
-                borderRadius: '14px',
-                backgroundColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(6px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <UserCheck size={26} color="#ffffff" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 8px 18px -4px rgba(59, 130, 246, 0.45)',
+                  flexShrink: 0,
+                }}
+              >
+                <UserCheck size={24} />
+              </div>
+
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  backgroundColor: '#eff6ff',
+                  color: '#2563eb',
+                  border: '1px solid #bfdbfe',
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                }}
+              >
+                Live Roster 🟢
+              </span>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                {viewMode === 'executive' ? 'Present Staff Today' : 'Attendance (Month)'}
-              </div>
-              <div style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
+            <div style={{ marginTop: '1.15rem' }}>
+              <span
+                style={{
+                  fontSize: '0.775rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  color: '#64748b',
+                }}
+              >
+                {viewMode === 'executive' ? 'Staff Present Today' : 'Attendance (Month)'}
+              </span>
+              <div
+                style={{
+                  fontSize: '2.1rem',
+                  fontWeight: 900,
+                  color: '#0f172a',
+                  lineHeight: 1.1,
+                  marginTop: '0.35rem',
+                  letterSpacing: '-0.03em',
+                }}
+              >
                 {attendanceCount} {viewMode === 'executive' ? 'Present' : 'Days'}
+              </div>
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  color: '#2563eb',
+                  fontWeight: 700,
+                  marginTop: '0.65rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                }}
+              >
+                <span>Check daily roll</span>
+                <ArrowRight size={13} />
               </div>
             </div>
           </div>
         </Link>
 
-        {/* Card 4: Announcements (Purple-Rose Gradient) */}
+        {/* Card 4: Announcements */}
         <Link to="/announcements" style={{ textDecoration: 'none' }}>
           <div
+            className="bento-card"
             style={{
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-              borderRadius: '16px',
-              padding: '1.35rem 1.4rem',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.1rem',
-              boxShadow: '0 8px 24px -4px rgba(139, 92, 246, 0.35)',
+              padding: '1.5rem',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #8b5cf6',
+              position: 'relative',
               cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(139, 92, 246, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(139, 92, 246, 0.35)';
             }}
           >
-            <div
-              style={{
-                width: '52px',
-                height: '52px',
-                borderRadius: '14px',
-                backgroundColor: 'rgba(255, 255, 255, 0.22)',
-                backdropFilter: 'blur(6px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <Megaphone size={26} color="#ffffff" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '14px',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 8px 18px -4px rgba(139, 92, 246, 0.45)',
+                  flexShrink: 0,
+                }}
+              >
+                <Megaphone size={24} />
+              </div>
+
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  backgroundColor: '#faf5ff',
+                  color: '#7e22ce',
+                  border: '1px solid #e9d5ff',
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                }}
+              >
+                Broadcasts 📢
+              </span>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.95, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Broadcasts
-              </div>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, lineHeight: 1.1, marginTop: '0.2rem', letterSpacing: '-0.02em' }}>
+            <div style={{ marginTop: '1.15rem' }}>
+              <span
+                style={{
+                  fontSize: '0.775rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  color: '#64748b',
+                }}
+              >
+                Company Notices
+              </span>
+              <div
+                style={{
+                  fontSize: '2.35rem',
+                  fontWeight: 900,
+                  color: '#0f172a',
+                  lineHeight: 1.1,
+                  marginTop: '0.35rem',
+                  letterSpacing: '-0.03em',
+                }}
+              >
                 {announcements.length || 3}
+              </div>
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  color: '#7e22ce',
+                  fontWeight: 700,
+                  marginTop: '0.65rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                }}
+              >
+                <span>Read bulletin board</span>
+                <ArrowRight size={13} />
               </div>
             </div>
           </div>
