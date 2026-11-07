@@ -252,10 +252,10 @@ export default function DashboardPage() {
         style={{
           marginBottom: '2rem',
           padding: '2.25rem 2.5rem',
-          background: 'linear-gradient(135deg, #0b0f19 0%, #171836 50%, #221a44 100%)',
+          background: 'linear-gradient(135deg, #0b0f19 0%, #161838 50%, #241b49 100%)',
           borderRadius: '24px',
-          border: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: '0 24px 48px -12px rgba(11, 15, 25, 0.6), 0 0 40px rgba(99, 102, 241, 0.12)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          boxShadow: '0 24px 48px -12px rgba(11, 15, 25, 0.7), 0 0 45px rgba(99, 102, 241, 0.15)',
         }}
       >
         <div className="genz-hero-grid">
@@ -267,20 +267,21 @@ export default function DashboardPage() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                  padding: '0.25rem 0.75rem',
+                  gap: '0.45rem',
+                  backgroundColor: 'rgba(99, 102, 241, 0.22)',
+                  backdropFilter: 'blur(10px)',
+                  padding: '0.3rem 0.8rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
                   fontWeight: 800,
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(165, 180, 252, 0.35)',
                   color: '#e0e7ff',
+                  boxShadow: '0 2px 10px rgba(99, 102, 241, 0.2)',
                 }}
               >
-                <Sparkles size={12} color="#fbbf24" />
+                <Sparkles size={13} color="#fbbf24" />
                 <span>Workforce HQ • Live Matrix</span>
               </span>
 
@@ -288,17 +289,19 @@ export default function DashboardPage() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
-                  backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                  padding: '0.25rem 0.7rem',
+                  gap: '0.45rem',
+                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  backdropFilter: 'blur(10px)',
+                  padding: '0.3rem 0.75rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
                   fontWeight: 700,
                   color: '#6ee7b7',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  border: '1px solid rgba(52, 211, 153, 0.4)',
+                  boxShadow: '0 2px 10px rgba(16, 185, 129, 0.15)',
                 }}
               >
-                <span className="pulse-dot online" />
+                <span className="pulse-dot online" style={{ width: '7px', height: '7px' }} />
                 <span>All Systems Operational</span>
               </span>
             </div>
@@ -332,86 +335,109 @@ export default function DashboardPage() {
                 : "Welcome to your personal workstation. Track attendance logs, review time-off applications, and catch up on company broadcasts."}
             </p>
 
-            {/* Actions Bar */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-              {/* Quick Apply Leave Button */}
+            {/* Actions Bar (Upgraded with Radiant Glowing Buttons) */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+              {/* Electric + Apply Leave Button */}
               <button
                 type="button"
                 onClick={() => setIsApplyModalOpen(true)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.6rem 1.25rem',
-                  borderRadius: '12px',
-                  border: 'none',
-                  background: 'linear-gradient(135deg, #f97316 0%, #ec4899 100%)',
+                  gap: '0.5rem',
+                  padding: '0.65rem 1.35rem',
+                  borderRadius: '14px',
+                  border: '1px solid rgba(255, 255, 255, 0.35)',
+                  background: 'linear-gradient(135deg, #ff5722 0%, #ff1744 50%, #d500f9 100%)',
                   color: '#ffffff',
-                  fontSize: '0.85rem',
+                  fontSize: '0.875rem',
                   fontWeight: 800,
+                  letterSpacing: '0.02em',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 20px -4px rgba(249, 115, 22, 0.45)',
+                  boxShadow: '0 0 20px rgba(255, 23, 68, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5)',
                   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px -4px rgba(249, 115, 22, 0.6)';
+                  e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 0 28px rgba(255, 23, 68, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.7)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px -4px rgba(249, 115, 22, 0.45)';
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 23, 68, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5)';
                 }}
               >
-                <Plus size={16} />
+                <Plus size={17} strokeWidth={2.8} />
                 <span>Apply Leave</span>
               </button>
 
-              {/* Date Box */}
+              {/* Crystal Glass Date Box */}
               <div
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  border: '1px solid rgba(255, 255, 255, 0.16)',
-                  backdropFilter: 'blur(8px)',
-                  borderRadius: '12px',
-                  padding: '0.55rem 0.95rem',
-                  fontSize: '0.825rem',
-                  fontWeight: 600,
-                  color: '#e2e8f0',
+                  gap: '0.55rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  backdropFilter: 'blur(12px)',
+                  borderRadius: '14px',
+                  padding: '0.62rem 1rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2)',
                 }}
               >
-                <Calendar size={15} color="#c7d2fe" />
+                <Calendar size={16} color="#38bdf8" />
                 <span>{formattedDate}</span>
               </div>
 
-              {/* Admin Switcher Toggle */}
+              {/* Electric Capsule Switcher (Executive HQ vs My View) */}
               {isAdminOrHR && (
                 <div
                   style={{
                     display: 'inline-flex',
-                    backgroundColor: 'rgba(255, 255, 255, 0.07)',
-                    borderRadius: '12px',
-                    padding: '0.25rem',
-                    border: '1px solid rgba(255, 255, 255, 0.14)',
-                    backdropFilter: 'blur(8px)',
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+                    borderRadius: '9999px',
+                    padding: '0.28rem',
+                    border: '1px solid rgba(255, 255, 255, 0.22)',
+                    backdropFilter: 'blur(16px)',
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.25)',
                   }}
                 >
                   <button
                     type="button"
                     onClick={() => setViewMode('executive')}
                     style={{
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: '9px',
-                      border: 'none',
-                      backgroundColor: viewMode === 'executive' ? '#ffffff' : 'transparent',
-                      color: viewMode === 'executive' ? '#0f172a' : '#cbd5e1',
-                      fontSize: '0.775rem',
+                      padding: '0.45rem 1.05rem',
+                      borderRadius: '9999px',
+                      border: viewMode === 'executive' ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
+                      background:
+                        viewMode === 'executive'
+                          ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)'
+                          : 'transparent',
+                      color: viewMode === 'executive' ? '#ffffff' : 'rgba(255, 255, 255, 0.82)',
+                      fontSize: '0.8rem',
                       fontWeight: 800,
                       cursor: 'pointer',
-                      boxShadow: viewMode === 'executive' ? '0 2px 8px rgba(0,0,0,0.25)' : 'none',
-                      transition: 'all 0.15s ease',
+                      boxShadow:
+                        viewMode === 'executive'
+                          ? '0 4px 16px rgba(139, 92, 246, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45)'
+                          : 'none',
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      textShadow: viewMode === 'executive' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (viewMode !== 'executive') {
+                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (viewMode !== 'executive') {
+                        e.currentTarget.style.color = 'rgba(255, 255, 255, 0.82)';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
                     }}
                   >
                     👑 Executive HQ
@@ -420,16 +446,35 @@ export default function DashboardPage() {
                     type="button"
                     onClick={() => setViewMode('employee')}
                     style={{
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: '9px',
-                      border: 'none',
-                      backgroundColor: viewMode === 'employee' ? '#ffffff' : 'transparent',
-                      color: viewMode === 'employee' ? '#0f172a' : '#cbd5e1',
-                      fontSize: '0.775rem',
+                      padding: '0.45rem 1.05rem',
+                      borderRadius: '9999px',
+                      border: viewMode === 'employee' ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
+                      background:
+                        viewMode === 'employee'
+                          ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)'
+                          : 'transparent',
+                      color: viewMode === 'employee' ? '#ffffff' : 'rgba(255, 255, 255, 0.82)',
+                      fontSize: '0.8rem',
                       fontWeight: 800,
                       cursor: 'pointer',
-                      boxShadow: viewMode === 'employee' ? '0 2px 8px rgba(0,0,0,0.25)' : 'none',
-                      transition: 'all 0.15s ease',
+                      boxShadow:
+                        viewMode === 'employee'
+                          ? '0 4px 16px rgba(139, 92, 246, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45)'
+                          : 'none',
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      textShadow: viewMode === 'employee' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (viewMode !== 'employee') {
+                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (viewMode !== 'employee') {
+                        e.currentTarget.style.color = 'rgba(255, 255, 255, 0.82)';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
                     }}
                   >
                     💼 My View
@@ -439,15 +484,15 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Right Column: Executive Pulse Check HUD (Fills the previous blank space!) */}
+          {/* Right Column: Executive Pulse Check HUD (Vibrant Glass HUD) */}
           <div
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
               borderRadius: '20px',
-              backdropFilter: 'blur(16px)',
-              padding: '1.35rem 1.45rem',
-              boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(20px)',
+              padding: '1.4rem 1.5rem',
+              boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.3)',
             }}
           >
             <div
@@ -455,20 +500,20 @@ export default function DashboardPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                paddingBottom: '0.85rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                paddingBottom: '0.9rem',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
                 marginBottom: '1rem',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                <Zap size={15} color="#fbbf24" />
+                <Zap size={16} color="#fbbf24" />
                 <span
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: '0.775rem',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
-                    color: '#e0e7ff',
+                    color: '#ffffff',
                   }}
                 >
                   Executive Pulse Check
@@ -476,13 +521,14 @@ export default function DashboardPage() {
               </div>
               <span
                 style={{
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  fontSize: '0.725rem',
+                  fontWeight: 800,
+                  backgroundColor: 'rgba(16, 185, 129, 0.25)',
                   color: '#6ee7b7',
-                  padding: '0.15rem 0.5rem',
+                  padding: '0.2rem 0.6rem',
                   borderRadius: '9999px',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  border: '1px solid rgba(52, 211, 153, 0.45)',
+                  boxShadow: '0 0 10px rgba(16, 185, 129, 0.2)',
                 }}
               >
                 LIVE
@@ -498,20 +544,26 @@ export default function DashboardPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0.65rem 0.85rem',
+                  padding: '0.7rem 0.95rem',
                   borderRadius: '12px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  transition: 'background-color 0.2s',
+                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  border: '1px solid rgba(16, 185, 129, 0.28)',
+                  transition: 'all 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.18)';
+                  e.currentTarget.style.transform = 'translateX(2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <span className="pulse-dot online" />
-                  <span style={{ fontSize: '0.825rem', color: '#cbd5e1', fontWeight: 600 }}>Active Roster</span>
+                  <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 600 }}>Active Roster</span>
                 </div>
-                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#ffffff' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#6ee7b7' }}>
                   {attendanceCount} Present Today &rarr;
                 </span>
               </Link>
@@ -524,20 +576,27 @@ export default function DashboardPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0.65rem 0.85rem',
+                  padding: '0.7rem 0.95rem',
                   borderRadius: '12px',
-                  backgroundColor: leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.05)',
-                  border: leaveStats.pending > 0 ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid rgba(255, 255, 255, 0.08)',
-                  transition: 'background-color 0.2s',
+                  backgroundColor: leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.18)' : 'rgba(255, 255, 255, 0.06)',
+                  border: leaveStats.pending > 0 ? '1px solid rgba(245, 158, 11, 0.45)' : '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: leaveStats.pending > 0 ? '0 0 15px rgba(245, 158, 11, 0.15)' : 'none',
+                  transition: 'all 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(245, 158, 11, 0.2)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.05)')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(245, 158, 11, 0.28)';
+                  e.currentTarget.style.transform = 'translateX(2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = leaveStats.pending > 0 ? 'rgba(245, 158, 11, 0.18)' : 'rgba(255, 255, 255, 0.06)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <ClipboardList size={14} color="#fbbf24" />
-                  <span style={{ fontSize: '0.825rem', color: '#fef3c7', fontWeight: 600 }}>Time-Off Requests</span>
+                  <ClipboardList size={15} color="#fbbf24" />
+                  <span style={{ fontSize: '0.85rem', color: '#fef3c7', fontWeight: 600 }}>Time-Off Requests</span>
                 </div>
-                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fbbf24' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#fbbf24' }}>
                   {leaveStats.pending} Pending Review &rarr;
                 </span>
               </Link>
@@ -550,20 +609,26 @@ export default function DashboardPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0.65rem 0.85rem',
+                  padding: '0.7rem 0.95rem',
                   borderRadius: '12px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  transition: 'background-color 0.2s',
+                  backgroundColor: 'rgba(168, 85, 247, 0.12)',
+                  border: '1px solid rgba(168, 85, 247, 0.3)',
+                  transition: 'all 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.22)';
+                  e.currentTarget.style.transform = 'translateX(2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.12)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <Megaphone size={14} color="#c084fc" />
-                  <span style={{ fontSize: '0.825rem', color: '#cbd5e1', fontWeight: 600 }}>Company Notices</span>
+                  <Megaphone size={15} color="#e879f9" />
+                  <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 600 }}>Company Notices</span>
                 </div>
-                <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#ffffff' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#e879f9' }}>
                   {announcements.length || 3} Bulletins &rarr;
                 </span>
               </Link>
