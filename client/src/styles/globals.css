@@ -417,61 +417,73 @@ a:hover {
   background-color: var(--color-warning-accent);
 }
 
-/* Tables */
-.table-responsive {
+/* Tables - High Clarity Responsive Data Grid */
+.table-responsive,
+.table-container {
   width: 100%;
   overflow-x: auto;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border: 1px solid #e2e8f0;
   background-color: var(--bg-card);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  -webkit-overflow-scrolling: touch;
 }
 
-.custom-table {
+.custom-table,
+.data-table {
   width: 100%;
+  min-width: 860px;
   border-collapse: separate;
   border-spacing: 0;
   text-align: left;
 }
 
-.custom-table th {
-  background-color: var(--color-slate-50);
+.custom-table th,
+.data-table th {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   padding: 0.95rem 1.25rem;
-  font-size: 0.825rem;
-  font-weight: 700;
+  font-size: 0.775rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-slate-500);
-  border-bottom: 1px solid var(--border-color);
+  letter-spacing: 0.06em;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
   white-space: nowrap;
 }
 
-.custom-table th.sortable {
+.custom-table th.sortable,
+.data-table th.sortable {
   cursor: pointer;
   user-select: none;
 }
-.custom-table th.sortable:hover {
-  background-color: var(--color-slate-100);
-  color: var(--color-slate-800);
+.custom-table th.sortable:hover,
+.data-table th.sortable:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
-.custom-table td {
-  padding: 1.05rem 1.25rem;
-  font-size: 0.9rem;
-  color: var(--color-slate-700);
-  border-bottom: 1px solid var(--border-subtle);
+.custom-table td,
+.data-table td {
+  padding: 1.1rem 1.25rem;
+  font-size: 0.875rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
   vertical-align: middle;
+  background-color: #ffffff;
 }
 
-.custom-table tr:last-child td {
+.custom-table tr:last-child td,
+.data-table tr:last-child td {
   border-bottom: none;
 }
 
-.custom-table tbody tr {
+.custom-table tbody tr,
+.data-table tbody tr {
   transition: background-color var(--transition-fast);
 }
 
-.custom-table tbody tr:hover {
+.custom-table tbody tr:hover td,
+.data-table tbody tr:hover td {
   background-color: #f8fafc;
 }
 

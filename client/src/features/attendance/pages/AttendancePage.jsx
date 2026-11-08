@@ -385,50 +385,84 @@ export default function AttendancePage() {
             description="No employee attendance records match your filter criteria."
           />
         ) : (
-          <div className="table-container">
-            <table className="data-table">
+          <div className="table-container" style={{ width: '100%', overflowX: 'auto' }}>
+            <table className="data-table" style={{ width: '100%', minWidth: '940px' }}>
               <thead>
                 <tr>
-                  <th>Employee</th>
-                  <th>Department</th>
-                  <th>Current Status</th>
-                  <th>Check-In</th>
-                  <th>Check-Out</th>
-                  <th>Notes</th>
-                  {isAdminOrHR && <th style={{ textAlign: 'center' }}>Quick Status Change</th>}
+                  <th style={{ minWidth: '220px' }}>Employee</th>
+                  <th style={{ minWidth: '150px' }}>Department</th>
+                  <th style={{ minWidth: '150px' }}>Current Status</th>
+                  <th style={{ minWidth: '120px' }}>Check-In</th>
+                  <th style={{ minWidth: '120px' }}>Check-Out</th>
+                  <th style={{ minWidth: '180px' }}>Notes</th>
+                  {isAdminOrHR && <th style={{ minWidth: '200px', textAlign: 'center' }}>Quick Status Change</th>}
                 </tr>
               </thead>
               <tbody>
                 {filteredRecords.map((item) => (
                   <tr key={item._id}>
                     <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <div
                           style={{
-                            width: '34px',
-                            height: '34px',
-                            borderRadius: '50%',
-                            backgroundColor: '#e0e7ff',
-                            color: '#4338ca',
+                            width: '38px',
+                            height: '38px',
+                            borderRadius: '10px',
+                            background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+                            color: '#ffffff',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontWeight: 700,
-                            fontSize: '0.85rem',
+                            fontWeight: 800,
+                            fontSize: '0.9rem',
+                            boxShadow: '0 2px 6px rgba(14, 165, 233, 0.25)',
+                            flexShrink: 0,
                           }}
                         >
                           {item.employeeName?.charAt(0) || 'E'}
                         </div>
                         <div>
-                          <div style={{ fontWeight: 700, color: '#0f172a' }}>{item.employeeName}</div>
-                          <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{item.employeeId}</div>
+                          <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
+                            {item.employeeName}
+                          </div>
+                          <span
+                            style={{
+                              fontFamily: 'monospace',
+                              fontSize: '0.725rem',
+                              fontWeight: 600,
+                              backgroundColor: '#f1f5f9',
+                              color: '#475569',
+                              padding: '2px 7px',
+                              borderRadius: '4px',
+                              border: '1px solid #e2e8f0',
+                              display: 'inline-block',
+                              marginTop: '3px',
+                            }}
+                          >
+                            {item.employeeId}
+                          </span>
                         </div>
                       </div>
                     </td>
 
                     <td>
-                      <span style={{ fontSize: '0.85rem', color: '#475569', fontWeight: 600 }}>
-                        {item.department}
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.35rem',
+                          padding: '0.3rem 0.65rem',
+                          borderRadius: '6px',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          fontSize: '0.825rem',
+                          fontWeight: 600,
+                          color: '#334155',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Building2 size={13} color="#6366f1" />
+                        {item.department || 'Operations'}
                       </span>
                     </td>
 
@@ -438,155 +472,222 @@ export default function AttendancePage() {
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#d1fae5',
+                            backgroundColor: '#ecfdf5',
                             color: '#065f46',
+                            border: '1px solid #a7f3d0',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <CheckCircle2 size={12} /> Present
+                          <CheckCircle2 size={13} color="#059669" /> Present
                         </span>
                       ) : item.status === 'Absent' ? (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#fee2e2',
+                            backgroundColor: '#fef2f2',
                             color: '#991b1b',
+                            border: '1px solid #fecaca',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <XCircle size={12} /> Absent
+                          <XCircle size={13} color="#dc2626" /> Absent
                         </span>
                       ) : item.status === 'Half Day' ? (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#fef3c7',
+                            backgroundColor: '#fffbeb',
                             color: '#b45309',
+                            border: '1px solid #fde68a',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={12} /> Half Day
+                          <Clock size={13} color="#d97706" /> Half Day
                         </span>
                       ) : item.status === 'Late' ? (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
                             backgroundColor: '#f3e8ff',
                             color: '#7e22ce',
+                            border: '1px solid #d8b4fe',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={12} /> Late
+                          <Clock size={13} color="#9333ea" /> Late Arrival
                         </span>
                       ) : (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
                             backgroundColor: '#e0e7ff',
                             color: '#4338ca',
+                            border: '1px solid #c7d2fe',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={12} /> On Leave
+                          <Clock size={13} color="#6366f1" /> On Leave
                         </span>
                       )}
                     </td>
 
-                    <td style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a' }}>{item.checkIn || '-'}</td>
-                    <td style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a' }}>{item.checkOut || '-'}</td>
+                    <td>
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.3rem',
+                          fontSize: '0.825rem',
+                          fontWeight: 700,
+                          color: '#0f172a',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          padding: '3px 8px',
+                          borderRadius: '6px',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Clock size={12} color="#64748b" />
+                        {item.checkIn || '--:--'}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.3rem',
+                          fontSize: '0.825rem',
+                          fontWeight: 700,
+                          color: '#0f172a',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          padding: '3px 8px',
+                          borderRadius: '6px',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Clock size={12} color="#64748b" />
+                        {item.checkOut || '--:--'}
+                      </span>
+                    </td>
 
-                    <td style={{ fontSize: '0.8rem', color: '#64748b' }}>{item.notes || '-'}</td>
+                    <td>
+                      <div
+                        style={{
+                          fontSize: '0.8rem',
+                          color: '#475569',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '6px',
+                          padding: '0.35rem 0.65rem',
+                          maxWidth: '200px',
+                          wordBreak: 'break-word',
+                        }}
+                      >
+                        {item.notes || 'Normal duty roster'}
+                      </div>
+                    </td>
 
                     {isAdminOrHR && (
                       <td style={{ textAlign: 'center' }}>
-                        <div style={{ display: 'inline-flex', gap: '0.25rem' }}>
+                        <div style={{ display: 'inline-flex', gap: '0.35rem', whiteSpace: 'nowrap' }}>
                           <button
                             type="button"
                             onClick={() => handleUpdateStatus(item._id, 'Present')}
                             style={{
-                              padding: '0.25rem 0.5rem',
-                              borderRadius: '4px',
-                              fontSize: '0.72rem',
+                              padding: '0.3rem 0.65rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
                               border: item.status === 'Present' ? '1px solid #10b981' : '1px solid #cbd5e1',
                               backgroundColor: item.status === 'Present' ? '#d1fae5' : '#ffffff',
                               color: item.status === 'Present' ? '#065f46' : '#64748b',
                             }}
+                            title="Mark as Present"
                           >
-                            P
+                            Present
                           </button>
                           <button
                             type="button"
                             onClick={() => handleUpdateStatus(item._id, 'Absent')}
                             style={{
-                              padding: '0.25rem 0.5rem',
-                              borderRadius: '4px',
-                              fontSize: '0.72rem',
+                              padding: '0.3rem 0.65rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
                               border: item.status === 'Absent' ? '1px solid #ef4444' : '1px solid #cbd5e1',
                               backgroundColor: item.status === 'Absent' ? '#fee2e2' : '#ffffff',
                               color: item.status === 'Absent' ? '#991b1b' : '#64748b',
                             }}
+                            title="Mark as Absent"
                           >
-                            A
+                            Absent
                           </button>
                           <button
                             type="button"
                             onClick={() => handleUpdateStatus(item._id, 'Half Day')}
                             style={{
-                              padding: '0.25rem 0.5rem',
-                              borderRadius: '4px',
-                              fontSize: '0.72rem',
+                              padding: '0.3rem 0.65rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
                               border: item.status === 'Half Day' ? '1px solid #f59e0b' : '1px solid #cbd5e1',
                               backgroundColor: item.status === 'Half Day' ? '#fef3c7' : '#ffffff',
-                              color: item.status === 'Half Day' ? '#b45309' : '#64748b',
+                              color: item.status === 'Half Day' ? '#92400e' : '#64748b',
                             }}
+                            title="Mark as Half Day"
                           >
-                            HD
+                            Half Day
                           </button>
                           <button
                             type="button"
                             onClick={() => handleUpdateStatus(item._id, 'Late')}
                             style={{
-                              padding: '0.25rem 0.5rem',
-                              borderRadius: '4px',
-                              fontSize: '0.72rem',
+                              padding: '0.3rem 0.65rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
-                              border: item.status === 'Late' ? '1px solid #a855f7' : '1px solid #cbd5e1',
+                              border: item.status === 'Late' ? '1px solid #8b5cf6' : '1px solid #cbd5e1',
                               backgroundColor: item.status === 'Late' ? '#f3e8ff' : '#ffffff',
-                              color: item.status === 'Late' ? '#7e22ce' : '#64748b',
+                              color: item.status === 'Late' ? '#6d28d9' : '#64748b',
                             }}
+                            title="Mark as Late Arrival"
                           >
-                            L
+                            Late
                           </button>
                         </div>
                       </td>

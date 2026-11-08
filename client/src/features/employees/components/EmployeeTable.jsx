@@ -23,14 +23,14 @@ export default function EmployeeTable({
   };
 
   return (
-    <div className="table-responsive">
-      <table className="custom-table">
+    <div className="table-responsive" style={{ width: '100%', overflowX: 'auto' }}>
+      <table className="custom-table" style={{ width: '100%', minWidth: '980px' }}>
         <thead>
           <tr>
             <th
               className="sortable"
               onClick={() => onSort('employeeId')}
-              style={{ width: '130px' }}
+              style={{ minWidth: '130px', width: '130px' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                 <span>Emp ID</span>
@@ -41,6 +41,7 @@ export default function EmployeeTable({
             <th
               className="sortable"
               onClick={() => onSort('name')}
+              style={{ minWidth: '240px' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                 <span>Employee</span>
@@ -48,12 +49,13 @@ export default function EmployeeTable({
               </div>
             </th>
 
-            <th>Department</th>
-            <th>Designation</th>
+            <th style={{ minWidth: '180px' }}>Department</th>
+            <th style={{ minWidth: '180px' }}>Designation</th>
 
             <th
               className="sortable"
               onClick={() => onSort('joiningDate')}
+              style={{ minWidth: '150px' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                 <span>Joining Date</span>
@@ -61,8 +63,8 @@ export default function EmployeeTable({
               </div>
             </th>
 
-            <th>Status</th>
-            <th style={{ textAlign: 'right', width: '110px' }}>Actions</th>
+            <th style={{ minWidth: '140px' }}>Status</th>
+            <th style={{ textAlign: 'right', minWidth: '110px', width: '110px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>

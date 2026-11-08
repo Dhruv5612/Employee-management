@@ -1183,47 +1183,111 @@ export default function DashboardPage() {
                 All caught up! There are no pending leave requests waiting for approval.
               </div>
             ) : (
-              <div style={{ overflowX: 'auto' }}>
-                <table className="data-table" style={{ width: '100%' }}>
+              <div className="table-container" style={{ width: '100%', overflowX: 'auto' }}>
+                <table className="data-table" style={{ width: '100%', minWidth: '820px' }}>
                   <thead>
                     <tr>
-                      <th>Employee</th>
-                      <th>Leave Type</th>
-                      <th>Dates</th>
-                      <th>Days</th>
-                      <th>Reason</th>
-                      <th style={{ textAlign: 'right' }}>Action</th>
+                      <th style={{ minWidth: '200px' }}>Employee</th>
+                      <th style={{ minWidth: '130px' }}>Leave Type</th>
+                      <th style={{ minWidth: '180px' }}>Duration</th>
+                      <th style={{ minWidth: '220px' }}>Reason</th>
+                      <th style={{ minWidth: '150px', textAlign: 'right' }}>Review Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {pendingLeavesList.slice(0, 5).map((l) => (
                       <tr key={l._id}>
                         <td>
-                          <div style={{ fontWeight: 600, color: '#0f172a' }}>{l.employeeName}</div>
-                          <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{l.department || l.employeeEmail}</div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                            <div
+                              style={{
+                                width: '34px',
+                                height: '34px',
+                                borderRadius: '8px',
+                                background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                                color: '#ffffff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontWeight: 800,
+                                fontSize: '0.85rem',
+                                flexShrink: 0,
+                              }}
+                            >
+                              {l.employeeName?.charAt(0) || 'E'}
+                            </div>
+                            <div>
+                              <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.9rem' }}>{l.employeeName}</div>
+                              <div style={{ fontSize: '0.725rem', color: '#64748b' }}>{l.department || l.employeeEmail}</div>
+                            </div>
+                          </div>
                         </td>
                         <td>
                           <span
                             style={{
-                              backgroundColor: '#f1f5f9',
-                              padding: '0.2rem 0.55rem',
-                              borderRadius: '4px',
+                              backgroundColor: (l.leaveType || '').toLowerCase().includes('sick')
+                                ? '#fff1f2'
+                                : (l.leaveType || '').toLowerCase().includes('casual')
+                                ? '#eef2ff'
+                                : '#ecfdf5',
+                              color: (l.leaveType || '').toLowerCase().includes('sick')
+                                ? '#be123c'
+                                : (l.leaveType || '').toLowerCase().includes('casual')
+                                ? '#4338ca'
+                                : '#047857',
+                              border: '1px solid currentColor',
+                              opacity: 0.95,
+                              padding: '0.25rem 0.6rem',
+                              borderRadius: '6px',
                               fontSize: '0.75rem',
-                              fontWeight: 600,
+                              fontWeight: 700,
+                              whiteSpace: 'nowrap',
                             }}
                           >
                             {l.leaveType}
                           </span>
                         </td>
-                        <td style={{ fontSize: '0.825rem' }}>
-                          {formatDate(l.startDate)} &rarr; {formatDate(l.endDate)}
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                            <span style={{ fontSize: '0.825rem', fontWeight: 600, color: '#0f172a', whiteSpace: 'nowrap' }}>
+                              {formatDate(l.startDate)} &rarr; {formatDate(l.endDate)}
+                            </span>
+                            <span
+                              style={{
+                                display: 'inline-block',
+                                width: 'fit-content',
+                                fontSize: '0.7rem',
+                                fontWeight: 700,
+                                color: '#15803d',
+                                backgroundColor: '#f0fdf4',
+                                border: '1px solid #bbf7d0',
+                                padding: '1px 6px',
+                                borderRadius: '9999px',
+                              }}
+                            >
+                              {l.days} {l.days === 1 ? 'day' : 'days'}
+                            </span>
+                          </div>
                         </td>
-                        <td style={{ fontWeight: 600 }}>{l.days} days</td>
-                        <td style={{ fontSize: '0.825rem', color: '#475569', maxWidth: '220px' }}>
-                          {l.reason}
+                        <td>
+                          <div
+                            style={{
+                              fontSize: '0.8rem',
+                              color: '#334155',
+                              backgroundColor: '#f8fafc',
+                              border: '1px solid #e2e8f0',
+                              borderRadius: '6px',
+                              padding: '0.4rem 0.65rem',
+                              lineHeight: '1.4',
+                              maxWidth: '240px',
+                              wordBreak: 'break-word',
+                            }}
+                          >
+                            &ldquo;{l.reason}&rdquo;
+                          </div>
                         </td>
                         <td style={{ textAlign: 'right' }}>
-                          <div style={{ display: 'inline-flex', gap: '0.4rem' }}>
+                          <div style={{ display: 'inline-flex', gap: '0.4rem', whiteSpace: 'nowrap' }}>
                             <button
                               type="button"
                               onClick={() => handleQuickStatus(l._id, 'Approved')}
@@ -1231,11 +1295,11 @@ export default function DashboardPage() {
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.25rem',
-                                padding: '0.3rem 0.65rem',
+                                padding: '0.35rem 0.7rem',
                                 borderRadius: '6px',
-                                border: 'none',
-                                backgroundColor: '#10b981',
-                                color: '#ffffff',
+                                border: '1px solid #10b981',
+                                backgroundColor: '#ecfdf5',
+                                color: '#047857',
                                 fontSize: '0.75rem',
                                 fontWeight: 700,
                                 cursor: 'pointer',
@@ -1250,11 +1314,11 @@ export default function DashboardPage() {
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.25rem',
-                                padding: '0.3rem 0.65rem',
+                                padding: '0.35rem 0.7rem',
                                 borderRadius: '6px',
-                                border: 'none',
-                                backgroundColor: '#fee2e2',
-                                color: '#991b1b',
+                                border: '1px solid #ef4444',
+                                backgroundColor: '#fef2f2',
+                                color: '#b91c1c',
                                 fontSize: '0.75rem',
                                 fontWeight: 700,
                                 cursor: 'pointer',

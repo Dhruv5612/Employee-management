@@ -11,17 +11,17 @@ export default function DepartmentTable({
   canDelete,
 }) {
   return (
-    <div className="table-responsive">
-      <table className="custom-table">
+    <div className="table-responsive" style={{ width: '100%', overflowX: 'auto' }}>
+      <table className="custom-table" style={{ width: '100%', minWidth: '920px' }}>
         <thead>
           <tr>
-            <th style={{ width: '100px' }}>Code</th>
-            <th>Department Name</th>
-            <th>Manager</th>
-            <th>Description</th>
-            <th style={{ width: '150px' }}>Assigned Staff</th>
-            <th style={{ width: '120px' }}>Created</th>
-            <th style={{ textAlign: 'right', width: '130px' }}>Actions</th>
+            <th style={{ minWidth: '100px', width: '100px' }}>Code</th>
+            <th style={{ minWidth: '200px' }}>Department Name</th>
+            <th style={{ minWidth: '180px' }}>Manager</th>
+            <th style={{ minWidth: '220px' }}>Description</th>
+            <th style={{ minWidth: '150px', width: '150px' }}>Assigned Staff</th>
+            <th style={{ minWidth: '120px', width: '120px' }}>Created</th>
+            <th style={{ textAlign: 'right', minWidth: '130px', width: '130px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>

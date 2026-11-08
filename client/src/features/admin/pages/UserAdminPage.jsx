@@ -1340,16 +1340,16 @@ export default function UserAdminPage() {
             boxShadow: '0 4px 20px -2px rgba(15, 23, 42, 0.05)',
           }}
         >
-          <div className="table-responsive">
-            <table className="custom-table" style={{ width: '100%' }}>
+          <div className="table-responsive" style={{ width: '100%', overflowX: 'auto' }}>
+            <table className="custom-table" style={{ width: '100%', minWidth: '980px' }}>
               <thead>
                 <tr>
-                  <th style={{ paddingLeft: '1.5rem' }}>Operator Identity</th>
-                  <th>Work Email</th>
-                  <th>Role Access</th>
-                  <th>Active Status</th>
-                  <th>Registered</th>
-                  <th style={{ textAlign: 'right', paddingRight: '1.5rem', width: '220px' }}>
+                  <th style={{ paddingLeft: '1.5rem', minWidth: '220px' }}>Operator Identity</th>
+                  <th style={{ minWidth: '200px' }}>Work Email</th>
+                  <th style={{ minWidth: '150px' }}>Role Access</th>
+                  <th style={{ minWidth: '130px' }}>Active Status</th>
+                  <th style={{ minWidth: '130px' }}>Registered</th>
+                  <th style={{ textAlign: 'right', paddingRight: '1.5rem', minWidth: '220px', width: '220px' }}>
                     Actions
                   </th>
                 </tr>

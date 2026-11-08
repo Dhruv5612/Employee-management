@@ -23,6 +23,12 @@ import {
   Check,
   X,
   FileText,
+  Search,
+  LayoutGrid,
+  Table as TableIcon,
+  MessageSquare,
+  Sparkles,
+  ArrowRight,
 } from 'lucide-react';
 
 export default function LeaveApprovalsPage() {
@@ -31,6 +37,8 @@ export default function LeaveApprovalsPage() {
   const [filter, setFilter] = useState('Pending');
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState('table'); // 'table' | 'cards'
 
   // Modal states
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
@@ -162,6 +170,48 @@ export default function LeaveApprovalsPage() {
     }
   };
 
+  const getLeaveTypeStyle = (type) => {
+    const t = (type || '').toLowerCase();
+    if (t.includes('sick') || t.includes('medical')) {
+      return {
+        bg: '#fff1f2',
+        color: '#be123c',
+        border: '1px solid #fecdd3',
+        label: type || 'Sick Leave',
+      };
+    }
+    if (t.includes('casual') || t.includes('personal')) {
+      return {
+        bg: '#eef2ff',
+        color: '#4338ca',
+        border: '1px solid #c7d2fe',
+        label: type || 'Casual Leave',
+      };
+    }
+    if (t.includes('annual') || t.includes('vacation') || t.includes('earned')) {
+      return {
+        bg: '#ecfdf5',
+        color: '#047857',
+        border: '1px solid #a7f3d0',
+        label: type || 'Annual Leave',
+      };
+    }
+    if (t.includes('maternity') || t.includes('paternity')) {
+      return {
+        bg: '#fdf2f8',
+        color: '#9d174d',
+        border: '1px solid #fbcfe8',
+        label: type || 'Parental Leave',
+      };
+    }
+    return {
+      bg: '#f8fafc',
+      color: '#334155',
+      border: '1px solid #e2e8f0',
+      label: type || 'Standard Leave',
+    };
+  };
+
   const getStatusBadge = (status) => {
     switch (status) {
       case 'Pending':
@@ -170,16 +220,20 @@ export default function LeaveApprovalsPage() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.25rem 0.65rem',
+              gap: '0.4rem',
+              padding: '0.35rem 0.75rem',
               borderRadius: '9999px',
-              fontSize: '0.75rem',
+              fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#fef3c7',
+              backgroundColor: '#fffbeb',
               color: '#b45309',
+              border: '1px solid #fde68a',
+              boxShadow: '0 1px 3px rgba(245, 158, 11, 0.1)',
+              whiteSpace: 'nowrap',
             }}
           >
-            <Clock size={12} /> Pending Approval
+            <Clock size={13} color="#d97706" />
+            <span>Pending Review</span>
           </span>
         );
       case 'Approved':
@@ -188,16 +242,20 @@ export default function LeaveApprovalsPage() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.25rem 0.65rem',
+              gap: '0.4rem',
+              padding: '0.35rem 0.75rem',
               borderRadius: '9999px',
-              fontSize: '0.75rem',
+              fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#d1fae5',
-              color: '#065f46',
+              backgroundColor: '#ecfdf5',
+              color: '#047857',
+              border: '1px solid #a7f3d0',
+              boxShadow: '0 1px 3px rgba(16, 185, 129, 0.1)',
+              whiteSpace: 'nowrap',
             }}
           >
-            <CheckCircle2 size={12} /> Approved
+            <CheckCircle2 size={13} color="#059669" />
+            <span>Approved</span>
           </span>
         );
       case 'Rejected':
@@ -206,20 +264,42 @@ export default function LeaveApprovalsPage() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.25rem 0.65rem',
+              gap: '0.4rem',
+              padding: '0.35rem 0.75rem',
               borderRadius: '9999px',
-              fontSize: '0.75rem',
+              fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#fee2e2',
-              color: '#991b1b',
+              backgroundColor: '#fef2f2',
+              color: '#b91c1c',
+              border: '1px solid #fecaca',
+              boxShadow: '0 1px 3px rgba(239, 68, 68, 0.1)',
+              whiteSpace: 'nowrap',
             }}
           >
-            <XCircle size={12} /> Rejected
+            <XCircle size={13} color="#dc2626" />
+            <span>Rejected</span>
           </span>
         );
       default:
-        return status;
+        return (
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '9999px',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              backgroundColor: '#f1f5f9',
+              color: '#475569',
+              border: '1px solid #e2e8f0',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {status}
+          </span>
+        );
     }
   };
 
@@ -333,59 +413,145 @@ export default function LeaveApprovalsPage() {
         </div>
       </div>
 
-      {/* Filter Tabs */}
+      {/* Filter Tabs & Controls Bar */}
       <div
         style={{
           display: 'flex',
-          gap: '0.5rem',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem',
           borderBottom: '1px solid #e2e8f0',
           marginBottom: '1.25rem',
-          paddingBottom: '0.25rem',
+          paddingBottom: '0.5rem',
         }}
       >
-        {['Pending', 'Approved', 'Rejected', 'All'].map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            onClick={() => setFilter(tab)}
+        {/* Status Filter Tabs */}
+        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+          {['Pending', 'Approved', 'Rejected', 'All'].map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              onClick={() => setFilter(tab)}
+              style={{
+                padding: '0.55rem 1rem',
+                borderRadius: '8px',
+                border: 'none',
+                backgroundColor: filter === tab ? '#4f46e5' : '#f8fafc',
+                color: filter === tab ? '#ffffff' : '#64748b',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                transition: 'all 0.15s ease',
+                boxShadow: filter === tab ? '0 2px 6px rgba(79, 70, 229, 0.3)' : 'none',
+              }}
+            >
+              <span>{tab}</span>
+              {tab === 'Pending' && stats.pending > 0 && (
+                <span
+                  style={{
+                    backgroundColor: filter === tab ? '#ffffff' : '#fef3c7',
+                    color: filter === tab ? '#4f46e5' : '#b45309',
+                    borderRadius: '9999px',
+                    padding: '0.1rem 0.5rem',
+                    fontSize: '0.725rem',
+                    fontWeight: 800,
+                  }}
+                >
+                  {stats.pending}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Search Box & View Mode Toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <div style={{ position: 'relative', width: '260px' }}>
+            <Search
+              size={15}
+              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
+            />
+            <input
+              type="text"
+              placeholder="Search by name, reason..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.45rem 0.75rem 0.45rem 2rem',
+                borderRadius: '8px',
+                border: '1px solid #cbd5e1',
+                fontSize: '0.825rem',
+                outline: 'none',
+                backgroundColor: '#ffffff',
+              }}
+            />
+          </div>
+
+          <div
             style={{
-              padding: '0.6rem 1rem',
-              borderRadius: '8px',
-              border: 'none',
-              backgroundColor: filter === tab ? '#4f46e5' : 'transparent',
-              color: filter === tab ? '#ffffff' : '#64748b',
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              transition: 'all 0.2s',
+              backgroundColor: '#f1f5f9',
+              padding: '3px',
+              borderRadius: '8px',
+              border: '1px solid #e2e8f0',
             }}
           >
-            <span>{tab}</span>
-            {tab === 'Pending' && stats.pending > 0 && (
-              <span
-                style={{
-                  backgroundColor: filter === tab ? '#ffffff' : '#fef3c7',
-                  color: filter === tab ? '#4f46e5' : '#b45309',
-                  borderRadius: '9999px',
-                  padding: '0.1rem 0.45rem',
-                  fontSize: '0.7rem',
-                  fontWeight: 800,
-                }}
-              >
-                {stats.pending}
-              </span>
-            )}
-          </button>
-        ))}
+            <button
+              type="button"
+              onClick={() => setViewMode('table')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: '0.35rem 0.7rem',
+                borderRadius: '6px',
+                border: 'none',
+                backgroundColor: viewMode === 'table' ? '#ffffff' : 'transparent',
+                color: viewMode === 'table' ? '#0f172a' : '#64748b',
+                fontWeight: 700,
+                fontSize: '0.775rem',
+                cursor: 'pointer',
+                boxShadow: viewMode === 'table' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              }}
+            >
+              <TableIcon size={14} />
+              <span>Table</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('cards')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: '0.35rem 0.7rem',
+                borderRadius: '6px',
+                border: 'none',
+                backgroundColor: viewMode === 'cards' ? '#ffffff' : 'transparent',
+                color: viewMode === 'cards' ? '#0f172a' : '#64748b',
+                fontWeight: 700,
+                fontSize: '0.775rem',
+                cursor: 'pointer',
+                boxShadow: viewMode === 'cards' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              }}
+            >
+              <LayoutGrid size={14} />
+              <span>Cards</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Main Table Card */}
+      {/* Main Content: Table or Bento Cards */}
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         {loading ? (
-          <div style={{ padding: '3rem' }}>
+          <div style={{ padding: '3.5rem' }}>
             <Loader message="Loading leave applications..." />
           </div>
         ) : leaves.length === 0 ? (
@@ -395,161 +561,524 @@ export default function LeaveApprovalsPage() {
             actionLabel="Apply For Leave"
             onAction={() => setIsApplyModalOpen(true)}
           />
-        ) : (
-          <div className="table-container">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Employee</th>
-                  <th>Department</th>
-                  <th>Leave Type</th>
-                  <th>Duration</th>
-                  <th>Reason</th>
-                  <th>Applied On</th>
-                  <th>Status</th>
-                  {isAdminOrHR && <th style={{ textAlign: 'center' }}>Review Action</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {leaves.map((leave) => (
-                  <tr key={leave._id}>
-                    <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                        <div
+        ) : viewMode === 'cards' ? (
+          /* --- BENTO CARDS VIEW --- */
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+              gap: '1.25rem',
+              padding: '1.25rem',
+            }}
+          >
+            {leaves
+              .filter((l) => {
+                if (!searchQuery.trim()) return true;
+                const q = searchQuery.toLowerCase();
+                return (
+                  (l.employeeName && l.employeeName.toLowerCase().includes(q)) ||
+                  (l.employeeId && l.employeeId.toLowerCase().includes(q)) ||
+                  (l.department && l.department.toLowerCase().includes(q)) ||
+                  (l.leaveType && l.leaveType.toLowerCase().includes(q)) ||
+                  (l.reason && l.reason.toLowerCase().includes(q))
+                );
+              })
+              .map((leave) => {
+                const typeStyle = getLeaveTypeStyle(leave.leaveType);
+                return (
+                  <div
+                    key={leave._id}
+                    style={{
+                      backgroundColor: '#ffffff',
+                      borderRadius: '12px',
+                      border: '1px solid #e2e8f0',
+                      padding: '1.25rem',
+                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+                    }}
+                  >
+                    <div>
+                      {/* Top Header: Employee & Status */}
+                      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '0.9rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <div
+                            style={{
+                              width: '42px',
+                              height: '42px',
+                              borderRadius: '10px',
+                              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                              color: '#ffffff',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontWeight: 800,
+                              fontSize: '1rem',
+                              boxShadow: '0 2px 8px rgba(99, 102, 241, 0.25)',
+                              flexShrink: 0,
+                            }}
+                          >
+                            {leave.employeeName?.charAt(0) || 'E'}
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.95rem' }}>{leave.employeeName}</div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '2px' }}>
+                              <span
+                                style={{
+                                  fontFamily: 'monospace',
+                                  fontSize: '0.725rem',
+                                  fontWeight: 600,
+                                  backgroundColor: '#f1f5f9',
+                                  color: '#475569',
+                                  padding: '1px 6px',
+                                  borderRadius: '4px',
+                                  border: '1px solid #e2e8f0',
+                                }}
+                              >
+                                {leave.employeeId}
+                              </span>
+                              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>&bull; {leave.department || 'Operations'}</span>
+                            </div>
+                          </div>
+                        </div>
+                        {getStatusBadge(leave.status)}
+                      </div>
+
+                      {/* Attribute Pills */}
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '0.85rem' }}>
+                        <span
                           style={{
-                            width: '34px',
-                            height: '34px',
-                            borderRadius: '50%',
-                            backgroundColor: '#e0e7ff',
-                            color: '#4338ca',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                            backgroundColor: typeStyle.bg,
+                            color: typeStyle.color,
+                            border: typeStyle.border,
+                            padding: '0.25rem 0.65rem',
+                            borderRadius: '6px',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            fontSize: '0.85rem',
                           }}
                         >
-                          {leave.employeeName?.charAt(0) || 'E'}
-                        </div>
-                        <div>
-                          <div style={{ fontWeight: 700, color: '#0f172a' }}>{leave.employeeName}</div>
-                          <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{leave.employeeId}</div>
-                        </div>
+                          {leave.leaveType}
+                        </span>
+                        <span
+                          style={{
+                            backgroundColor: '#f8fafc',
+                            color: '#334155',
+                            border: '1px solid #e2e8f0',
+                            padding: '0.25rem 0.65rem',
+                            borderRadius: '6px',
+                            fontSize: '0.78rem',
+                            fontWeight: 700,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                          }}
+                        >
+                          <Calendar size={13} color="#6366f1" />
+                          <span>{leave.startDate} &rarr; {leave.endDate}</span>
+                          <span
+                            style={{
+                              backgroundColor: '#f0fdf4',
+                              color: '#15803d',
+                              border: '1px solid #bbf7d0',
+                              borderRadius: '9999px',
+                              padding: '1px 6px',
+                              fontSize: '0.7rem',
+                            }}
+                          >
+                            {leave.days} {leave.days === 1 ? 'day' : 'days'}
+                          </span>
+                        </span>
                       </div>
-                    </td>
 
-                    <td>
-                      <span style={{ fontSize: '0.85rem', color: '#475569', fontWeight: 600 }}>
-                        {leave.department}
-                      </span>
-                    </td>
-
-                    <td>
-                      <span
-                        style={{
-                          backgroundColor: '#f1f5f9',
-                          color: '#334155',
-                          padding: '0.2rem 0.5rem',
-                          borderRadius: '6px',
-                          fontSize: '0.8rem',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {leave.leaveType}
-                      </span>
-                    </td>
-
-                    <td>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f172a' }}>
-                        {leave.startDate} to {leave.endDate}
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
-                        {leave.days} {leave.days === 1 ? 'day' : 'days'}
-                      </div>
-                    </td>
-
-                    <td style={{ maxWidth: '240px' }}>
+                      {/* Reason Container */}
                       <div
                         style={{
-                          fontSize: '0.8rem',
-                          color: '#475569',
-                          lineHeight: '1.4',
-                          whiteSpace: 'normal',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '8px',
+                          padding: '0.65rem 0.85rem',
+                          fontSize: '0.825rem',
+                          color: '#334155',
+                          lineHeight: '1.45',
+                          marginBottom: '0.75rem',
                         }}
                       >
-                        {leave.reason}
+                        <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                          Reason for Request
+                        </div>
+                        &ldquo;{leave.reason}&rdquo;
                       </div>
+
+                      {/* Review Comment if available */}
                       {leave.reviewComment && (
                         <div
                           style={{
-                            fontSize: '0.75rem',
-                            color: '#6366f1',
-                            marginTop: '0.25rem',
-                            fontStyle: 'italic',
+                            backgroundColor: '#f5f3ff',
+                            borderLeft: '3px solid #8b5cf6',
+                            borderRadius: '0 6px 6px 0',
+                            padding: '0.45rem 0.75rem',
+                            fontSize: '0.775rem',
+                            marginBottom: '0.75rem',
                           }}
                         >
-                          <strong>{leave.reviewedBy}:</strong> {leave.reviewComment}
+                          <span style={{ fontWeight: 700, color: '#6d28d9' }}>{leave.reviewedBy}:</span>{' '}
+                          <span style={{ color: '#5b21b6', fontStyle: 'italic' }}>{leave.reviewComment}</span>
                         </div>
                       )}
-                    </td>
+                    </div>
 
-                    <td style={{ fontSize: '0.8rem', color: '#64748b' }}>{leave.appliedDate}</td>
+                    {/* Card Footer: Timestamp and Action */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderTop: '1px solid #f1f5f9',
+                        paddingTop: '0.85rem',
+                        marginTop: '0.5rem',
+                        fontSize: '0.775rem',
+                        color: '#64748b',
+                      }}
+                    >
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                        <Clock size={13} color="#94a3b8" /> Filed on {leave.appliedDate}
+                      </span>
 
-                    <td>{getStatusBadge(leave.status)}</td>
-
-                    {isAdminOrHR && (
-                      <td style={{ textAlign: 'center' }}>
-                        {leave.status === 'Pending' ? (
-                          <div style={{ display: 'inline-flex', gap: '0.4rem' }}>
-                            <button
-                              type="button"
-                              onClick={() => handleOpenReview(leave, 'Approved')}
+                      {isAdminOrHR && leave.status === 'Pending' && (
+                        <div style={{ display: 'inline-flex', gap: '0.4rem' }}>
+                          <button
+                            type="button"
+                            onClick={() => handleOpenReview(leave, 'Approved')}
+                            style={{
+                              border: '1px solid #10b981',
+                              backgroundColor: '#ecfdf5',
+                              color: '#047857',
+                              padding: '0.35rem 0.7rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.25rem',
+                            }}
+                          >
+                            <Check size={13} /> Approve
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleOpenReview(leave, 'Rejected')}
+                            style={{
+                              border: '1px solid #ef4444',
+                              backgroundColor: '#fef2f2',
+                              color: '#b91c1c',
+                              padding: '0.35rem 0.7rem',
+                              borderRadius: '6px',
+                              fontSize: '0.75rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.25rem',
+                            }}
+                          >
+                            <X size={13} /> Reject
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        ) : (
+          /* --- HIGH-CLARITY TABLE VIEW --- */
+          <div className="table-container" style={{ width: '100%', overflowX: 'auto' }}>
+            <table className="data-table" style={{ width: '100%', minWidth: '1050px' }}>
+              <thead>
+                <tr>
+                  <th style={{ minWidth: '220px' }}>Employee</th>
+                  <th style={{ minWidth: '150px' }}>Department</th>
+                  <th style={{ minWidth: '140px' }}>Leave Type</th>
+                  <th style={{ minWidth: '200px' }}>Duration</th>
+                  <th style={{ minWidth: '260px' }}>Reason & Notes</th>
+                  <th style={{ minWidth: '130px' }}>Applied On</th>
+                  <th style={{ minWidth: '150px' }}>Status</th>
+                  {isAdminOrHR && <th style={{ minWidth: '160px', textAlign: 'center' }}>Review Action</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {leaves
+                  .filter((l) => {
+                    if (!searchQuery.trim()) return true;
+                    const q = searchQuery.toLowerCase();
+                    return (
+                      (l.employeeName && l.employeeName.toLowerCase().includes(q)) ||
+                      (l.employeeId && l.employeeId.toLowerCase().includes(q)) ||
+                      (l.department && l.department.toLowerCase().includes(q)) ||
+                      (l.leaveType && l.leaveType.toLowerCase().includes(q)) ||
+                      (l.reason && l.reason.toLowerCase().includes(q))
+                    );
+                  })
+                  .map((leave) => {
+                    const typeStyle = getLeaveTypeStyle(leave.leaveType);
+                    return (
+                      <tr key={leave._id}>
+                        {/* Employee Column */}
+                        <td>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <div
                               style={{
-                                border: '1px solid #10b981',
-                                backgroundColor: '#ecfdf5',
-                                color: '#047857',
-                                padding: '0.35rem 0.65rem',
-                                borderRadius: '6px',
-                                fontSize: '0.75rem',
-                                fontWeight: 700,
-                                cursor: 'pointer',
-                                display: 'inline-flex',
+                                width: '38px',
+                                height: '38px',
+                                borderRadius: '10px',
+                                background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                                color: '#ffffff',
+                                display: 'flex',
                                 alignItems: 'center',
-                                gap: '0.25rem',
+                                justifyContent: 'center',
+                                fontWeight: 800,
+                                fontSize: '0.9rem',
+                                boxShadow: '0 2px 8px rgba(99, 102, 241, 0.25)',
+                                flexShrink: 0,
                               }}
-                              title="Approve leave request"
                             >
-                              <Check size={14} /> Approve
-                            </button>
-
-                            <button
-                              type="button"
-                              onClick={() => handleOpenReview(leave, 'Rejected')}
-                              style={{
-                                border: '1px solid #ef4444',
-                                backgroundColor: '#fef2f2',
-                                color: '#b91c1c',
-                                padding: '0.35rem 0.65rem',
-                                borderRadius: '6px',
-                                fontSize: '0.75rem',
-                                fontWeight: 700,
-                                cursor: 'pointer',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '0.25rem',
-                              }}
-                              title="Reject leave request"
-                            >
-                              <X size={14} /> Reject
-                            </button>
+                              {leave.employeeName?.charAt(0) || 'E'}
+                            </div>
+                            <div>
+                              <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
+                                {leave.employeeName}
+                              </div>
+                              <span
+                                style={{
+                                  fontFamily: 'monospace',
+                                  fontSize: '0.725rem',
+                                  fontWeight: 600,
+                                  backgroundColor: '#f1f5f9',
+                                  color: '#475569',
+                                  padding: '2px 7px',
+                                  borderRadius: '4px',
+                                  border: '1px solid #e2e8f0',
+                                  display: 'inline-block',
+                                  marginTop: '3px',
+                                }}
+                              >
+                                {leave.employeeId}
+                              </span>
+                            </div>
                           </div>
-                        ) : (
-                          <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Reviewed</span>
+                        </td>
+
+                        {/* Department Column */}
+                        <td>
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              padding: '0.3rem 0.65rem',
+                              borderRadius: '6px',
+                              backgroundColor: '#f8fafc',
+                              border: '1px solid #e2e8f0',
+                              fontSize: '0.825rem',
+                              fontWeight: 600,
+                              color: '#334155',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Building2 size={13} color="#6366f1" />
+                            {leave.department || 'Operations'}
+                          </span>
+                        </td>
+
+                        {/* Leave Type Column */}
+                        <td>
+                          <span
+                            style={{
+                              backgroundColor: typeStyle.bg,
+                              color: typeStyle.color,
+                              border: typeStyle.border,
+                              padding: '0.3rem 0.7rem',
+                              borderRadius: '6px',
+                              fontSize: '0.8rem',
+                              fontWeight: 700,
+                              display: 'inline-block',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {leave.leaveType}
+                          </span>
+                        </td>
+
+                        {/* Duration Column */}
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                            <div
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.35rem',
+                                fontSize: '0.85rem',
+                                fontWeight: 700,
+                                color: '#0f172a',
+                                whiteSpace: 'nowrap',
+                              }}
+                            >
+                              <Calendar size={13} color="#6366f1" />
+                              <span>{leave.startDate}</span>
+                              <span style={{ color: '#94a3b8' }}>&rarr;</span>
+                              <span>{leave.endDate}</span>
+                            </div>
+                            <div>
+                              <span
+                                style={{
+                                  display: 'inline-block',
+                                  fontSize: '0.725rem',
+                                  fontWeight: 700,
+                                  color: '#15803d',
+                                  backgroundColor: '#f0fdf4',
+                                  border: '1px solid #bbf7d0',
+                                  padding: '1px 8px',
+                                  borderRadius: '9999px',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
+                                {leave.days} {leave.days === 1 ? 'day' : 'days'}
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* Reason & Review Note Column */}
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxWidth: '280px' }}>
+                            <div
+                              style={{
+                                backgroundColor: '#f8fafc',
+                                border: '1px solid #e2e8f0',
+                                borderRadius: '8px',
+                                padding: '0.5rem 0.75rem',
+                                fontSize: '0.825rem',
+                                color: '#334155',
+                                lineHeight: '1.45',
+                                wordBreak: 'break-word',
+                              }}
+                            >
+                              &ldquo;{leave.reason}&rdquo;
+                            </div>
+                            {leave.reviewComment && (
+                              <div
+                                style={{
+                                  backgroundColor: '#f5f3ff',
+                                  borderLeft: '3px solid #8b5cf6',
+                                  borderRadius: '0 6px 6px 0',
+                                  padding: '0.35rem 0.65rem',
+                                  fontSize: '0.75rem',
+                                }}
+                              >
+                                <span style={{ fontWeight: 700, color: '#6d28d9' }}>{leave.reviewedBy}:</span>{' '}
+                                <span style={{ color: '#5b21b6', fontStyle: 'italic' }}>{leave.reviewComment}</span>
+                              </div>
+                            )}
+                          </div>
+                        </td>
+
+                        {/* Applied On Column */}
+                        <td>
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              fontSize: '0.775rem',
+                              fontWeight: 600,
+                              color: '#64748b',
+                              backgroundColor: '#f8fafc',
+                              border: '1px solid #e2e8f0',
+                              padding: '3px 8px',
+                              borderRadius: '6px',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Clock size={12} color="#94a3b8" />
+                            {leave.appliedDate}
+                          </span>
+                        </td>
+
+                        {/* Status Column */}
+                        <td>{getStatusBadge(leave.status)}</td>
+
+                        {/* Review Action Column */}
+                        {isAdminOrHR && (
+                          <td style={{ textAlign: 'center' }}>
+                            {leave.status === 'Pending' ? (
+                              <div style={{ display: 'inline-flex', gap: '0.4rem', whiteSpace: 'nowrap' }}>
+                                <button
+                                  type="button"
+                                  onClick={() => handleOpenReview(leave, 'Approved')}
+                                  style={{
+                                    border: '1px solid #10b981',
+                                    backgroundColor: '#ecfdf5',
+                                    color: '#047857',
+                                    padding: '0.35rem 0.75rem',
+                                    borderRadius: '6px',
+                                    fontSize: '0.775rem',
+                                    fontWeight: 700,
+                                    cursor: 'pointer',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.3rem',
+                                    boxShadow: '0 1px 2px rgba(16, 185, 129, 0.1)',
+                                  }}
+                                  title="Approve leave request"
+                                >
+                                  <Check size={14} /> Approve
+                                </button>
+
+                                <button
+                                  type="button"
+                                  onClick={() => handleOpenReview(leave, 'Rejected')}
+                                  style={{
+                                    border: '1px solid #ef4444',
+                                    backgroundColor: '#fef2f2',
+                                    color: '#b91c1c',
+                                    padding: '0.35rem 0.75rem',
+                                    borderRadius: '6px',
+                                    fontSize: '0.775rem',
+                                    fontWeight: 700,
+                                    cursor: 'pointer',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.3rem',
+                                    boxShadow: '0 1px 2px rgba(239, 68, 68, 0.1)',
+                                  }}
+                                  title="Reject leave request"
+                                >
+                                  <X size={14} /> Reject
+                                </button>
+                              </div>
+                            ) : (
+                              <span
+                                style={{
+                                  fontSize: '0.75rem',
+                                  fontWeight: 600,
+                                  color: '#94a3b8',
+                                  backgroundColor: '#f8fafc',
+                                  padding: '3px 8px',
+                                  borderRadius: '6px',
+                                  border: '1px solid #e2e8f0',
+                                }}
+                              >
+                                Reviewed
+                              </span>
+                            )}
+                          </td>
                         )}
-                      </td>
-                    )}
-                  </tr>
-                ))}
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

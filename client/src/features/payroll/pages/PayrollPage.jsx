@@ -395,57 +395,188 @@ export default function PayrollPage() {
             onAction={() => setIsCreateModalOpen(true)}
           />
         ) : (
-          <div className="table-container">
-            <table className="data-table">
+          <div className="table-container" style={{ width: '100%', overflowX: 'auto' }}>
+            <table className="data-table" style={{ width: '100%', minWidth: '1080px' }}>
               <thead>
                 <tr>
-                  <th>Employee</th>
-                  <th>Department & Role</th>
-                  <th>Period</th>
-                  <th>Base Salary</th>
-                  <th>Allowances</th>
-                  <th>Deductions</th>
-                  <th>Net Pay</th>
-                  <th>Status</th>
-                  <th style={{ textAlign: 'center' }}>Actions</th>
+                  <th style={{ minWidth: '220px' }}>Employee</th>
+                  <th style={{ minWidth: '180px' }}>Department & Role</th>
+                  <th style={{ minWidth: '130px' }}>Period</th>
+                  <th style={{ minWidth: '130px' }}>Base Salary</th>
+                  <th style={{ minWidth: '130px' }}>Allowances</th>
+                  <th style={{ minWidth: '130px' }}>Deductions</th>
+                  <th style={{ minWidth: '150px' }}>Net Pay</th>
+                  <th style={{ minWidth: '140px' }}>Status</th>
+                  <th style={{ minWidth: '160px', textAlign: 'center' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {records.map((item) => (
                   <tr key={item._id}>
                     <td>
-                      <div style={{ fontWeight: 700, color: '#0f172a' }}>{item.employeeName}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{item.employeeId}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div
+                          style={{
+                            width: '38px',
+                            height: '38px',
+                            borderRadius: '10px',
+                            background: 'linear-gradient(135deg, #10b981, #059669)',
+                            color: '#ffffff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 800,
+                            fontSize: '0.9rem',
+                            boxShadow: '0 2px 6px rgba(16, 185, 129, 0.25)',
+                            flexShrink: 0,
+                          }}
+                        >
+                          {item.employeeName?.charAt(0) || 'E'}
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
+                            {item.employeeName}
+                          </div>
+                          <span
+                            style={{
+                              fontFamily: 'monospace',
+                              fontSize: '0.725rem',
+                              fontWeight: 600,
+                              backgroundColor: '#f1f5f9',
+                              color: '#475569',
+                              padding: '2px 7px',
+                              borderRadius: '4px',
+                              border: '1px solid #e2e8f0',
+                              display: 'inline-block',
+                              marginTop: '3px',
+                            }}
+                          >
+                            {item.employeeId}
+                          </span>
+                        </div>
+                      </div>
                     </td>
 
                     <td>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#334155' }}>
-                        {item.department}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                        <span
+                          style={{
+                            fontSize: '0.85rem',
+                            fontWeight: 700,
+                            color: '#1e293b',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.3rem',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          <Building2 size={13} color="#6366f1" />
+                          {item.department}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: '0.725rem',
+                            color: '#64748b',
+                            backgroundColor: '#f8fafc',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '4px',
+                            padding: '1px 6px',
+                            width: 'fit-content',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {item.designation}
+                        </span>
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{item.designation}</div>
                     </td>
 
                     <td>
                       <span
                         style={{
-                          backgroundColor: '#f1f5f9',
+                          backgroundColor: '#f8fafc',
                           color: '#334155',
-                          padding: '0.2rem 0.5rem',
+                          border: '1px solid #e2e8f0',
+                          padding: '0.3rem 0.65rem',
                           borderRadius: '6px',
                           fontSize: '0.8rem',
                           fontWeight: 700,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.35rem',
+                          whiteSpace: 'nowrap',
                         }}
                       >
+                        <Calendar size={12} color="#6366f1" />
                         {item.month} {item.year}
                       </span>
                     </td>
 
-                    <td style={{ fontWeight: 600, color: '#334155' }}>${Number(item.baseSalary).toLocaleString()}</td>
-                    <td style={{ color: '#16a34a', fontWeight: 600 }}>+${Number(item.allowances).toLocaleString()}</td>
-                    <td style={{ color: '#dc2626', fontWeight: 600 }}>-${Number(item.deductions).toLocaleString()}</td>
+                    <td>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          color: '#334155',
+                          fontSize: '0.875rem',
+                          backgroundColor: '#f8fafc',
+                          padding: '0.25rem 0.55rem',
+                          borderRadius: '6px',
+                          border: '1px solid #e2e8f0',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        ${Number(item.baseSalary).toLocaleString()}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        style={{
+                          color: '#047857',
+                          fontWeight: 700,
+                          fontSize: '0.875rem',
+                          backgroundColor: '#ecfdf5',
+                          border: '1px solid #a7f3d0',
+                          padding: '0.25rem 0.55rem',
+                          borderRadius: '6px',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        +${Number(item.allowances).toLocaleString()}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        style={{
+                          color: '#b91c1c',
+                          fontWeight: 700,
+                          fontSize: '0.875rem',
+                          backgroundColor: '#fef2f2',
+                          border: '1px solid #fecaca',
+                          padding: '0.25rem 0.55rem',
+                          borderRadius: '6px',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        -${Number(item.deductions).toLocaleString()}
+                      </span>
+                    </td>
 
                     <td>
-                      <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a' }}>
+                      <span
+                        style={{
+                          fontSize: '0.95rem',
+                          fontWeight: 800,
+                          color: '#065f46',
+                          backgroundColor: '#d1fae5',
+                          border: '1px solid #6ee7b7',
+                          padding: '0.35rem 0.75rem',
+                          borderRadius: '8px',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
                         ${Number(item.netSalary).toLocaleString()}
                       </span>
                     </td>
@@ -456,54 +587,60 @@ export default function PayrollPage() {
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#d1fae5',
+                            backgroundColor: '#ecfdf5',
                             color: '#065f46',
+                            border: '1px solid #a7f3d0',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <CheckCircle2 size={12} /> Paid
+                          <CheckCircle2 size={13} color="#059669" /> Paid
                         </span>
                       ) : item.paymentStatus === 'Processing' ? (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
                             backgroundColor: '#e0e7ff',
                             color: '#4338ca',
+                            border: '1px solid #c7d2fe',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={12} /> Processing
+                          <Clock size={13} color="#6366f1" /> Processing
                         </span>
                       ) : (
                         <span
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.3rem',
-                            padding: '0.2rem 0.6rem',
+                            gap: '0.35rem',
+                            padding: '0.3rem 0.75rem',
                             borderRadius: '9999px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#fef3c7',
+                            backgroundColor: '#fffbeb',
                             color: '#b45309',
+                            border: '1px solid #fde68a',
+                            whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={12} /> Pending
+                          <Clock size={13} color="#d97706" /> Pending
                         </span>
                       )}
                     </td>
 
                     <td style={{ textAlign: 'center' }}>
-                      <div style={{ display: 'inline-flex', gap: '0.35rem' }}>
+                      <div style={{ display: 'inline-flex', gap: '0.35rem', whiteSpace: 'nowrap' }}>
                         <button
                           type="button"
                           onClick={() => openPayslip(item)}
@@ -511,9 +648,9 @@ export default function PayrollPage() {
                             border: '1px solid #cbd5e1',
                             backgroundColor: '#ffffff',
                             color: '#334155',
-                            padding: '0.3rem 0.6rem',
+                            padding: '0.35rem 0.7rem',
                             borderRadius: '6px',
-                            fontSize: '0.75rem',
+                            fontSize: '0.775rem',
                             fontWeight: 700,
                             cursor: 'pointer',
                             display: 'inline-flex',

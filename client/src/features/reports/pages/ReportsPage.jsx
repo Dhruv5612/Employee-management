@@ -257,14 +257,14 @@ export default function ReportsPage() {
               </div>
             </div>
 
-            <div className="table-responsive">
-              <table className="custom-table">
+            <div className="table-responsive" style={{ width: '100%', overflowX: 'auto' }}>
+              <table className="custom-table" style={{ width: '100%', minWidth: '600px' }}>
                 <thead>
                   <tr>
-                    <th>Department</th>
-                    <th>Code</th>
-                    <th style={{ textAlign: 'right' }}>Employees</th>
-                    <th style={{ textAlign: 'right' }}>Share</th>
+                    <th style={{ minWidth: '200px' }}>Department</th>
+                    <th style={{ minWidth: '120px' }}>Code</th>
+                    <th style={{ textAlign: 'right', minWidth: '120px' }}>Employees</th>
+                    <th style={{ textAlign: 'right', minWidth: '120px' }}>Share</th>
                   </tr>
                 </thead>
                 <tbody>

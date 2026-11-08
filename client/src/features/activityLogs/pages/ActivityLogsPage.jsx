@@ -94,16 +94,16 @@ export default function ActivityLogsPage() {
           />
         ) : (
           <>
-            <div className="table-responsive">
-              <table className="custom-table">
+            <div className="table-responsive" style={{ width: '100%', overflowX: 'auto' }}>
+              <table className="custom-table" style={{ width: '100%', minWidth: '920px' }}>
                 <thead>
                   <tr>
-                    <th style={{ width: '180px' }}>Timestamp</th>
-                    <th>Actor</th>
-                    <th>Action</th>
-                    <th>Entity Type</th>
-                    <th>Entity ID</th>
-                    <th style={{ textAlign: 'right', width: '100px' }}>Details</th>
+                    <th style={{ minWidth: '180px', width: '180px' }}>Timestamp</th>
+                    <th style={{ minWidth: '180px' }}>Actor</th>
+                    <th style={{ minWidth: '180px' }}>Action</th>
+                    <th style={{ minWidth: '140px' }}>Entity Type</th>
+                    <th style={{ minWidth: '140px' }}>Entity ID</th>
+                    <th style={{ textAlign: 'right', minWidth: '100px', width: '100px' }}>Details</th>
                   </tr>
                 </thead>
                 <tbody>
