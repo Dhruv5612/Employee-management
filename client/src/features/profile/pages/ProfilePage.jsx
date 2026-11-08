@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { authApi } from '../../auth/services/authApi.js';
+import authStorage from '../../../services/authStorage.js';
 import Button from '../../../components/common/Button.jsx';
 import Input from '../../../components/common/Input.jsx';
 import { useToast } from '../../../hooks/useToast.js';
@@ -27,7 +28,7 @@ export default function ProfilePage() {
     setIsLoading(true);
     try {
       const updated = await authApi.updateProfile({ name, phone });
-      localStorage.setItem('user', JSON.stringify({ ...user, ...updated }));
+      authStorage.setUser({ ...user, ...updated });
       success('Profile details updated successfully!');
       setTimeout(() => window.location.reload(), 400);
     } catch (err) {

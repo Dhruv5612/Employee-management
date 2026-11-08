@@ -1,5 +1,6 @@
 // Standalone Demo Mode Adapter with localStorage persistence
 // Emulates full REST endpoints if the Express/MongoDB server is temporarily unreachable or offline
+import authStorage from './authStorage.js';
 
 const STORAGE_KEYS = {
   USERS: 'ems_demo_users',
@@ -680,9 +681,9 @@ export const mockAdapter = {
 
   async updateProfile(data) {
     initDemoStorage();
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const storedUser = authStorage.getUser() || {};
     const updated = { ...storedUser, ...data };
-    localStorage.setItem('user', JSON.stringify(updated));
+    authStorage.setUser(updated);
     return updated;
   },
 
@@ -713,9 +714,8 @@ export const mockAdapter = {
 
   async getMe() {
     initDemoStorage();
-    const stored = localStorage.getItem('user');
-    if (stored) {
-      const u = JSON.parse(stored);
+    const u = authStorage.getUser();
+    if (u) {
       return {
         user: u,
         permissions: {

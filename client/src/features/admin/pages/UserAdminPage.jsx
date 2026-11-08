@@ -8,6 +8,7 @@ import Modal from '../../../components/common/Modal.jsx';
 import Input from '../../../components/common/Input.jsx';
 import { formatDate } from '../../../utils/dateUtils.js';
 import { useToast } from '../../../hooks/useToast.js';
+import authStorage from '../../../services/authStorage.js';
 import {
   Shield,
   ShieldCheck,
@@ -80,14 +81,7 @@ export default function UserAdminPage() {
   const { success, error: toastError, info } = useToast();
 
   // Retrieve current logged in user to prevent self-deletion or locking oneself out
-  const currentLoggedInUser = (() => {
-    try {
-      const s = localStorage.getItem('user');
-      return s ? JSON.parse(s) : null;
-    } catch {
-      return null;
-    }
-  })();
+  const currentLoggedInUser = authStorage.getUser();
 
   const fetchUsers = async (showRefreshIndicator = false) => {
     if (showRefreshIndicator) {
@@ -1003,11 +997,11 @@ export default function UserAdminPage() {
             const avatarGrad = getAvatarGradient(u.name || 'User');
             const initials = u.name
               ? u.name
-                  .split(' ')
-                  .map((p) => p[0])
-                  .slice(0, 2)
-                  .join('')
-                  .toUpperCase()
+                .split(' ')
+                .map((p) => p[0])
+                .slice(0, 2)
+                .join('')
+                .toUpperCase()
               : 'OP';
 
             return (
@@ -1099,21 +1093,20 @@ export default function UserAdminPage() {
                             u.role === 'Admin'
                               ? '#f3e8ff'
                               : u.role === 'HR'
-                              ? '#fef3c7'
-                              : '#f1f5f9',
+                                ? '#fef3c7'
+                                : '#f1f5f9',
                           color:
                             u.role === 'Admin'
                               ? '#7e22ce'
                               : u.role === 'HR'
-                              ? '#b45309'
-                              : '#475569',
-                          border: `1px solid ${
-                            u.role === 'Admin'
+                                ? '#b45309'
+                                : '#475569',
+                          border: `1px solid ${u.role === 'Admin'
                               ? '#e9d5ff'
                               : u.role === 'HR'
-                              ? '#fde68a'
-                              : '#e2e8f0'
-                          }`,
+                                ? '#fde68a'
+                                : '#e2e8f0'
+                            }`,
                         }}
                       >
                         {u.role === 'Admin' ? (
@@ -1367,11 +1360,11 @@ export default function UserAdminPage() {
                   const avatarGrad = getAvatarGradient(u.name || 'User');
                   const initials = u.name
                     ? u.name
-                        .split(' ')
-                        .map((p) => p[0])
-                        .slice(0, 2)
-                        .join('')
-                        .toUpperCase()
+                      .split(' ')
+                      .map((p) => p[0])
+                      .slice(0, 2)
+                      .join('')
+                      .toUpperCase()
                     : 'OP';
 
                   return (
@@ -1664,10 +1657,10 @@ export default function UserAdminPage() {
                             isSelected
                               ? '#6366f1'
                               : tier === 'Admin'
-                              ? '#a855f7'
-                              : tier === 'HR'
-                              ? '#f59e0b'
-                              : '#64748b'
+                                ? '#a855f7'
+                                : tier === 'HR'
+                                  ? '#f59e0b'
+                                  : '#64748b'
                           }
                         />
                         <span

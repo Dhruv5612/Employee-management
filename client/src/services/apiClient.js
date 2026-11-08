@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { mockAdapter } from './mockAdapter.js';
+import authStorage from './authStorage.js';
 
 const getApiBaseUrl = () => {
   // If running in browser on Vercel or any deployed domain (not localhost): ALWAYS use relative '/api/v1'
@@ -46,7 +47,7 @@ axiosInstance.interceptors.request.use((config) => {
     }
   }
 
-  const token = localStorage.getItem('token');
+  const token = authStorage.getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -57,10 +58,9 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Only clear token if unauthorized on protected routes (not during login/signup attempt)
+    // Only clear session token if unauthorized on protected routes (not during login/signup attempt)
     if (error.response?.status === 401 && !error.config?.url?.includes('/auth/login') && !error.config?.url?.includes('/auth/signup')) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      authStorage.clear();
     }
     return Promise.reject(error);
   }

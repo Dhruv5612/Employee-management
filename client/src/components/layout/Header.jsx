@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs.jsx';
 import Button from '../common/Button.jsx';
 import { authApi } from '../../features/auth/services/authApi.js';
+import authStorage from '../../services/authStorage.js';
 
 export default function Header({ user, onMenuToggle }) {
   const location = useLocation();
@@ -16,9 +17,8 @@ export default function Header({ user, onMenuToggle }) {
     } catch {
       // ignore
     }
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/');
+    authStorage.clear();
+    navigate('/signin');
   };
 
   const initial = user?.name ? user.name.charAt(0).toUpperCase() : 'A';

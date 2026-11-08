@@ -1,4 +1,5 @@
 import apiClient from '../../../services/apiClient.js';
+import authStorage from '../../../services/authStorage.js';
 
 export const authApi = {
   // Option 1: Standard Password Login (dispatches 6-digit OTP to Gmail)
@@ -93,7 +94,6 @@ export const authApi = {
     } catch (err) {
       console.warn('Logout API error:', err);
     }
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    authStorage.clear();
   },
 };

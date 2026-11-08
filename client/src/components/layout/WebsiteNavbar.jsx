@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Sparkles, Menu, X, ArrowRight, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
+import authStorage from '../../services/authStorage.js';
 
 export default function WebsiteNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,10 +10,10 @@ export default function WebsiteNavbar() {
 
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem('user');
-      const token = localStorage.getItem('token');
-      if (storedUser && token) {
-        setCurrentUser(JSON.parse(storedUser));
+      const user = authStorage.getUser();
+      const token = authStorage.getToken();
+      if (user && token) {
+        setCurrentUser(user);
       } else {
         setCurrentUser(null);
       }
@@ -30,7 +31,7 @@ export default function WebsiteNavbar() {
     <header className="website-header">
       <div className="website-nav-container">
         {/* Brand Logo */}
-        <Link to="/" className="website-brand" id="brand-logo-link">
+        <Link to="/home" className="website-brand" id="brand-logo-link">
           <div className="website-brand-logo">
             <Sparkles size={22} />
           </div>
@@ -45,7 +46,7 @@ export default function WebsiteNavbar() {
           <ul className="website-nav-links">
             <li>
               <NavLink
-                to="/"
+                to="/home"
                 end
                 className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
                 id="nav-link-home"
@@ -54,7 +55,7 @@ export default function WebsiteNavbar() {
               </NavLink>
             </li>
             <li>
-              <a href="/#features" className="website-nav-link" id="nav-link-features">
+              <a href="/home#features" className="website-nav-link" id="nav-link-features">
                 Features
               </a>
             </li>
@@ -79,43 +80,53 @@ export default function WebsiteNavbar() {
           </ul>
         </nav>
 
-        {/* Action Buttons */}
-        <div className="website-nav-actions">
-          {currentUser ? (
-            <Link to="/dashboard" id="nav-btn-dashboard" className="btn btn-primary" style={{ padding: '0.55rem 1.15rem' }}>
-              <LayoutDashboard size={16} />
-              <span>Go to Dashboard</span>
-              <ArrowRight size={14} />
+        {/* Action Buttons: Sign In and Sign Up are always prominently available */}
+        <div className="website-nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          {currentUser && (
+            <Link
+              to="/dashboard"
+              id="nav-btn-dashboard"
+              className="btn btn-outline"
+              style={{
+                color: '#38bdf8',
+                borderColor: 'rgba(56, 189, 248, 0.4)',
+                backgroundColor: 'rgba(56, 189, 248, 0.08)',
+                padding: '0.5rem 0.95rem',
+                fontSize: '0.85rem',
+              }}
+            >
+              <LayoutDashboard size={14} />
+              <span>Dashboard</span>
             </Link>
-          ) : (
-            <>
-              <Link
-                to="/signin"
-                id="nav-btn-signin"
-                className="btn btn-outline"
-                style={{
-                  color: '#e2e8f0',
-                  borderColor: 'rgba(255, 255, 255, 0.15)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                }}
-              >
-                <LogIn size={15} />
-                <span>Sign In</span>
-              </Link>
-              <Link
-                to="/signup"
-                id="nav-btn-signup"
-                className="btn btn-primary"
-                style={{
-                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
-                  boxShadow: '0 4px 14px rgba(99, 102, 241, 0.35)',
-                }}
-              >
-                <UserPlus size={15} />
-                <span>Sign Up</span>
-              </Link>
-            </>
           )}
+
+          <Link
+            to="/signin"
+            id="nav-btn-signin"
+            className="btn btn-outline"
+            style={{
+              color: '#e2e8f0',
+              borderColor: 'rgba(255, 255, 255, 0.2)',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              padding: '0.55rem 1.1rem',
+            }}
+          >
+            <LogIn size={15} />
+            <span>Sign In</span>
+          </Link>
+          <Link
+            to="/signup"
+            id="nav-btn-signup"
+            className="btn btn-primary"
+            style={{
+              background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+              boxShadow: '0 4px 14px rgba(99, 102, 241, 0.35)',
+              padding: '0.55rem 1.25rem',
+            }}
+          >
+            <UserPlus size={15} />
+            <span>Sign Up</span>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -134,7 +145,7 @@ export default function WebsiteNavbar() {
       {isMobileMenuOpen && (
         <div className="website-mobile-drawer" id="mobile-nav-drawer">
           <NavLink
-            to="/"
+            to="/home"
             end
             className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -142,7 +153,7 @@ export default function WebsiteNavbar() {
             Home
           </NavLink>
           <a
-            href="/#features"
+            href="/home#features"
             className="website-nav-link"
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -164,38 +175,35 @@ export default function WebsiteNavbar() {
           </NavLink>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.75rem' }}>
-            {currentUser ? (
+            {currentUser && (
               <Link
                 to="/dashboard"
-                className="btn btn-primary"
+                className="btn btn-outline"
                 onClick={() => setIsMobileMenuOpen(false)}
-                style={{ width: '100%' }}
+                style={{ width: '100%', justifyContent: 'center', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.4)' }}
               >
                 <LayoutDashboard size={16} />
-                <span>Dashboard ({currentUser.name})</span>
+                <span>Open Dashboard</span>
               </Link>
-            ) : (
-              <>
-                <Link
-                  to="/signin"
-                  className="btn btn-secondary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  <LogIn size={16} />
-                  <span>Sign In</span>
-                </Link>
-                <Link
-                  to="/signup"
-                  className="btn btn-primary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  <UserPlus size={16} />
-                  <span>Create Account (Sign Up)</span>
-                </Link>
-              </>
             )}
+            <Link
+              to="/signin"
+              className="btn btn-secondary"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <LogIn size={16} />
+              <span>Sign In</span>
+            </Link>
+            <Link
+              to="/signup"
+              className="btn btn-primary"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <UserPlus size={16} />
+              <span>Create Account (Sign Up)</span>
+            </Link>
           </div>
         </div>
       )}

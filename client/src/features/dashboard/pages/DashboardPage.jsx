@@ -14,6 +14,7 @@ import Input from '../../../components/common/Input.jsx';
 import Select from '../../../components/common/Select.jsx';
 import { useToast } from '../../../hooks/useToast.js';
 import { formatDate } from '../../../utils/dateUtils.js';
+import authStorage from '../../../services/authStorage.js';
 import {
   Users,
   UserCheck,
@@ -50,15 +51,8 @@ export default function DashboardPage() {
   const [searchParams] = useSearchParams();
   const context = useOutletContext() || {};
 
-  // Retrieve user from context or fallback immediately to localStorage
-  const storedUser = (() => {
-    try {
-      const s = localStorage.getItem('user');
-      return s ? JSON.parse(s) : null;
-    } catch {
-      return null;
-    }
-  })();
+  // Retrieve user from context or fallback immediately to session storage
+  const storedUser = authStorage.getUser();
   const user = context.user || storedUser;
   const isAdminOrHR = user?.role === 'Admin' || user?.role === 'HR';
 

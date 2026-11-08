@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '../services/authApi.js';
+import authStorage from '../../../services/authStorage.js';
 import Button from '../../../components/common/Button.jsx';
 import Input from '../../../components/common/Input.jsx';
 import { useToast } from '../../../hooks/useToast.js';
@@ -116,8 +117,8 @@ export default function LoginPage() {
         }
       } else if (res && res.token) {
         // Direct fallback if OTP was disabled on backend
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
+        authStorage.setToken(res.token);
+        authStorage.setUser(res.user);
         success(`Welcome back, ${res.user.name || 'User'}!`);
         navigate('/dashboard');
       }
@@ -143,8 +144,8 @@ export default function LoginPage() {
 
     try {
       const data = await authApi.verifyLoginOtp(otpEmail, otp.trim());
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      authStorage.setToken(data.token);
+      authStorage.setUser(data.user);
       success(`Two-Factor Authentication verified! Welcome back, ${data.user.name || 'User'}!`);
       navigate('/dashboard');
     } catch (err) {

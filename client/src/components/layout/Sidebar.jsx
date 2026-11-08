@@ -25,6 +25,7 @@ import {
   Building,
 } from 'lucide-react';
 import { authApi } from '../../features/auth/services/authApi.js';
+import authStorage from '../../services/authStorage.js';
 import { isDemoMode, setDemoMode } from '../../services/apiClient.js';
 import { useToast } from '../../hooks/useToast.js';
 
@@ -36,8 +37,13 @@ export default function Sidebar({ user, isOpen, onClose }) {
   const isHR = user?.role === 'HR';
 
   const handleLogout = async () => {
-    await authApi.logout();
-    navigate('/');
+    try {
+      await authApi.logout();
+    } catch {
+      // ignore
+    }
+    authStorage.clear();
+    navigate('/signin');
   };
 
   const handleToggleDemoMode = () => {

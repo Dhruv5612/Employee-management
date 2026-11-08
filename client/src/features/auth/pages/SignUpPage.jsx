@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '../services/authApi.js';
+import authStorage from '../../../services/authStorage.js';
 import Button from '../../../components/common/Button.jsx';
 import Input from '../../../components/common/Input.jsx';
 import Select from '../../../components/common/Select.jsx';
@@ -148,8 +149,8 @@ export default function SignUpPage() {
         setCountdown(60);
         success(`Verification code dispatched to ${res.email || formData.email}`);
       } else if (res && res.token) {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
+        authStorage.setToken(res.token);
+        authStorage.setUser(res.user);
         success('Account created successfully! Welcome to EmployeeHub.');
         navigate('/dashboard');
       }
@@ -183,8 +184,8 @@ export default function SignUpPage() {
 
     try {
       const data = await authApi.verifySignupOtp(otpEmail, otp.trim());
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      authStorage.setToken(data.token);
+      authStorage.setUser(data.user);
       success('Email verified & account created! Welcome to EmployeeHub.');
       navigate('/dashboard');
     } catch (err) {

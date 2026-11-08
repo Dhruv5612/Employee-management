@@ -41,11 +41,17 @@ import AttendancePage from '../features/attendance/pages/AttendancePage.jsx';
 import AnnouncementsPage from '../features/announcements/pages/AnnouncementsPage.jsx';
 
 export const router = createBrowserRouter([
+  // Root Redirect: Visiting the base URL always leads directly to the Sign In page
+  {
+    path: '/',
+    element: <Navigate to="/signin" replace />,
+  },
+
   // Public Marketing Routes (WebsiteLayout: Home, About Us, Contact Us)
   {
     element: <WebsiteLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
+      { path: '/home', element: <HomePage /> },
       { path: '/about', element: <AboutUsPage /> },
       { path: '/contact', element: <ContactUsPage /> },
     ],
@@ -97,6 +103,6 @@ export const router = createBrowserRouter([
   // Fallback
   {
     path: '*',
-    element: <Navigate to="/" replace />,
+    element: <Navigate to="/signin" replace />,
   },
 ]);
