@@ -174,8 +174,17 @@ export default function SignUpPage() {
   // Step 2: Verify Signup OTP
   const handleVerifySignupOtp = async (e) => {
     if (e) e.preventDefault();
-    if (!otp.trim() || otp.trim().length !== 6) {
+    if (isLoading) return;
+
+    const trimmedOtp = otp.trim();
+    if (!trimmedOtp || trimmedOtp.length !== 6) {
       setErrors({ otp: 'Please enter the 6-digit verification code' });
+      return;
+    }
+
+    const emailToVerify = (otpEmail || formData.email).trim().toLowerCase();
+    if (!emailToVerify) {
+      setErrors({ otp: 'Session expired. Please restart registration.' });
       return;
     }
 
@@ -183,11 +192,16 @@ export default function SignUpPage() {
     setIsLoading(true);
 
     try {
-      const data = await authApi.verifySignupOtp(otpEmail, otp.trim());
-      authStorage.setToken(data.token);
-      authStorage.setUser(data.user);
-      success('Email verified & account created! Welcome to EmployeeHub.');
-      navigate('/dashboard');
+      const data = await authApi.verifySignupOtp(emailToVerify, trimmedOtp);
+      if (data && data.token) {
+        authStorage.setToken(data.token);
+        authStorage.setUser(data.user);
+        success('Email verified & account activated! Welcome to EmployeeHub.');
+        navigate('/dashboard');
+      } else {
+        success('Account verified! Please sign in.');
+        navigate('/signin');
+      }
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Invalid or expired OTP code.';
       setErrorBanner(msg);
@@ -199,16 +213,18 @@ export default function SignUpPage() {
 
   // Resend Signup OTP
   const handleResend = async () => {
-    if (countdown > 0 || resending) return;
+    if (countdown > 0 || resending || isLoading) return;
     setResending(true);
     setErrorBanner('');
     try {
-      const res = await authApi.resendOtp(otpEmail, 'signup');
+      const emailToResend = (otpEmail || formData.email).trim().toLowerCase();
+      const res = await authApi.resendOtp(emailToResend, 'signup');
       if (res.devOtp) setDevOtp(res.devOtp);
       setCountdown(60);
       success('A new confirmation code has been dispatched to your Gmail!');
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Failed to resend code.';
+      setErrorBanner(msg);
       toastError(msg);
     } finally {
       setResending(false);

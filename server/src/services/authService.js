@@ -236,6 +236,24 @@ export class AuthService {
     }).sort({ createdAt: -1 });
 
     if (!record || record.otp !== code) {
+      // If code was already consumed or record is deleted because registration completed:
+      const existingUser = await User.findOne({ email: normalizedEmail });
+      if (existingUser) {
+        const token = this.generateToken(existingUser);
+        return {
+          token,
+          user: {
+            id: existingUser._id,
+            name: existingUser.name,
+            email: existingUser.email,
+            phone: existingUser.phone,
+            role: existingUser.role,
+            isEmailVerified: existingUser.isEmailVerified,
+            preferences: existingUser.preferences,
+          },
+        };
+      }
+
       throw ApiError.badRequest('Invalid or expired verification code. Please request a new code.');
     }
 
@@ -245,28 +263,26 @@ export class AuthService {
     }
 
     let user = await User.findOne({ email: normalizedEmail });
-    if (user) {
-      throw ApiError.conflict('Email address is already registered');
+    if (!user) {
+      user = await User.create({
+        name: pending.name,
+        email: pending.email,
+        passwordHash: pending.passwordHash,
+        phone: pending.phone,
+        role: pending.role,
+        isEmailVerified: true,
+      });
+
+      await AuditLog.create({
+        actor: user._id,
+        action: 'USER_REGISTERED_OTP_VERIFIED',
+        entityType: 'User',
+        entityId: user._id,
+        changes: { email: user.email, role: user.role },
+      });
     }
 
-    user = await User.create({
-      name: pending.name,
-      email: pending.email,
-      passwordHash: pending.passwordHash,
-      phone: pending.phone,
-      role: pending.role,
-      isEmailVerified: true,
-    });
-
     await OTP.deleteMany({ email: normalizedEmail, purpose: 'signup' });
-
-    await AuditLog.create({
-      actor: user._id,
-      action: 'USER_REGISTERED_OTP_VERIFIED',
-      entityType: 'User',
-      entityId: user._id,
-      changes: { email: user.email, role: user.role },
-    });
 
     const token = this.generateToken(user);
     return {
@@ -292,6 +308,11 @@ export class AuthService {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
     if (purpose === 'signup') {
+      const existingUser = await User.findOne({ email: normalizedEmail });
+      if (existingUser) {
+        throw ApiError.conflict('This email address is already verified and registered. Please sign in with your credentials.');
+      }
+
       const existingRecord = await OTP.findOne({ email: normalizedEmail, purpose: 'signup' }).sort({ createdAt: -1 });
       if (!existingRecord || !existingRecord.pendingData) {
         throw ApiError.badRequest('No pending registration found for this email. Please restart registration.');

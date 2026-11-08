@@ -134,16 +134,18 @@ export default function LoginPage() {
   // Step 2: Verify Gmail OTP code -> Final authorization to Dashboard
   const handleVerifyOtp = async (e) => {
     if (e) e.preventDefault();
+    if (isLoading) return;
     if (!otp.trim() || otp.trim().length !== 6) {
       setErrors({ otp: 'Please enter the 6-digit verification code' });
       return;
     }
 
+    const emailToVerify = (otpEmail || email).trim().toLowerCase();
     setErrorBanner('');
     setIsLoading(true);
 
     try {
-      const data = await authApi.verifyLoginOtp(otpEmail, otp.trim());
+      const data = await authApi.verifyLoginOtp(emailToVerify, otp.trim());
       authStorage.setToken(data.token);
       authStorage.setUser(data.user);
       success(`Two-Factor Authentication verified! Welcome back, ${data.user.name || 'User'}!`);
@@ -159,11 +161,12 @@ export default function LoginPage() {
 
   // Resend OTP
   const handleResendOtp = async () => {
-    if (countdown > 0 || resending) return;
+    if (countdown > 0 || resending || isLoading) return;
     setResending(true);
     setErrorBanner('');
     try {
-      const res = await authApi.resendOtp(otpEmail, 'login');
+      const emailToResend = (otpEmail || email).trim().toLowerCase();
+      const res = await authApi.resendOtp(emailToResend, 'login');
       if (res.devOtp) setDevOtp(res.devOtp);
       setIsDelivered(!!res.delivered);
       setCountdown(60);
