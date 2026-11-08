@@ -40,7 +40,7 @@ export default function WebsiteFooter() {
         <div className="website-footer-grid">
           {/* Col 1: Brand & Status */}
           <div className="website-footer-col">
-            <Link to="/home" className="website-brand" style={{ marginBottom: '1.25rem' }}>
+            <Link to="/" className="website-brand" style={{ marginBottom: '1.25rem' }}>
               <div className="website-brand-logo">
                 <Sparkles size={20} />
               </div>
@@ -84,7 +84,7 @@ export default function WebsiteFooter() {
             <h4>Quick Navigation</h4>
             <ul className="website-footer-links">
               <li>
-                <Link to="/home" className="website-footer-link">
+                <Link to="/" className="website-footer-link">
                   <ArrowRight size={13} color="#6366f1" /> Home
                 </Link>
               </li>
@@ -106,11 +106,6 @@ export default function WebsiteFooter() {
               <li>
                 <Link to="/signup" className="website-footer-link">
                   <ArrowRight size={13} color="#6366f1" /> Sign Up / Register
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard" className="website-footer-link">
-                  <ArrowRight size={13} color="#6366f1" /> Live Dashboard
                 </Link>
               </li>
             </ul>

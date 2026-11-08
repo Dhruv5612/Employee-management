@@ -1,26 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Sparkles, Menu, X, ArrowRight, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
-import authStorage from '../../services/authStorage.js';
+import { Sparkles, Menu, X, LogIn, UserPlus } from 'lucide-react';
 
 export default function WebsiteNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
-
-  useEffect(() => {
-    try {
-      const user = authStorage.getUser();
-      const token = authStorage.getToken();
-      if (user && token) {
-        setCurrentUser(user);
-      } else {
-        setCurrentUser(null);
-      }
-    } catch {
-      setCurrentUser(null);
-    }
-  }, [location.pathname]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -30,8 +14,8 @@ export default function WebsiteNavbar() {
   return (
     <header className="website-header">
       <div className="website-nav-container">
-        {/* Brand Logo */}
-        <Link to="/home" className="website-brand" id="brand-logo-link">
+        {/* Brand Logo: Always links to Home */}
+        <Link to="/" className="website-brand" id="brand-logo-link">
           <div className="website-brand-logo">
             <Sparkles size={22} />
           </div>
@@ -46,7 +30,7 @@ export default function WebsiteNavbar() {
           <ul className="website-nav-links">
             <li>
               <NavLink
-                to="/home"
+                to="/"
                 end
                 className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
                 id="nav-link-home"
@@ -55,7 +39,7 @@ export default function WebsiteNavbar() {
               </NavLink>
             </li>
             <li>
-              <a href="/home#features" className="website-nav-link" id="nav-link-features">
+              <a href="/#features" className="website-nav-link" id="nav-link-features">
                 Features
               </a>
             </li>
@@ -80,26 +64,8 @@ export default function WebsiteNavbar() {
           </ul>
         </nav>
 
-        {/* Action Buttons: Sign In and Sign Up are always prominently available */}
+        {/* Action Buttons: Always display Sign In and Sign Up - never switch to Go to Dashboard */}
         <div className="website-nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-          {currentUser && (
-            <Link
-              to="/dashboard"
-              id="nav-btn-dashboard"
-              className="btn btn-outline"
-              style={{
-                color: '#38bdf8',
-                borderColor: 'rgba(56, 189, 248, 0.4)',
-                backgroundColor: 'rgba(56, 189, 248, 0.08)',
-                padding: '0.5rem 0.95rem',
-                fontSize: '0.85rem',
-              }}
-            >
-              <LayoutDashboard size={14} />
-              <span>Dashboard</span>
-            </Link>
-          )}
-
           <Link
             to="/signin"
             id="nav-btn-signin"
@@ -108,7 +74,12 @@ export default function WebsiteNavbar() {
               color: '#e2e8f0',
               borderColor: 'rgba(255, 255, 255, 0.2)',
               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              padding: '0.55rem 1.1rem',
+              padding: '0.55rem 1.15rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: '0.9rem',
+              fontWeight: 600,
             }}
           >
             <LogIn size={15} />
@@ -122,6 +93,11 @@ export default function WebsiteNavbar() {
               background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
               boxShadow: '0 4px 14px rgba(99, 102, 241, 0.35)',
               padding: '0.55rem 1.25rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: '0.9rem',
+              fontWeight: 600,
             }}
           >
             <UserPlus size={15} />
@@ -145,7 +121,7 @@ export default function WebsiteNavbar() {
       {isMobileMenuOpen && (
         <div className="website-mobile-drawer" id="mobile-nav-drawer">
           <NavLink
-            to="/home"
+            to="/"
             end
             className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -153,7 +129,7 @@ export default function WebsiteNavbar() {
             Home
           </NavLink>
           <a
-            href="/home#features"
+            href="/#features"
             className="website-nav-link"
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -175,17 +151,6 @@ export default function WebsiteNavbar() {
           </NavLink>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.75rem' }}>
-            {currentUser && (
-              <Link
-                to="/dashboard"
-                className="btn btn-outline"
-                onClick={() => setIsMobileMenuOpen(false)}
-                style={{ width: '100%', justifyContent: 'center', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.4)' }}
-              >
-                <LayoutDashboard size={16} />
-                <span>Open Dashboard</span>
-              </Link>
-            )}
             <Link
               to="/signin"
               className="btn btn-secondary"
