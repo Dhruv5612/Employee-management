@@ -43,15 +43,15 @@ export default function ActivityLogsPage() {
 
   const getActionBadgeColor = (action) => {
     if (action.includes('CREATED') || action.includes('REGISTERED')) {
-      return { bg: '#ecfdf5', color: '#065f46', border: '#a7f3d0' };
+      return { bg: 'rgba(198, 244, 50, 0.12)', color: '#C6F432', border: 'rgba(198, 244, 50, 0.30)' };
     }
     if (action.includes('DELETED')) {
-      return { bg: '#fef2f2', color: '#991b1b', border: '#fecaca' };
+      return { bg: 'rgba(239, 68, 68, 0.14)', color: '#FCA5A5', border: 'rgba(239, 68, 68, 0.30)' };
     }
     if (action.includes('STATUS') || action.includes('REASSIGNED')) {
-      return { bg: '#fffbeb', color: '#92400e', border: '#fde68a' };
+      return { bg: 'rgba(250, 204, 21, 0.12)', color: '#FDE047', border: 'rgba(250, 204, 21, 0.30)' };
     }
-    return { bg: '#eff6ff', color: '#1e40af', border: '#bfdbfe' };
+    return { bg: '#eff6ff', color: '#FFFFFF', border: 'rgba(255, 255, 255, 0.18)' };
   };
 
   return (
@@ -111,16 +111,16 @@ export default function ActivityLogsPage() {
                     const badge = getActionBadgeColor(log.action);
                     return (
                       <tr key={log._id}>
-                        <td style={{ fontSize: '0.825rem', color: '#64748b' }}>
+                        <td style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>
                           {formatDate(log.createdAt)} {new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </td>
 
                         <td>
-                          <div style={{ fontWeight: 600, color: '#0f172a' }}>
+                          <div style={{ fontWeight: 600, color: '#FFFFFF' }}>
                             {log.actor?.name || 'System Service'}
                           </div>
                           {log.actor?.role && (
-                            <span style={{ fontSize: '0.725rem', color: '#64748b' }}>
+                            <span style={{ fontSize: '0.725rem', color: '#A1A1AA' }}>
                               {log.actor.role}
                             </span>
                           )}
@@ -145,7 +145,7 @@ export default function ActivityLogsPage() {
                         </td>
 
                         <td>
-                          <span style={{ fontWeight: 600, color: '#334155' }}>
+                          <span style={{ fontWeight: 600, color: '#E4E4E7' }}>
                             {log.entityType}
                           </span>
                         </td>
@@ -155,7 +155,7 @@ export default function ActivityLogsPage() {
                             style={{
                               fontFamily: 'var(--font-mono)',
                               fontSize: '0.775rem',
-                              color: '#64748b',
+                              color: '#A1A1AA',
                             }}
                           >
                             {String(log.entityId).substring(0, 10)}...
@@ -207,30 +207,30 @@ export default function ActivityLogsPage() {
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
               <div>
-                <span style={{ color: '#64748b' }}>Actor:</span>{' '}
+                <span style={{ color: '#A1A1AA' }}>Actor:</span>{' '}
                 <strong>{selectedLog.actor?.name || 'System'}</strong> ({selectedLog.actor?.role || 'Service'})
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>Timestamp:</span>{' '}
+                <span style={{ color: '#A1A1AA' }}>Timestamp:</span>{' '}
                 <strong>{formatDate(selectedLog.createdAt)} {new Date(selectedLog.createdAt).toLocaleTimeString()}</strong>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>Entity Type:</span>{' '}
+                <span style={{ color: '#A1A1AA' }}>Entity Type:</span>{' '}
                 <strong>{selectedLog.entityType}</strong>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>Entity ID:</span>{' '}
+                <span style={{ color: '#A1A1AA' }}>Entity ID:</span>{' '}
                 <strong style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>{selectedLog.entityId}</strong>
               </div>
             </div>
 
-            <div style={{ fontWeight: 700, fontSize: '0.875rem', color: '#1e293b', marginBottom: '0.5rem' }}>
+            <div style={{ fontWeight: 700, fontSize: '0.875rem', color: '#FFFFFF', marginBottom: '0.5rem' }}>
               Recorded Delta / Changes:
             </div>
             <pre
               style={{
-                backgroundColor: '#0f172a',
-                color: '#38bdf8',
+                backgroundColor: '#FFFFFF',
+                color: '#C6F432',
                 padding: '1rem',
                 borderRadius: '8px',
                 fontSize: '0.8rem',

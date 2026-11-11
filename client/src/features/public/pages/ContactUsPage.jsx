@@ -1,459 +1,202 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Sparkles,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  CheckCircle2,
-  HelpCircle,
-  MessageSquare,
-  ShieldCheck,
-  ChevronDown,
-  ChevronUp,
-} from 'lucide-react';
-import { useToast } from '../../../hooks/useToast.js';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { useToast } from '../../../components/common/Toast.jsx';
 
 export default function ContactUsPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    topic: 'General Inquiry',
-    message: '',
-  });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState(0);
-
-  const { success, error: toastError } = useToast();
-
-  const validate = () => {
-    const errs = {};
-    if (!formData.name.trim()) {
-      errs.name = 'Please provide your full name.';
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
-      errs.email = 'Please provide a valid work email.';
-    }
-    if (!formData.message.trim() || formData.message.trim().length < 10) {
-      errs.message = 'Please provide a message with at least 10 characters.';
-    }
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: null }));
-    }
-  };
+  const toast = useToast();
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) {
-      toastError('Please correct the errors in the form.');
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      toast.warning('Please fill out name, work email, and message.');
       return;
     }
-
-    setIsSubmitting(true);
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      success('Thank you! Your message has been sent to our customer operations team.');
-    }, 800);
+    setSubmitted(true);
+    toast.success('Inquiry sent! Our enterprise team will reach out shortly.');
+    setForm({ name: '', email: '', company: '', message: '' });
   };
-
-  const handleReset = () => {
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      topic: 'General Inquiry',
-      message: '',
-    });
-    setErrors({});
-    setIsSubmitted(false);
-  };
-
-  const contactFaqs = [
-    {
-      q: 'How fast will our team receive a response?',
-      a: 'Our standard customer operations team responds within 2 hours during normal business hours. For enterprise support plans, our critical priority SLA is under 15 minutes 24/7/365.',
-    },
-    {
-      q: 'Can we schedule a live 1-on-1 enterprise demo?',
-      a: 'Absolutely! Select "Enterprise Sales & Demo" in the contact form, and an enterprise solutions engineer will reach out with a calendar link to walk your leadership team through our platform.',
-    },
-    {
-      q: 'Can EmployeeHub be deployed with our existing identity provider (SSO)?',
-      a: 'Yes, enterprise tiers support SAML 2.0, Okta, Google Workspace, and Azure Active Directory single sign-on integrations.',
-    },
-    {
-      q: 'How do we migrate our existing CSV employee records?',
-      a: 'Our onboarding specialists offer complimentary data migration assistance to import existing staff rosters, department assignments, and historical logs safely.',
-    },
-  ];
 
   return (
     <div className="landing-page">
-      {/* 1. HERO SECTION */}
-      <section className="landing-hero" style={{ paddingBottom: '3.5rem' }}>
-        <div className="landing-container">
-          <div className="landing-badge" id="contact-badge">
-            <Sparkles size={16} color="#818cf8" />
-            <span>24/7 Enterprise Support</span>
+      <section style={{ padding: '5rem 0 3.5rem', position: 'relative' }}>
+        <div className="hero-glow" />
+        <div className="website-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '760px' }}>
+          <div className="hero-eyebrow">
+            <Sparkles size={13} />
+            <span>ENTERPRISE SUPPORT &amp; SALES</span>
           </div>
-
-          <h1 className="landing-hero-title">
-            We’d Love to <span>Hear From You</span>
+          <h1 className="hero-title" style={{ marginBottom: '1.15rem' }}>
+            Talk with our <em>workforce architects</em>.
           </h1>
-
-          <p className="landing-hero-subtitle">
-            Have questions about our employee management capabilities, need technical help, or want an enterprise demo?
-            Our friendly team of specialists is standing by.
+          <p className="hero-subtitle">
+            Have questions about multi-team rollouts, custom RBAC security, or dedicated MongoDB deployments? Send us a direct note.
           </p>
         </div>
       </section>
 
-      {/* 2. MAIN CONTACT SECTION: INFO + FORM */}
-      <section className="landing-section" style={{ paddingTop: '0' }}>
-        <div className="landing-container">
-          <div className="contact-grid">
-            {/* Left: Contact Info Cards */}
-            <div className="contact-info-cards">
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <Mail size={22} />
-                </div>
-                <div>
-                  <h3 className="contact-card-title">Email Us Directly</h3>
-                  <p className="contact-card-text">
-                    For general questions or support assistance:
-                    <br />
-                    <strong style={{ color: '#818cf8' }}>support@employeehub.io</strong>
-                  </p>
-                  <p className="contact-card-text" style={{ marginTop: '0.4rem' }}>
-                    For sales and enterprise contracts:
-                    <br />
-                    <strong style={{ color: '#a5b4fc' }}>sales@employeehub.io</strong>
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <Phone size={22} />
-                </div>
-                <div>
-                  <h3 className="contact-card-title">Call Us</h3>
-                  <p className="contact-card-text">
-                    Toll-free (North America):
-                    <br />
-                    <strong style={{ color: '#ffffff' }}>+1 (800) 555-0199</strong>
-                  </p>
-                  <p className="contact-card-text" style={{ marginTop: '0.4rem' }}>
-                    International Support line:
-                    <br />
-                    <strong style={{ color: '#ffffff' }}>+1 (415) 555-0142</strong>
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <MapPin size={22} />
-                </div>
-                <div>
-                  <h3 className="contact-card-title">Global Headquarters</h3>
-                  <p className="contact-card-text">
-                    EmployeeHub Technologies Inc.
-                    <br />
-                    100 Market Street, Suite 400
-                    <br />
-                    San Francisco, CA 94105, USA
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <Clock size={22} />
-                </div>
-                <div>
-                  <h3 className="contact-card-title">Operating Hours</h3>
-                  <p className="contact-card-text">
-                    Customer Success: Mon – Fri, 8:00 AM – 8:00 PM EST
-                    <br />
-                    Critical Operations SLA: 24/7/365 Worldwide
-                  </p>
-                </div>
-              </div>
-
-              {/* SLA Guarantee Box */}
-              <div
-                style={{
-                  background: 'rgba(99, 102, 241, 0.1)',
-                  border: '1px solid rgba(99, 102, 241, 0.25)',
-                  borderRadius: '16px',
-                  padding: '1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.85rem',
-                }}
-              >
-                <ShieldCheck size={28} color="#818cf8" />
-                <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>
-                  <strong style={{ color: '#ffffff', display: 'block', marginBottom: '0.15rem' }}>
-                    Enterprise SLA Guarantee
-                  </strong>
-                  Sub-15 minute response time for high-priority incidents and dedicated customer success manager.
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Contact Form Card */}
-            <div className="contact-form-card" id="contact-form-container">
-              {isSubmitted ? (
-                <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+      <section style={{ padding: '1rem 0 6rem' }}>
+        <div className="website-container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))', gap: '2rem', alignItems: 'start' }}>
+            {/* Direct Contact Channels */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
+              {[
+                {
+                  icon: Mail,
+                  title: 'Enterprise Email',
+                  detail: 'support@employeehub.app',
+                  sub: 'Direct response within 4 business hours.',
+                },
+                {
+                  icon: Phone,
+                  title: 'Priority Hotline',
+                  detail: '+1 (555) 294-8810',
+                  sub: 'Mon–Fri, 08:00 AM to 07:00 PM PST.',
+                },
+                {
+                  icon: MapPin,
+                  title: 'Global HQ',
+                  detail: '548 Market St, San Francisco, CA',
+                  sub: 'Remote operations hubs worldwide.',
+                },
+                {
+                  icon: Clock,
+                  title: 'Cluster SLA',
+                  detail: '99.98% Guaranteed Uptime',
+                  sub: 'Real-time status alerts included.',
+                },
+              ].map((card) => {
+                const Icon = card.icon;
+                return (
                   <div
+                    key={card.title}
                     style={{
-                      width: '64px',
-                      height: '64px',
-                      borderRadius: '50%',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      color: '#34d399',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '1.25rem',
+                      padding: '1.35rem 1.5rem',
+                      borderRadius: '16px',
+                      background: '#121314',
+                      border: '1px solid rgba(255,255,255,0.09)',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '1rem',
                     }}
                   >
-                    <CheckCircle2 size={36} />
-                  </div>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.5rem' }}>
-                    Message Received!
-                  </h3>
-                  <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: '1.6', maxWidth: '420px', margin: '0 auto 1.75rem' }}>
-                    Thank you, <strong>{formData.name}</strong>. A copy of your request has been routed to our team at{' '}
-                    <strong style={{ color: '#a5b4fc' }}>{formData.email}</strong>. We typically respond within 2 hours.
-                  </p>
-                  <button type="button" onClick={handleReset} className="btn btn-secondary">
-                    Send Another Message
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate>
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.35rem' }}>
-                      Send Us a Message
-                    </h3>
-                    <p style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
-                      Fill out the form below and an EmployeeHub specialist will get in touch shortly.
-                    </p>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.4rem' }}>
-                        Your Full Name <span style={{ color: '#ef4444' }}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="e.g. Alex Rivera"
-                        style={{
-                          width: '100%',
-                          padding: '0.7rem 0.9rem',
-                          background: 'rgba(15, 23, 42, 0.6)',
-                          border: `1px solid ${errors.name ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}`,
-                          borderRadius: '8px',
-                          color: '#ffffff',
-                          fontSize: '0.9rem',
-                          outline: 'none',
-                        }}
-                      />
-                      {errors.name && <span style={{ color: '#ef4444', fontSize: '0.775rem', marginTop: '0.25rem', display: 'block' }}>{errors.name}</span>}
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.4rem' }}>
-                        Work Email <span style={{ color: '#ef4444' }}>*</span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="alex@company.com"
-                        style={{
-                          width: '100%',
-                          padding: '0.7rem 0.9rem',
-                          background: 'rgba(15, 23, 42, 0.6)',
-                          border: `1px solid ${errors.email ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}`,
-                          borderRadius: '8px',
-                          color: '#ffffff',
-                          fontSize: '0.9rem',
-                          outline: 'none',
-                        }}
-                      />
-                      {errors.email && <span style={{ color: '#ef4444', fontSize: '0.775rem', marginTop: '0.25rem', display: 'block' }}>{errors.email}</span>}
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.4rem' }}>
-                        Company Name
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="e.g. Acme Tech"
-                        style={{
-                          width: '100%',
-                          padding: '0.7rem 0.9rem',
-                          background: 'rgba(15, 23, 42, 0.6)',
-                          border: '1px solid rgba(255, 255, 255, 0.12)',
-                          borderRadius: '8px',
-                          color: '#ffffff',
-                          fontSize: '0.9rem',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.4rem' }}>
-                        Inquiry Topic
-                      </label>
-                      <select
-                        name="topic"
-                        value={formData.topic}
-                        onChange={handleChange}
-                        style={{
-                          width: '100%',
-                          padding: '0.7rem 0.9rem',
-                          background: '#1e293b',
-                          border: '1px solid rgba(255, 255, 255, 0.12)',
-                          borderRadius: '8px',
-                          color: '#ffffff',
-                          fontSize: '0.9rem',
-                          outline: 'none',
-                        }}
-                      >
-                        <option value="General Inquiry">General Questions</option>
-                        <option value="Enterprise Sales">Enterprise Sales & Custom Quote</option>
-                        <option value="Technical Support">Technical Support</option>
-                        <option value="Role Permissions">Role-Based Security Setup</option>
-                        <option value="Partnership">Partnership & Integration</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.4rem' }}>
-                      How can we help? <span style={{ color: '#ef4444' }}>*</span>
-                    </label>
-                    <textarea
-                      name="message"
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your team size, workflow requirements, or questions..."
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem 0.9rem',
-                        background: 'rgba(15, 23, 42, 0.6)',
-                        border: `1px solid ${errors.message ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}`,
-                        borderRadius: '8px',
-                        color: '#ffffff',
-                        fontSize: '0.9rem',
-                        outline: 'none',
-                        resize: 'vertical',
-                      }}
-                    />
-                    {errors.message && (
-                      <span style={{ color: '#ef4444', fontSize: '0.775rem', marginTop: '0.25rem', display: 'block' }}>
-                        {errors.message}
-                      </span>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn btn-primary"
-                    id="contact-submit-btn"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem',
-                      fontSize: '0.95rem',
+                    <div style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '12px',
+                      background: 'rgba(198,244,50,0.12)',
+                      border: '1px solid rgba(198,244,50,0.28)',
+                      color: '#C6F432',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '0.5rem',
-                    }}
+                      flexShrink: 0,
+                    }}>
+                      <Icon size={19} />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#71717A' }}>
+                        {card.title}
+                      </div>
+                      <div style={{ fontSize: '1.02rem', fontWeight: 700, color: '#FFFFFF', marginTop: '0.15rem' }}>
+                        {card.detail}
+                      </div>
+                      <div style={{ fontSize: '0.82rem', color: '#A1A1AA', marginTop: '0.2rem' }}>
+                        {card.sub}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Contact Form */}
+            <div className="contact-card">
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.45rem' }}>
+                Send us a message
+              </h2>
+              <p style={{ fontSize: '0.88rem', color: '#A1A1AA', marginBottom: '1.75rem' }}>
+                Share your team size and goals so we can tailor your onboarding.
+              </p>
+
+              {submitted ? (
+                <div style={{
+                  padding: '2.25rem 1.5rem',
+                  borderRadius: '16px',
+                  background: 'rgba(198,244,50,0.08)',
+                  border: '1px solid rgba(198,244,50,0.32)',
+                  textAlign: 'center',
+                }}>
+                  <CheckCircle2 size={42} style={{ color: '#C6F432', margin: '0 auto 0.85rem' }} />
+                  <h3 style={{ color: '#FFFFFF', fontWeight: 700, marginBottom: '0.4rem' }}>Message Received</h3>
+                  <p style={{ color: '#A1A1AA', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
+                    Thank you! An EmployeeHub onboarding specialist will reach out soon.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="btn btn-primary btn-sm"
                   >
-                    {isSubmitting ? (
-                      <span>Sending Message...</span>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        <span>Submit Message</span>
-                      </>
-                    )}
+                    Send Another Note
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
+                  <div className="form-group">
+                    <label className="form-label">Full Name <span className="form-required">*</span></label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="Alex Mercer"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Work Email <span className="form-required">*</span></label>
+                    <input
+                      type="email"
+                      className="form-input"
+                      placeholder="alex@company.com"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Company / Organization</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="Horizon Systems Inc."
+                      value={form.company}
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">How can we help? <span className="form-required">*</span></label>
+                    <textarea
+                      rows={4}
+                      className="form-textarea"
+                      placeholder="Tell us about your team size, HR workflows, or security requirements..."
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" className="btn btn-primary btn-lg" style={{ marginTop: '0.25rem' }}>
+                    <Send size={16} />
+                    Dispatch Inquiry
                   </button>
                 </form>
               )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FREQUENTLY ASKED QUESTIONS */}
-      <section className="landing-section" style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)' }}>
-        <div className="landing-container">
-          <div className="landing-section-header">
-            <div className="landing-section-badge">Common Questions</div>
-            <h2 className="landing-section-title">Support & Implementation FAQs</h2>
-            <p className="landing-section-desc">
-              Quick answers to frequently asked questions regarding setup, migration, and enterprise support.
-            </p>
-          </div>
-
-          <div className="faq-container">
-            {contactFaqs.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div key={idx} className="faq-item">
-                  <button
-                    type="button"
-                    className="faq-question"
-                    onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
-                    aria-expanded={isOpen}
-                  >
-                    <span>{faq.q}</span>
-                    {isOpen ? <ChevronUp size={20} color="#818cf8" /> : <ChevronDown size={20} color="#94a3b8" />}
-                  </button>
-                  {isOpen && <div className="faq-answer">{faq.a}</div>}
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>

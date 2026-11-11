@@ -41,15 +41,16 @@ export default function ConfirmDialog({
             style={{
               padding: '0.65rem',
               borderRadius: '50%',
-              backgroundColor: '#fef2f2',
-              color: '#ef4444',
+              backgroundColor: 'rgba(239, 68, 68, 0.14)',
+              border: '1px solid rgba(239, 68, 68, 0.28)',
+              color: '#FCA5A5',
               flexShrink: 0,
             }}
           >
             <AlertTriangle size={24} />
           </div>
         )}
-        <div style={{ color: '#475569', fontSize: '0.925rem', lineHeight: 1.5 }}>
+        <div style={{ color: '#D4D4D8', fontSize: '0.925rem', lineHeight: 1.5 }}>
           {message}
         </div>
       </div>

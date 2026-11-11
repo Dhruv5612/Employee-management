@@ -19,7 +19,7 @@ export default function EmployeeTable({
     if (sortBy !== field) {
       return <ArrowUpDown size={14} style={{ opacity: 0.4 }} />;
     }
-    return order === 'asc' ? <ArrowUp size={14} color="#4f46e5" /> : <ArrowDown size={14} color="#4f46e5" />;
+    return order === 'asc' ? <ArrowUp size={14} color="#C6F432" /> : <ArrowDown size={14} color="#C6F432" />;
   };
 
   return (
@@ -87,7 +87,7 @@ export default function EmployeeTable({
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.825rem',
                       fontWeight: 600,
-                      color: '#4f46e5',
+                      color: '#C6F432',
                     }}
                   >
                     {emp.employeeId}
@@ -101,8 +101,8 @@ export default function EmployeeTable({
                         width: '34px',
                         height: '34px',
                         borderRadius: '50%',
-                        backgroundColor: '#e0e7ff',
-                        color: '#4338ca',
+                        backgroundColor: 'rgba(198, 244, 50, 0.14)',
+                        color: '#C6F432',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -114,12 +114,12 @@ export default function EmployeeTable({
                       {emp.fullName.substring(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <div style={{ fontWeight: 600, color: '#0f172a' }}>
+                      <div style={{ fontWeight: 600, color: '#FFFFFF' }}>
                         <Link to={`/employees/${emp._id}`} style={{ color: 'inherit' }}>
                           {emp.fullName}
                         </Link>
                       </div>
-                      <div style={{ fontSize: '0.775rem', color: '#64748b' }}>{emp.email}</div>
+                      <div style={{ fontSize: '0.775rem', color: '#A1A1AA' }}>{emp.email}</div>
                     </div>
                   </div>
                 </td>
@@ -130,10 +130,10 @@ export default function EmployeeTable({
                     <span
                       style={{
                         fontSize: '0.7rem',
-                        backgroundColor: '#f1f5f9',
+                        backgroundColor: '#171918',
                         padding: '0.1rem 0.35rem',
                         borderRadius: '4px',
-                        color: '#475569',
+                        color: '#D4D4D8',
                       }}
                     >
                       {deptCode}

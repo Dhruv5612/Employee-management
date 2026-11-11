@@ -12,7 +12,7 @@ export default function WebsiteLayout() {
   }, [pathname]);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0f172a' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0B0B0C', color: '#FFFFFF' }}>
       <WebsiteNavbar />
       <main style={{ flex: 1 }}>
         <Outlet />

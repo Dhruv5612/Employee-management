@@ -87,7 +87,7 @@ export default function EmployeeDetailsPage() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.4rem',
-            color: '#64748b',
+            color: '#A1A1AA',
             fontSize: '0.875rem',
             fontWeight: 600,
           }}
@@ -114,7 +114,7 @@ export default function EmployeeDetailsPage() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #4f46e5, #4338ca)',
+                background: 'linear-gradient(135deg, #C6F432, #C6F432)',
                 color: '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
@@ -128,12 +128,12 @@ export default function EmployeeDetailsPage() {
             </div>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a' }}>
+                <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#FFFFFF' }}>
                   {employee.fullName}
                 </h1>
                 <StatusBadge status={employee.status} />
               </div>
-              <p style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.2rem' }}>
+              <p style={{ fontSize: '0.95rem', color: '#A1A1AA', marginTop: '0.2rem' }}>
                 {employee.designation} &bull; {dept?.name || 'Department'}
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function EmployeeDetailsPage() {
                 size="sm"
                 icon={Trash2}
                 onClick={() => setShowDeleteConfirm(true)}
-                style={{ color: '#ef4444', borderColor: '#fecaca' }}
+                style={{ color: '#F87171', borderColor: 'rgba(239, 68, 68, 0.30)' }}
               >
                 Delete
               </Button>
@@ -171,64 +171,64 @@ export default function EmployeeDetailsPage() {
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Hash size={14} /> Employee ID
             </div>
-            <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#4f46e5', fontFamily: 'var(--font-mono)', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#C6F432', fontFamily: 'var(--font-mono)', marginTop: '0.25rem' }}>
               {employee.employeeId}
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Mail size={14} /> Work Email
             </div>
-            <div style={{ fontSize: '0.975rem', fontWeight: 500, color: '#0f172a', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '0.975rem', fontWeight: 500, color: '#FFFFFF', marginTop: '0.25rem' }}>
               <a href={`mailto:${employee.email}`}>{employee.email}</a>
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Phone size={14} /> Phone Number
             </div>
-            <div style={{ fontSize: '0.975rem', fontWeight: 500, color: '#0f172a', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '0.975rem', fontWeight: 500, color: '#FFFFFF', marginTop: '0.25rem' }}>
               <a href={`tel:${employee.phone}`}>{employee.phone}</a>
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Building2 size={14} /> Department
             </div>
-            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#0f172a', marginTop: '0.25rem' }}>
-              {dept?.name || 'Unassigned'} {dept?.code && <span style={{ fontSize: '0.8rem', color: '#64748b' }}>({dept.code})</span>}
+            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#FFFFFF', marginTop: '0.25rem' }}>
+              {dept?.name || 'Unassigned'} {dept?.code && <span style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>({dept.code})</span>}
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Briefcase size={14} /> Designation
             </div>
-            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#0f172a', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#FFFFFF', marginTop: '0.25rem' }}>
               {employee.designation}
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Calendar size={14} /> Joining Date
             </div>
-            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#0f172a', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '0.975rem', fontWeight: 600, color: '#FFFFFF', marginTop: '0.25rem' }}>
               {formatDate(employee.joiningDate)}
             </div>
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A1A1AA', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase' }}>
               <Clock size={14} /> Record Created
             </div>
-            <div style={{ fontSize: '0.925rem', color: '#64748b', marginTop: '0.25rem' }}>
+            <div style={{ fontSize: '0.925rem', color: '#A1A1AA', marginTop: '0.25rem' }}>
               {formatDate(employee.createdAt)}
             </div>
           </div>

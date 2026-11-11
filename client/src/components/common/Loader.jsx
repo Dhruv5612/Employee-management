@@ -10,14 +10,14 @@ export default function Loader({ message = 'Loading records...' }) {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '3.5rem 1rem',
-        color: '#64748b',
+        color: '#A1A1AA',
         gap: '0.85rem',
       }}
     >
       <Loader2
         size={36}
         style={{
-          color: '#4f46e5',
+          color: '#C6F432',
           animation: 'spin 1s linear infinite',
         }}
       />

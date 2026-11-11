@@ -25,8 +25,9 @@ export default function EmptyState({
           width: '64px',
           height: '64px',
           borderRadius: '50%',
-          backgroundColor: '#f1f5f9',
-          color: '#94a3b8',
+          backgroundColor: 'rgba(198, 244, 50, 0.10)',
+          border: '1px solid rgba(198, 244, 50, 0.25)',
+          color: '#C6F432',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -35,10 +36,10 @@ export default function EmptyState({
       >
         <Icon size={32} />
       </div>
-      <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+      <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.35rem' }}>
         {title}
       </h4>
-      <p style={{ fontSize: '0.875rem', color: '#64748b', maxWidth: '380px', marginBottom: '1.25rem' }}>
+      <p style={{ fontSize: '0.875rem', color: '#A1A1AA', maxWidth: '380px', marginBottom: '1.25rem' }}>
         {description}
       </p>
       {actionText && onAction && (

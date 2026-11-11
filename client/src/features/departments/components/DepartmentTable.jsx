@@ -39,9 +39,9 @@ export default function DepartmentTable({
                       fontSize: '0.8rem',
                       padding: '0.2rem 0.5rem',
                       borderRadius: '6px',
-                      backgroundColor: '#eef2ff',
-                      color: '#4f46e5',
-                      border: '1px solid #c7d2fe',
+                      backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                      color: '#C6F432',
+                      border: '1px solid rgba(198, 244, 50, 0.30)',
                     }}
                   >
                     {dept.code}
@@ -49,33 +49,33 @@ export default function DepartmentTable({
                 </td>
 
                 <td>
-                  <div style={{ fontWeight: 600, color: '#0f172a' }}>{dept.name}</div>
+                  <div style={{ fontWeight: 600, color: '#FFFFFF' }}>{dept.name}</div>
                 </td>
 
                 <td>
                   {manager ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <UserCheck size={14} color="#10b981" />
+                      <UserCheck size={14} color="#C6F432" />
                       <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a' }}>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#FFFFFF' }}>
                           {manager.fullName}
                         </div>
                         {manager.designation && (
-                          <div style={{ fontSize: '0.725rem', color: '#64748b' }}>
+                          <div style={{ fontSize: '0.725rem', color: '#A1A1AA' }}>
                             {manager.designation}
                           </div>
                         )}
                       </div>
                     </div>
                   ) : (
-                    <span style={{ fontSize: '0.825rem', color: '#94a3b8', fontStyle: 'italic' }}>
+                    <span style={{ fontSize: '0.825rem', color: '#71717A', fontStyle: 'italic' }}>
                       Not Assigned
                     </span>
                   )}
                 </td>
 
-                <td style={{ color: '#64748b', fontSize: '0.85rem', maxWidth: '260px' }}>
-                  {dept.description || <span style={{ color: '#cbd5e1' }}>No description</span>}
+                <td style={{ color: '#A1A1AA', fontSize: '0.85rem', maxWidth: '260px' }}>
+                  {dept.description || <span style={{ color: 'rgba(255, 255, 255, 0.14)' }}>No description</span>}
                 </td>
 
                 <td>
@@ -87,11 +87,11 @@ export default function DepartmentTable({
                       gap: '0.35rem',
                       padding: '0.25rem 0.65rem',
                       borderRadius: '9999px',
-                      backgroundColor: count > 0 ? '#ecfdf5' : '#f8fafc',
-                      color: count > 0 ? '#065f46' : '#94a3b8',
+                      backgroundColor: count > 0 ? 'rgba(198, 244, 50, 0.12)' : '#171918',
+                      color: count > 0 ? '#C6F432' : '#71717A',
                       fontWeight: 600,
                       fontSize: '0.825rem',
-                      border: `1px solid ${count > 0 ? '#a7f3d0' : '#e2e8f0'}`,
+                      border: `1px solid ${count > 0 ? 'rgba(198, 244, 50, 0.30)' : 'rgba(255, 255, 255, 0.10)'}`,
                     }}
                   >
                     <Users size={14} />
@@ -99,7 +99,7 @@ export default function DepartmentTable({
                   </Link>
                 </td>
 
-                <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                <td style={{ fontSize: '0.85rem', color: '#A1A1AA' }}>
                   {formatDate(dept.createdAt)}
                 </td>
 
@@ -116,18 +116,18 @@ export default function DepartmentTable({
                           cursor: 'pointer',
                           padding: '0.4rem',
                           borderRadius: '6px',
-                          color: '#64748b',
+                          color: '#A1A1AA',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#f1f5f9';
-                          e.currentTarget.style.color = '#4f46e5';
+                          e.currentTarget.style.backgroundColor = '#171918';
+                          e.currentTarget.style.color = '#C6F432';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'transparent';
-                          e.currentTarget.style.color = '#64748b';
+                          e.currentTarget.style.color = '#A1A1AA';
                         }}
                       >
                         <ArrowRightLeft size={16} />
@@ -141,18 +141,18 @@ export default function DepartmentTable({
                         style={{
                           padding: '0.4rem',
                           borderRadius: '6px',
-                          color: '#64748b',
+                          color: '#A1A1AA',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#f1f5f9';
-                          e.currentTarget.style.color = '#0284c7';
+                          e.currentTarget.style.backgroundColor = '#171918';
+                          e.currentTarget.style.color = '#C6F432';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'transparent';
-                          e.currentTarget.style.color = '#64748b';
+                          e.currentTarget.style.color = '#A1A1AA';
                         }}
                       >
                         <Edit3 size={16} />
@@ -170,18 +170,18 @@ export default function DepartmentTable({
                           cursor: 'pointer',
                           padding: '0.4rem',
                           borderRadius: '6px',
-                          color: '#64748b',
+                          color: '#A1A1AA',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#fef2f2';
-                          e.currentTarget.style.color = '#ef4444';
+                          e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.14)';
+                          e.currentTarget.style.color = '#F87171';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'transparent';
-                          e.currentTarget.style.color = '#64748b';
+                          e.currentTarget.style.color = '#A1A1AA';
                         }}
                       >
                         <Trash2 size={16} />

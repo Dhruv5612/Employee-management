@@ -1,368 +1,166 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Sparkles,
-  Heart,
-  ShieldCheck,
-  Zap,
-  Users,
-  Award,
-  Globe,
-  ArrowRight,
-  UserPlus,
-  Mail,
-  Linkedin,
-  Twitter,
-  CheckCircle,
-} from 'lucide-react';
+import { ShieldCheck, Cpu, Users, Globe2, ArrowRight, Sparkles } from 'lucide-react';
+
+const VALUES = [
+  {
+    icon: ShieldCheck,
+    title: 'Zero-Trust Access Governance',
+    desc: 'Fine-grained RBAC rules ensure employees, HR specialists, and administrators access strictly what they are authorized to see.',
+  },
+  {
+    icon: Cpu,
+    title: 'Real-Time Synchronization',
+    desc: 'Every leave approval, attendance punch, and payroll update propagates instantaneously across command views.',
+  },
+  {
+    icon: Users,
+    title: 'Human-First Clarity',
+    desc: 'High-contrast typography and crisp data tables eliminate spreadsheet fatigue for fast-growing teams.',
+  },
+  {
+    icon: Globe2,
+    title: 'Built for Distributed Orgs',
+    desc: 'Remote-first leave tracking, company-wide broadcasts, and unified directory governance across regions.',
+  },
+];
+
+const LEADERSHIP = [
+  { name: 'Dhruv Kamariya', role: 'Founder & Lead Architect', initials: 'DK', focus: 'Platform Core & Security' },
+  { name: 'Aarav Mehta', role: 'Head of People Systems', initials: 'AM', focus: 'HR Automation & Payroll' },
+  { name: 'Sophia Chen', role: 'Principal Product Designer', initials: 'SC', focus: 'Midnight UI & Systems' },
+];
 
 export default function AboutUsPage() {
-  const leadership = [
-    {
-      name: 'Sarah Jenkins',
-      title: 'Co-Founder & CEO',
-      bio: 'Former VP of People Operations with 14+ years scaling tech workforces from 20 to 2,000+ employees.',
-      initials: 'SJ',
-      bg: 'linear-gradient(135deg, #6366f1, #4f46e5)',
-    },
-    {
-      name: 'David Kim',
-      title: 'Co-Founder & CTO',
-      bio: 'Distributed systems architect with deep expertise in enterprise data compliance, auditability, and speed.',
-      initials: 'DK',
-      bg: 'linear-gradient(135deg, #06b6d4, #0284c7)',
-    },
-    {
-      name: 'Elena Rostova',
-      title: 'Head of People & Culture',
-      bio: 'Passionate workforce strategist advocating for human-first HR policies, transparent compensation, and fair growth.',
-      initials: 'ER',
-      bg: 'linear-gradient(135deg, #ec4899, #be185d)',
-    },
-    {
-      name: 'Marcus Vance',
-      title: 'VP of Product Experience',
-      bio: 'Enterprise product leader dedicated to removing cognitive overhead and crafting delightful, snappy interfaces.',
-      initials: 'MV',
-      bg: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-    },
-  ];
-
-  const milestones = [
-    {
-      year: '2023',
-      title: 'The Prototype',
-      desc: 'Built our initial employee directory for 5 fast-growing tech companies tired of clunky legacy HR software.',
-    },
-    {
-      year: '2024',
-      title: 'Enterprise RBAC & Audits',
-      desc: 'Launched tamper-evident audit logging, granular role permissions (Admin, HR, Viewer), and department trees.',
-    },
-    {
-      year: '2025',
-      title: 'Global Scale',
-      desc: 'Crossed 15,000+ managed profiles across 12 countries, achieving 99.98% uptime and SOC-2 certification.',
-    },
-    {
-      year: '2026',
-      title: 'Version 2.4 Launch',
-      desc: 'Introduced offline demo storage mode, automated CSV/PDF report generation, and instant department budgeting.',
-    },
-  ];
-
   return (
     <div className="landing-page">
-      {/* 1. HERO SECTION */}
-      <section className="landing-hero" style={{ paddingBottom: '4rem' }}>
-        <div className="landing-container">
-          <div className="landing-badge" id="about-badge">
-            <Sparkles size={16} color="#818cf8" />
-            <span>Our Mission & Vision</span>
+      <section style={{ padding: '5rem 0 4rem', position: 'relative' }}>
+        <div className="hero-glow" />
+        <div className="website-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '820px' }}>
+          <div className="hero-eyebrow">
+            <Sparkles size={13} />
+            <span>ABOUT EMPLOYEEHUB</span>
           </div>
-
-          <h1 className="landing-hero-title">
-            Empowering Modern Organizations to <span>Put People First</span>
+          <h1 className="hero-title" style={{ marginBottom: '1.25rem' }}>
+            Designing clarity for <em>modern teams</em>.
           </h1>
-
-          <p className="landing-hero-subtitle">
-            We believe workforce operations shouldn't be trapped in bloated, painful legacy systems. EmployeeHub was built
-            from the ground up to bring speed, clarity, and security to modern enterprises.
+          <p className="hero-subtitle" style={{ maxWidth: '640px' }}>
+            EmployeeHub brings executive oversight, HR operations, and everyday employee workflows into a single high-contrast Midnight Black command suite.
           </p>
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/signup" className="btn btn-primary" style={{ padding: '0.75rem 1.5rem' }}>
-              <UserPlus size={16} />
-              <span>Join EmployeeHub</span>
-            </Link>
-            <Link
-              to="/contact"
-              className="btn btn-secondary"
-              style={{
-                backgroundColor: 'rgba(30, 41, 59, 0.7)',
-                color: '#ffffff',
-                borderColor: 'rgba(255, 255, 255, 0.15)',
-                padding: '0.75rem 1.5rem',
-              }}
-            >
-              <Mail size={16} color="#818cf8" />
-              <span>Contact Our Team</span>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* 2. MISSION & VISION SPLIT CARDS */}
-      <section className="landing-section" style={{ paddingTop: '1rem' }}>
-        <div className="landing-container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            <div
-              style={{
-                background: 'rgba(30, 41, 59, 0.45)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                borderRadius: '20px',
-                padding: '2.5rem',
-                position: 'relative',
-              }}
-            >
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(99, 102, 241, 0.15)',
-                  color: '#818cf8',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                <Award size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem' }}>
-                Our Mission
-              </h3>
-              <p style={{ color: '#94a3b8', lineHeight: '1.6', fontSize: '0.95rem' }}>
-                To eliminate administrative friction for People Ops and engineering teams by delivering a unified,
-                lightning-fast system for managing employee lifecycles, org departments, and compliance audits with total
-                confidence.
-              </p>
-            </div>
-
-            <div
-              style={{
-                background: 'rgba(30, 41, 59, 0.45)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                borderRadius: '20px',
-                padding: '2.5rem',
-                position: 'relative',
-              }}
-            >
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(16, 185, 129, 0.15)',
-                  color: '#34d399',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                <Globe size={24} />
-              </div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem' }}>
-                Our Vision
-              </h3>
-              <p style={{ color: '#94a3b8', lineHeight: '1.6', fontSize: '0.95rem' }}>
-                A world where companies of all sizes can operate with radical transparency, where sensitive employee data
-                is effortlessly protected, and every team member has real-time clarity on organizational growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CORE VALUES */}
-      <section className="landing-section" style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)' }}>
-        <div className="landing-container">
-          <div className="landing-section-header">
-            <div className="landing-section-badge">Principles</div>
-            <h2 className="landing-section-title">The Values That Guide Everything We Build</h2>
-            <p className="landing-section-desc">
-              From our code architecture to our user experience, these four core tenets define how we create products.
-            </p>
-          </div>
-
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(236, 72, 153, 0.15)', color: '#f472b6' }}>
-                <Heart size={24} />
-              </div>
-              <h3 className="feature-card-title">People First</h3>
-              <p className="feature-card-desc">
-                Behind every employee record is an actual person. We build workflows that save time, reduce stress, and
-                foster human connection across distributed teams.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
-                <ShieldCheck size={24} />
-              </div>
-              <h3 className="feature-card-title">Uncompromising Security</h3>
-              <p className="feature-card-desc">
-                Data security is never an afterthought. We enforce strict role-based access, cryptographic hashing, and
-                immutable audit logs for every system mutation.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8' }}>
-                <Zap size={24} />
-              </div>
-              <h3 className="feature-card-title">Speed & Craftsmanship</h3>
-              <p className="feature-card-desc">
-                Nobody likes waiting for spinners. We obsess over sub-100ms interactions, clean typography, responsive
-                layouts, and zero cognitive bloat.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
-                <Users size={24} />
-              </div>
-              <h3 className="feature-card-title">Radical Transparency</h3>
-              <p className="feature-card-desc">
-                Clear audit histories, transparent permission hierarchies, and honest communication. We champion clarity
-                at every layer of the product.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. COMPANY JOURNEY TIMELINE */}
-      <section className="landing-section">
-        <div className="landing-container">
-          <div className="landing-section-header">
-            <div className="landing-section-badge">Our Journey</div>
-            <h2 className="landing-section-title">Milestones Along the Way</h2>
-            <p className="landing-section-desc">
-              How a project born out of frustration with legacy HR tools grew into an enterprise-trusted platform.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
-            {milestones.map((m, idx) => (
-              <div
-                key={idx}
-                style={{
-                  background: 'rgba(30, 41, 59, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  borderRadius: '16px',
-                  padding: '1.75rem',
-                  position: 'relative',
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: '1.75rem',
-                    fontWeight: 800,
-                    color: '#818cf8',
-                    marginBottom: '0.5rem',
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  {m.year}
+      {/* Metrics Strip */}
+      <section style={{ padding: '2rem 0 4.5rem' }}>
+        <div className="website-container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1.25rem',
+            padding: '2rem',
+            borderRadius: '20px',
+            background: '#121314',
+            border: '1px solid rgba(198, 244, 50, 0.22)',
+          }}>
+            {[
+              { value: '99.98%', label: 'API Uptime SLA' },
+              { value: '2FA', label: 'OTP Security Standard' },
+              { value: '3 Panels', label: 'Admin • HR • Staff' },
+              { value: '< 80ms', label: 'Query Response' },
+            ].map((stat) => (
+              <div key={stat.label} style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', color: '#C6F432', lineHeight: 1.05 }}>
+                  {stat.value}
                 </div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                  {m.title}
-                </h4>
-                <p style={{ fontSize: '0.875rem', color: '#94a3b8', lineHeight: '1.6' }}>{m.desc}</p>
+                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.07em', marginTop: '0.35rem' }}>
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. LEADERSHIP TEAM */}
-      <section className="landing-section" style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)' }}>
-        <div className="landing-container">
-          <div className="landing-section-header">
-            <div className="landing-section-badge">Leadership Team</div>
-            <h2 className="landing-section-title">Engineered by Veterans in People & Software</h2>
-            <p className="landing-section-desc">
-              Meet the passionate team behind EmployeeHub’s architecture, design, and customer experience.
-            </p>
+      {/* Engineering Values */}
+      <section style={{ padding: '4rem 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="website-container">
+          <div style={{ maxWidth: '600px', marginBottom: '2.75rem' }}>
+            <span className="section-tag">Engineering Principles</span>
+            <h2 className="section-heading">
+              Why organizations switch to <em>EmployeeHub</em>.
+            </h2>
           </div>
 
-          <div className="team-grid">
-            {leadership.map((member, idx) => (
-              <div key={idx} className="team-card">
-                <div className="team-avatar" style={{ background: member.bg }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.35rem' }}>
+            {VALUES.map((val, idx) => {
+              const Icon = val.icon;
+              return (
+                <div key={val.title} className="feature-card">
+                  <div
+                    className="feature-icon-box"
+                    style={{
+                      background: idx % 2 === 0 ? '#C6F432' : 'rgba(255,255,255,0.08)',
+                      color: idx % 2 === 0 ? '#0B0B0C' : '#FFFFFF',
+                    }}
+                  >
+                    <Icon size={22} />
+                  </div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.5rem' }}>
+                    {val.title}
+                  </h3>
+                  <p style={{ fontSize: '0.9rem', color: '#A1A1AA', lineHeight: 1.65 }}>
+                    {val.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section style={{ padding: '4.5rem 0 6rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="website-container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="section-tag">Core Builders</span>
+            <h2 className="section-heading">
+              Meet the <em>architecture team</em>.
+            </h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.35rem', marginBottom: '3.5rem' }}>
+            {LEADERSHIP.map((member) => (
+              <div key={member.name} className="team-card">
+                <div style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '18px',
+                  margin: '0 auto 1.15rem',
+                  background: 'linear-gradient(135deg, #C6F432, #A6D11D)',
+                  color: '#0B0B0C',
+                  fontWeight: 800,
+                  fontSize: '1.25rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 8px 24px rgba(198,244,50,0.22)',
+                }}>
                   {member.initials}
                 </div>
-                <h3 className="team-name">{member.name}</h3>
-                <div className="team-title">{member.title}</div>
-                <p className="team-bio">{member.bio}</p>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginTop: '1rem' }}>
-                  <span style={{ color: '#94a3b8', cursor: 'pointer' }}>
-                    <Linkedin size={16} />
-                  </span>
-                  <span style={{ color: '#94a3b8', cursor: 'pointer' }}>
-                    <Twitter size={16} />
-                  </span>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>{member.name}</h3>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#C6F432', margin: '0.25rem 0 0.5rem' }}>
+                  {member.role}
                 </div>
+                <p style={{ fontSize: '0.82rem', color: '#A1A1AA' }}>{member.focus}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* 6. CALL TO ACTION */}
-      <section className="landing-section" style={{ paddingBottom: '6rem' }}>
-        <div className="landing-container">
-          <div className="cta-banner-card">
-            <h2 className="cta-banner-title">Build a Better Workplace With Us</h2>
-            <p className="cta-banner-subtitle">
-              Ready to see how EmployeeHub can simplify employee management for your organization? Get started in under
-              two minutes.
-            </p>
-
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link
-                to="/signup"
-                className="btn btn-secondary"
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#4338ca',
-                  fontWeight: 700,
-                  padding: '0.85rem 1.85rem',
-                  fontSize: '1rem',
-                }}
-              >
-                <UserPlus size={18} />
-                <span>Start Free Trial</span>
-              </Link>
-              <Link
-                to="/contact"
-                className="btn btn-outline"
-                style={{
-                  color: '#ffffff',
-                  borderColor: 'rgba(255, 255, 255, 0.35)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  padding: '0.85rem 1.75rem',
-                  fontSize: '1rem',
-                }}
-              >
-                <Mail size={18} />
-                <span>Contact Sales & Support</span>
-              </Link>
-            </div>
+          <div style={{ textAlign: 'center' }}>
+            <Link to="/signup" className="hero-cta-lime">
+              Start Your Workspace
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

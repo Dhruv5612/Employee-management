@@ -136,8 +136,8 @@ export default function AttendancePage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <span
               style={{
-                backgroundColor: '#e0e7ff',
-                color: '#4338ca',
+                backgroundColor: 'rgba(198, 244, 50, 0.14)',
+                color: '#C6F432',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '6px',
                 fontSize: '0.75rem',
@@ -166,8 +166,8 @@ export default function AttendancePage() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#ffffff',
-              border: '1px solid #cbd5e1',
+              backgroundColor: '#121314',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
               borderRadius: '8px',
               padding: '0.25rem 0.5rem',
               boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
@@ -180,7 +180,7 @@ export default function AttendancePage() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                color: '#64748b',
+                color: '#A1A1AA',
                 display: 'flex',
                 padding: '4px',
               }}
@@ -197,7 +197,7 @@ export default function AttendancePage() {
                 border: 'none',
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#0f172a',
+                color: '#FFFFFF',
                 padding: '0 0.5rem',
                 cursor: 'pointer',
               }}
@@ -210,7 +210,7 @@ export default function AttendancePage() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                color: '#64748b',
+                color: '#A1A1AA',
                 display: 'flex',
                 padding: '4px',
               }}
@@ -240,75 +240,75 @@ export default function AttendancePage() {
       <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Present Today</span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#dcfce7', color: '#16a34a' }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>Present Today</span>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
               <CheckCircle2 size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.present}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
             Active at work stations
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Absent</span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#fee2e2', color: '#dc2626' }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>Absent</span>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(239, 68, 68, 0.14)', color: '#FCA5A5' }}>
               <XCircle size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.absent}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#dc2626', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#FCA5A5', fontWeight: 600, marginTop: '0.25rem' }}>
             Unscheduled absences
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>On Leave</span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#fef3c7', color: '#b45309' }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>On Leave</span>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(250, 204, 21, 0.14)', color: '#FDE047' }}>
               <Clock size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.onLeave}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#b45309', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#FDE047', fontWeight: 600, marginTop: '0.25rem' }}>
             Authorized time off
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Late / Half Day</span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#f3e8ff', color: '#9333ea' }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>Late / Half Day</span>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.08)', color: '#C6F432' }}>
               <Clock size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.late + stats.halfDay}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#9333ea', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
             Partial work hours logged
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Turnout Rate</span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#e0e7ff', color: '#4f46e5' }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>Turnout Rate</span>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
               <Percent size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.rate}%
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#4f46e5', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
             Effective workforce capacity
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function AttendancePage() {
           <div style={{ position: 'relative', width: '280px' }}>
             <Search
               size={16}
-              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
+              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#71717A' }}
             />
             <input
               type="text"
@@ -342,7 +342,7 @@ export default function AttendancePage() {
                 width: '100%',
                 padding: '0.5rem 0.5rem 0.5rem 2.2rem',
                 borderRadius: '6px',
-                border: '1px solid #cbd5e1',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
                 fontSize: '0.85rem',
               }}
             />
@@ -354,10 +354,10 @@ export default function AttendancePage() {
             style={{
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
-              border: '1px solid #cbd5e1',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
               fontSize: '0.85rem',
               fontWeight: 600,
-              backgroundColor: '#ffffff',
+              backgroundColor: '#121314',
             }}
           >
             {departments.map((d) => (
@@ -368,7 +368,7 @@ export default function AttendancePage() {
           </select>
         </div>
 
-        <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+        <div style={{ fontSize: '0.8rem', color: '#A1A1AA', fontWeight: 600 }}>
           Showing {filteredRecords.length} staff records for {selectedDate}
         </div>
       </div>
@@ -408,8 +408,8 @@ export default function AttendancePage() {
                             width: '38px',
                             height: '38px',
                             borderRadius: '10px',
-                            background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
-                            color: '#ffffff',
+                            background: '#C6F432',
+                            color: '#0B0B0C',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -422,7 +422,7 @@ export default function AttendancePage() {
                           {item.employeeName?.charAt(0) || 'E'}
                         </div>
                         <div>
-                          <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
+                          <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.925rem' }}>
                             {item.employeeName}
                           </div>
                           <span
@@ -430,11 +430,11 @@ export default function AttendancePage() {
                               fontFamily: 'monospace',
                               fontSize: '0.725rem',
                               fontWeight: 600,
-                              backgroundColor: '#f1f5f9',
-                              color: '#475569',
+                              backgroundColor: '#171918',
+                              color: '#D4D4D8',
                               padding: '2px 7px',
                               borderRadius: '4px',
-                              border: '1px solid #e2e8f0',
+                              border: '1px solid rgba(255, 255, 255, 0.10)',
                               display: 'inline-block',
                               marginTop: '3px',
                             }}
@@ -453,15 +453,15 @@ export default function AttendancePage() {
                           gap: '0.35rem',
                           padding: '0.3rem 0.65rem',
                           borderRadius: '6px',
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
+                          backgroundColor: '#171918',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
                           fontSize: '0.825rem',
                           fontWeight: 600,
-                          color: '#334155',
+                          color: '#E4E4E7',
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <Building2 size={13} color="#6366f1" />
+                        <Building2 size={13} color="#C6F432" />
                         {item.department || 'Operations'}
                       </span>
                     </td>
@@ -477,13 +477,13 @@ export default function AttendancePage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#ecfdf5',
-                            color: '#065f46',
-                            border: '1px solid #a7f3d0',
+                            backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                            color: '#C6F432',
+                            border: '1px solid rgba(198, 244, 50, 0.30)',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <CheckCircle2 size={13} color="#059669" /> Present
+                          <CheckCircle2 size={13} color="#C6F432" /> Present
                         </span>
                       ) : item.status === 'Absent' ? (
                         <span
@@ -495,13 +495,13 @@ export default function AttendancePage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#fef2f2',
-                            color: '#991b1b',
-                            border: '1px solid #fecaca',
+                            backgroundColor: 'rgba(239, 68, 68, 0.14)',
+                            color: '#FCA5A5',
+                            border: '1px solid rgba(239, 68, 68, 0.30)',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <XCircle size={13} color="#dc2626" /> Absent
+                          <XCircle size={13} color="#FCA5A5" /> Absent
                         </span>
                       ) : item.status === 'Half Day' ? (
                         <span
@@ -513,13 +513,13 @@ export default function AttendancePage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#fffbeb',
-                            color: '#b45309',
-                            border: '1px solid #fde68a',
+                            backgroundColor: 'rgba(250, 204, 21, 0.12)',
+                            color: '#FDE047',
+                            border: '1px solid rgba(250, 204, 21, 0.30)',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={13} color="#d97706" /> Half Day
+                          <Clock size={13} color="#FDE047" /> Half Day
                         </span>
                       ) : item.status === 'Late' ? (
                         <span
@@ -531,13 +531,13 @@ export default function AttendancePage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#f3e8ff',
-                            color: '#7e22ce',
-                            border: '1px solid #d8b4fe',
+                            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                            color: '#C6F432',
+                            border: '1px solid rgba(255, 255, 255, 0.18)',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={13} color="#9333ea" /> Late Arrival
+                          <Clock size={13} color="#C6F432" /> Late Arrival
                         </span>
                       ) : (
                         <span
@@ -549,13 +549,13 @@ export default function AttendancePage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: '#e0e7ff',
-                            color: '#4338ca',
-                            border: '1px solid #c7d2fe',
+                            backgroundColor: 'rgba(198, 244, 50, 0.14)',
+                            color: '#C6F432',
+                            border: '1px solid rgba(198, 244, 50, 0.30)',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={13} color="#6366f1" /> On Leave
+                          <Clock size={13} color="#C6F432" /> On Leave
                         </span>
                       )}
                     </td>
@@ -568,15 +568,15 @@ export default function AttendancePage() {
                           gap: '0.3rem',
                           fontSize: '0.825rem',
                           fontWeight: 700,
-                          color: '#0f172a',
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
+                          color: '#FFFFFF',
+                          backgroundColor: '#171918',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
                           padding: '3px 8px',
                           borderRadius: '6px',
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <Clock size={12} color="#64748b" />
+                        <Clock size={12} color="#A1A1AA" />
                         {item.checkIn || '--:--'}
                       </span>
                     </td>
@@ -588,15 +588,15 @@ export default function AttendancePage() {
                           gap: '0.3rem',
                           fontSize: '0.825rem',
                           fontWeight: 700,
-                          color: '#0f172a',
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
+                          color: '#FFFFFF',
+                          backgroundColor: '#171918',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
                           padding: '3px 8px',
                           borderRadius: '6px',
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <Clock size={12} color="#64748b" />
+                        <Clock size={12} color="#A1A1AA" />
                         {item.checkOut || '--:--'}
                       </span>
                     </td>
@@ -605,9 +605,9 @@ export default function AttendancePage() {
                       <div
                         style={{
                           fontSize: '0.8rem',
-                          color: '#475569',
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
+                          color: '#D4D4D8',
+                          backgroundColor: '#171918',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
                           borderRadius: '6px',
                           padding: '0.35rem 0.65rem',
                           maxWidth: '200px',
@@ -630,9 +630,9 @@ export default function AttendancePage() {
                               fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
-                              border: item.status === 'Present' ? '1px solid #10b981' : '1px solid #cbd5e1',
-                              backgroundColor: item.status === 'Present' ? '#d1fae5' : '#ffffff',
-                              color: item.status === 'Present' ? '#065f46' : '#64748b',
+                              border: item.status === 'Present' ? '1px solid #C6F432' : '1px solid rgba(255, 255, 255, 0.14)',
+                              backgroundColor: item.status === 'Present' ? 'rgba(198, 244, 50, 0.16)' : '#161816',
+                              color: item.status === 'Present' ? '#C6F432' : '#A1A1AA',
                             }}
                             title="Mark as Present"
                           >
@@ -647,9 +647,9 @@ export default function AttendancePage() {
                               fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
-                              border: item.status === 'Absent' ? '1px solid #ef4444' : '1px solid #cbd5e1',
-                              backgroundColor: item.status === 'Absent' ? '#fee2e2' : '#ffffff',
-                              color: item.status === 'Absent' ? '#991b1b' : '#64748b',
+                              border: item.status === 'Absent' ? '1px solid #F87171' : '1px solid rgba(255, 255, 255, 0.14)',
+                              backgroundColor: item.status === 'Absent' ? 'rgba(239, 68, 68, 0.16)' : '#161816',
+                              color: item.status === 'Absent' ? '#FCA5A5' : '#A1A1AA',
                             }}
                             title="Mark as Absent"
                           >
@@ -664,9 +664,9 @@ export default function AttendancePage() {
                               fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
-                              border: item.status === 'Half Day' ? '1px solid #f59e0b' : '1px solid #cbd5e1',
-                              backgroundColor: item.status === 'Half Day' ? '#fef3c7' : '#ffffff',
-                              color: item.status === 'Half Day' ? '#92400e' : '#64748b',
+                              border: item.status === 'Half Day' ? '1px solid #FDE047' : '1px solid rgba(255, 255, 255, 0.14)',
+                              backgroundColor: item.status === 'Half Day' ? 'rgba(250, 204, 21, 0.16)' : '#161816',
+                              color: item.status === 'Half Day' ? '#FDE047' : '#A1A1AA',
                             }}
                             title="Mark as Half Day"
                           >
@@ -681,9 +681,9 @@ export default function AttendancePage() {
                               fontSize: '0.75rem',
                               fontWeight: 700,
                               cursor: 'pointer',
-                              border: item.status === 'Late' ? '1px solid #8b5cf6' : '1px solid #cbd5e1',
-                              backgroundColor: item.status === 'Late' ? '#f3e8ff' : '#ffffff',
-                              color: item.status === 'Late' ? '#6d28d9' : '#64748b',
+                              border: item.status === 'Late' ? '1px solid #C6F432' : '1px solid rgba(255, 255, 255, 0.14)',
+                              backgroundColor: item.status === 'Late' ? 'rgba(255, 255, 255, 0.14)' : '#161816',
+                              color: item.status === 'Late' ? '#FFFFFF' : '#A1A1AA',
                             }}
                             title="Mark as Late Arrival"
                           >

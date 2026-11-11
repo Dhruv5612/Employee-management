@@ -11,19 +11,19 @@ export default function EmployeeActions({ employee, onDelete, canEdit, canDelete
         style={{
           padding: '0.4rem',
           borderRadius: '6px',
-          color: '#64748b',
+          color: '#A1A1AA',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           transition: 'all 0.15s',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#f1f5f9';
-          e.currentTarget.style.color = '#4f46e5';
+          e.currentTarget.style.backgroundColor = '#171918';
+          e.currentTarget.style.color = '#C6F432';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = 'transparent';
-          e.currentTarget.style.color = '#64748b';
+          e.currentTarget.style.color = '#A1A1AA';
         }}
       >
         <Eye size={16} />
@@ -36,19 +36,19 @@ export default function EmployeeActions({ employee, onDelete, canEdit, canDelete
           style={{
             padding: '0.4rem',
             borderRadius: '6px',
-            color: '#64748b',
+            color: '#A1A1AA',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             transition: 'all 0.15s',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#f1f5f9';
-            e.currentTarget.style.color = '#0284c7';
+            e.currentTarget.style.backgroundColor = '#171918';
+            e.currentTarget.style.color = '#C6F432';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = '#64748b';
+            e.currentTarget.style.color = '#A1A1AA';
           }}
         >
           <Edit3 size={16} />
@@ -66,19 +66,19 @@ export default function EmployeeActions({ employee, onDelete, canEdit, canDelete
             cursor: 'pointer',
             padding: '0.4rem',
             borderRadius: '6px',
-            color: '#64748b',
+            color: '#A1A1AA',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             transition: 'all 0.15s',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#fef2f2';
-            e.currentTarget.style.color = '#ef4444';
+            e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.14)';
+            e.currentTarget.style.color = '#F87171';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = '#64748b';
+            e.currentTarget.style.color = '#A1A1AA';
           }}
         >
           <Trash2 size={16} />

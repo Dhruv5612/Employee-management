@@ -38,12 +38,12 @@ import {
 
 // Gen Z Avatar Gradient Palette
 const AVATAR_GRADIENTS = [
-  'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', // Indigo-Violet
+  'linear-gradient(135deg, #52525B 0%, #27272A 100%)', // Indigo-Violet
   'linear-gradient(135deg, #f43f5e 0%, #fb7185 100%)', // Rose
-  'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)', // Cyan-Blue
-  'linear-gradient(135deg, #10b981 0%, #059669 100%)', // Emerald
-  'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)', // Amber
-  'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)', // Pink-Purple
+  'linear-gradient(135deg, #0284C7 0%, #0369A1 100%)', // Cyan-Blue
+  'linear-gradient(135deg, #C6F432 0%, #C6F432 100%)', // Emerald
+  'linear-gradient(135deg, #FDE047 0%, #FDE047 100%)', // Amber
+  'linear-gradient(135deg, #4D7C0F 0%, #365314 100%)', // Pink-Purple
 ];
 
 function getAvatarGradient(name = '') {
@@ -292,10 +292,10 @@ export default function UserAdminPage() {
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#e0e7ff',
+                color: 'rgba(198, 244, 50, 0.14)',
               }}
             >
-              <Sparkles size={12} color="#fbbf24" />
+              <Sparkles size={12} color="#FDE047" />
               <span>Team Access HQ • 2026 Edition</span>
             </span>
 
@@ -309,7 +309,7 @@ export default function UserAdminPage() {
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
                 fontWeight: 700,
-                color: '#6ee7b7',
+                color: '#C6F432',
                 border: '1px solid rgba(16, 185, 129, 0.3)',
               }}
             >
@@ -327,11 +327,11 @@ export default function UserAdminPage() {
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
                 fontWeight: 700,
-                color: '#c7d2fe',
+                color: 'rgba(198, 244, 50, 0.30)',
                 border: '1px solid rgba(99, 102, 241, 0.3)',
               }}
             >
-              <ShieldCheck size={13} color="#a5b4fc" />
+              <ShieldCheck size={13} color="#C6F432" />
               <span>Role-Based Access Control</span>
             </span>
           </div>
@@ -362,7 +362,7 @@ export default function UserAdminPage() {
               <p
                 style={{
                   fontSize: '0.975rem',
-                  color: '#cbd5e1',
+                  color: 'rgba(255, 255, 255, 0.14)',
                   marginTop: '0.65rem',
                   maxWidth: '680px',
                   lineHeight: 1.5,
@@ -444,7 +444,7 @@ export default function UserAdminPage() {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <Sparkles size={16} color="#fbbf24" />
+                <Sparkles size={16} color="#FDE047" />
                 <span>Invite Link</span>
               </button>
 
@@ -458,8 +458,8 @@ export default function UserAdminPage() {
                   padding: '0.65rem 1.25rem',
                   borderRadius: '12px',
                   border: 'none',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
-                  color: '#ffffff',
+                  background: '#C6F432',
+                  color: '#0B0B0C',
                   fontSize: '0.875rem',
                   fontWeight: 800,
                   cursor: 'pointer',
@@ -501,16 +501,16 @@ export default function UserAdminPage() {
           style={{
             padding: '1.35rem 1.4rem',
             cursor: 'pointer',
-            borderColor: selectedRoleFilter === 'ALL' ? '#6366f1' : undefined,
-            backgroundColor: selectedRoleFilter === 'ALL' ? '#f8faff' : '#ffffff',
+            borderColor: selectedRoleFilter === 'ALL' ? '#C6F432' : undefined,
+            backgroundColor: selectedRoleFilter === 'ALL' ? 'rgba(198, 244, 50, 0.08)' : '#121314',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Total Accounts
               </span>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.1, marginTop: '0.35rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.1, marginTop: '0.35rem' }}>
                 {totalCount}
               </div>
             </div>
@@ -520,7 +520,7 @@ export default function UserAdminPage() {
                 height: '46px',
                 borderRadius: '14px',
                 background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%)',
-                color: '#6366f1',
+                color: '#C6F432',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -532,8 +532,8 @@ export default function UserAdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.85rem' }}>
             <span
               style={{
-                backgroundColor: '#eef2ff',
-                color: '#4f46e5',
+                backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                color: '#C6F432',
                 padding: '0.2rem 0.55rem',
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
@@ -542,7 +542,7 @@ export default function UserAdminPage() {
             >
               🔥 The Full Squad
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>100% indexed</span>
+            <span style={{ fontSize: '0.75rem', color: '#71717A' }}>100% indexed</span>
           </div>
         </div>
 
@@ -553,16 +553,16 @@ export default function UserAdminPage() {
           style={{
             padding: '1.35rem 1.4rem',
             cursor: 'pointer',
-            borderColor: selectedRoleFilter === 'ACTIVE' ? '#10b981' : undefined,
-            backgroundColor: selectedRoleFilter === 'ACTIVE' ? '#f0fdf4' : '#ffffff',
+            borderColor: selectedRoleFilter === 'ACTIVE' ? '#C6F432' : undefined,
+            backgroundColor: selectedRoleFilter === 'ACTIVE' ? 'rgba(198, 244, 50, 0.08)' : '#121314',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Active Operators
               </span>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.1, marginTop: '0.35rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.1, marginTop: '0.35rem' }}>
                 {activeCount}
               </div>
             </div>
@@ -572,7 +572,7 @@ export default function UserAdminPage() {
                 height: '46px',
                 borderRadius: '14px',
                 background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%)',
-                color: '#10b981',
+                color: '#C6F432',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -584,8 +584,8 @@ export default function UserAdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.85rem' }}>
             <span
               style={{
-                backgroundColor: '#ecfdf5',
-                color: '#059669',
+                backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                color: '#C6F432',
                 padding: '0.2rem 0.55rem',
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
@@ -598,7 +598,7 @@ export default function UserAdminPage() {
               <span className="pulse-dot online" />
               <span>Live & Active</span>
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+            <span style={{ fontSize: '0.75rem', color: '#71717A' }}>
               {totalCount > 0 ? `${Math.round((activeCount / totalCount) * 100)}% uptime` : '100%'}
             </span>
           </div>
@@ -611,16 +611,16 @@ export default function UserAdminPage() {
           style={{
             padding: '1.35rem 1.4rem',
             cursor: 'pointer',
-            borderColor: selectedRoleFilter === 'Admin' ? '#8b5cf6' : undefined,
-            backgroundColor: selectedRoleFilter === 'Admin' ? '#faf5ff' : '#ffffff',
+            borderColor: selectedRoleFilter === 'Admin' ? '#C6F432' : undefined,
+            backgroundColor: selectedRoleFilter === 'Admin' ? 'rgba(198, 244, 50, 0.08)' : '#121314',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Super Admins
               </span>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.1, marginTop: '0.35rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.1, marginTop: '0.35rem' }}>
                 {adminCount}
               </div>
             </div>
@@ -630,7 +630,7 @@ export default function UserAdminPage() {
                 height: '46px',
                 borderRadius: '14px',
                 background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%)',
-                color: '#8b5cf6',
+                color: '#C6F432',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -642,8 +642,8 @@ export default function UserAdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.85rem' }}>
             <span
               style={{
-                backgroundColor: '#f3e8ff',
-                color: '#7e22ce',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                color: '#C6F432',
                 padding: '0.2rem 0.55rem',
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
@@ -652,7 +652,7 @@ export default function UserAdminPage() {
             >
               👑 Full Root Access
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Strict Zero-Trust</span>
+            <span style={{ fontSize: '0.75rem', color: '#71717A' }}>Strict Zero-Trust</span>
           </div>
         </div>
 
@@ -663,16 +663,16 @@ export default function UserAdminPage() {
           style={{
             padding: '1.35rem 1.4rem',
             cursor: 'pointer',
-            borderColor: selectedRoleFilter === 'HR' ? '#f59e0b' : undefined,
-            backgroundColor: selectedRoleFilter === 'HR' ? '#fffbeb' : '#ffffff',
+            borderColor: selectedRoleFilter === 'HR' ? '#FDE047' : undefined,
+            backgroundColor: selectedRoleFilter === 'HR' ? 'rgba(250, 204, 21, 0.10)' : '#121314',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 People & HR Ops
               </span>
-              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.1, marginTop: '0.35rem' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.1, marginTop: '0.35rem' }}>
                 {hrCount}
               </div>
             </div>
@@ -682,7 +682,7 @@ export default function UserAdminPage() {
                 height: '46px',
                 borderRadius: '14px',
                 background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%)',
-                color: '#f59e0b',
+                color: '#FDE047',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -694,8 +694,8 @@ export default function UserAdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.85rem' }}>
             <span
               style={{
-                backgroundColor: '#fef3c7',
-                color: '#b45309',
+                backgroundColor: 'rgba(250, 204, 21, 0.14)',
+                color: '#FDE047',
                 padding: '0.2rem 0.55rem',
                 borderRadius: '9999px',
                 fontSize: '0.725rem',
@@ -704,7 +704,7 @@ export default function UserAdminPage() {
             >
               ✨ Staff & Dept Ops
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{viewerCount} viewers</span>
+            <span style={{ fontSize: '0.75rem', color: '#71717A' }}>{viewerCount} viewers</span>
           </div>
         </div>
       </div>
@@ -720,10 +720,10 @@ export default function UserAdminPage() {
           gap: '1rem',
           flexWrap: 'wrap',
           marginBottom: '1.5rem',
-          backgroundColor: '#ffffff',
+          backgroundColor: '#121314',
           padding: '1rem 1.25rem',
           borderRadius: '16px',
-          border: '1px solid #e2e8f0',
+          border: '1px solid rgba(255, 255, 255, 0.10)',
           boxShadow: '0 2px 8px rgba(15, 23, 42, 0.03)',
         }}
       >
@@ -742,7 +742,7 @@ export default function UserAdminPage() {
             style={{
               position: 'absolute',
               left: '0.85rem',
-              color: '#94a3b8',
+              color: '#71717A',
               pointerEvents: 'none',
             }}
           />
@@ -755,21 +755,21 @@ export default function UserAdminPage() {
               width: '100%',
               padding: '0.65rem 2.5rem 0.65rem 2.6rem',
               borderRadius: '12px',
-              border: '1px solid #cbd5e1',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
               fontSize: '0.875rem',
               outline: 'none',
               fontFamily: 'inherit',
               transition: 'all 0.2s',
-              backgroundColor: '#f8fafc',
+              backgroundColor: '#171918',
             }}
             onFocus={(e) => {
-              e.target.style.borderColor = '#6366f1';
+              e.target.style.borderColor = '#C6F432';
               e.target.style.backgroundColor = '#ffffff';
               e.target.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.15)';
             }}
             onBlur={(e) => {
-              e.target.style.borderColor = '#cbd5e1';
-              e.target.style.backgroundColor = '#f8fafc';
+              e.target.style.borderColor = 'rgba(255, 255, 255, 0.14)';
+              e.target.style.backgroundColor = '#171918';
               e.target.style.boxShadow = 'none';
             }}
           />
@@ -782,7 +782,7 @@ export default function UserAdminPage() {
                 right: '0.75rem',
                 background: 'none',
                 border: 'none',
-                color: '#94a3b8',
+                color: '#71717A',
                 cursor: 'pointer',
                 padding: '4px',
               }}
@@ -796,11 +796,11 @@ export default function UserAdminPage() {
                 right: '0.75rem',
                 fontSize: '0.7rem',
                 fontWeight: 700,
-                color: '#94a3b8',
-                backgroundColor: '#f1f5f9',
+                color: '#71717A',
+                backgroundColor: '#171918',
                 padding: '0.15rem 0.4rem',
                 borderRadius: '6px',
-                border: '1px solid #e2e8f0',
+                border: '1px solid rgba(255, 255, 255, 0.10)',
                 pointerEvents: 'none',
               }}
             >
@@ -832,7 +832,7 @@ export default function UserAdminPage() {
             className={`genz-tab-pill ${selectedRoleFilter === 'Admin' ? 'active' : ''}`}
             onClick={() => setSelectedRoleFilter('Admin')}
           >
-            <Crown size={13} color="#a855f7" />
+            <Crown size={13} color="#C6F432" />
             <span>Admins</span>
             <span style={{ opacity: 0.75 }}>({adminCount})</span>
           </button>
@@ -842,7 +842,7 @@ export default function UserAdminPage() {
             className={`genz-tab-pill ${selectedRoleFilter === 'HR' ? 'active' : ''}`}
             onClick={() => setSelectedRoleFilter('HR')}
           >
-            <Sparkles size={13} color="#f59e0b" />
+            <Sparkles size={13} color="#FDE047" />
             <span>HR</span>
             <span style={{ opacity: 0.75 }}>({hrCount})</span>
           </button>
@@ -879,10 +879,10 @@ export default function UserAdminPage() {
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            backgroundColor: '#f1f5f9',
+            backgroundColor: '#171918',
             padding: '0.25rem',
             borderRadius: '10px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid rgba(255, 255, 255, 0.10)',
           }}
         >
           <button
@@ -896,8 +896,8 @@ export default function UserAdminPage() {
               padding: '0.4rem 0.75rem',
               borderRadius: '8px',
               border: 'none',
-              backgroundColor: viewMode === 'cards' ? '#ffffff' : 'transparent',
-              color: viewMode === 'cards' ? '#0f172a' : '#64748b',
+              backgroundColor: viewMode === 'cards' ? '#C6F432' : 'transparent',
+              color: viewMode === 'cards' ? '#0B0B0C' : '#A1A1AA',
               fontSize: '0.775rem',
               fontWeight: 700,
               cursor: 'pointer',
@@ -920,8 +920,8 @@ export default function UserAdminPage() {
               padding: '0.4rem 0.75rem',
               borderRadius: '8px',
               border: 'none',
-              backgroundColor: viewMode === 'table' ? '#ffffff' : 'transparent',
-              color: viewMode === 'table' ? '#0f172a' : '#64748b',
+              backgroundColor: viewMode === 'table' ? '#C6F432' : 'transparent',
+              color: viewMode === 'table' ? '#0B0B0C' : '#A1A1AA',
               fontSize: '0.775rem',
               fontWeight: 700,
               cursor: 'pointer',
@@ -947,18 +947,18 @@ export default function UserAdminPage() {
       ) : filteredUsers.length === 0 ? (
         <div
           style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#121314',
             borderRadius: '20px',
-            border: '2px dashed #cbd5e1',
+            border: '2px dashed rgba(255, 255, 255, 0.14)',
             padding: '4rem 2rem',
             textAlign: 'center',
           }}
         >
           <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>🛸</div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.35rem' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.35rem' }}>
             No squad members match your vibe check!
           </h3>
-          <p style={{ fontSize: '0.9rem', color: '#64748b', maxWidth: '420px', margin: '0 auto 1.5rem' }}>
+          <p style={{ fontSize: '0.9rem', color: '#A1A1AA', maxWidth: '420px', margin: '0 auto 1.5rem' }}>
             No user accounts found matching &quot;{searchQuery || selectedRoleFilter}&quot;. Try adjusting your search query or clear the active filters.
           </p>
           <button
@@ -971,7 +971,7 @@ export default function UserAdminPage() {
               padding: '0.55rem 1.25rem',
               borderRadius: '10px',
               border: 'none',
-              background: '#0f172a',
+              background: '#FFFFFF',
               color: '#ffffff',
               fontSize: '0.85rem',
               fontWeight: 700,
@@ -1014,7 +1014,7 @@ export default function UserAdminPage() {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   gap: '1.25rem',
-                  border: isSelf ? '1.5px solid #6366f1' : undefined,
+                  border: isSelf ? '1.5px solid #C6F432' : undefined,
                   boxShadow: isSelf
                     ? '0 12px 28px -4px rgba(99, 102, 241, 0.18)'
                     : undefined,
@@ -1054,8 +1054,8 @@ export default function UserAdminPage() {
                           width: '14px',
                           height: '14px',
                           borderRadius: '50%',
-                          backgroundColor: u.isActive ? '#10b981' : '#ef4444',
-                          border: '2px solid #ffffff',
+                          backgroundColor: u.isActive ? '#C6F432' : '#F87171',
+                          border: '2px solid #121314',
                           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                         }}
                         title={u.isActive ? 'Active Operator' : 'Account Suspended'}
@@ -1069,7 +1069,7 @@ export default function UserAdminPage() {
                           style={{
                             fontSize: '0.7rem',
                             fontWeight: 800,
-                            background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                            background: 'linear-gradient(135deg, #C6F432 0%, #C6F432 100%)',
                             color: '#ffffff',
                             padding: '0.2rem 0.55rem',
                             borderRadius: '9999px',
@@ -1093,28 +1093,28 @@ export default function UserAdminPage() {
                             u.role === 'Admin'
                               ? '#f3e8ff'
                               : u.role === 'HR'
-                                ? '#fef3c7'
-                                : '#f1f5f9',
+                                ? 'rgba(250, 204, 21, 0.14)'
+                                : '#171918',
                           color:
                             u.role === 'Admin'
-                              ? '#7e22ce'
+                              ? '#C6F432'
                               : u.role === 'HR'
-                                ? '#b45309'
-                                : '#475569',
+                                ? '#FDE047'
+                                : '#D4D4D8',
                           border: `1px solid ${u.role === 'Admin'
-                              ? '#e9d5ff'
+                              ? 'rgba(198, 244, 50, 0.25)'
                               : u.role === 'HR'
-                                ? '#fde68a'
-                                : '#e2e8f0'
+                                ? 'rgba(250, 204, 21, 0.30)'
+                                : 'rgba(255, 255, 255, 0.10)'
                             }`,
                         }}
                       >
                         {u.role === 'Admin' ? (
-                          <Crown size={12} color="#7e22ce" />
+                          <Crown size={12} color="#C6F432" />
                         ) : u.role === 'HR' ? (
-                          <Sparkles size={12} color="#b45309" />
+                          <Sparkles size={12} color="#FDE047" />
                         ) : (
-                          <Shield size={12} color="#475569" />
+                          <Shield size={12} color="#D4D4D8" />
                         )}
                         <span>{u.role}</span>
                       </span>
@@ -1127,7 +1127,7 @@ export default function UserAdminPage() {
                       style={{
                         fontSize: '1.15rem',
                         fontWeight: 800,
-                        color: '#0f172a',
+                        color: '#FFFFFF',
                         lineHeight: 1.25,
                         margin: 0,
                       }}
@@ -1141,11 +1141,11 @@ export default function UserAdminPage() {
                         alignItems: 'center',
                         gap: '0.4rem',
                         marginTop: '0.35rem',
-                        color: '#64748b',
+                        color: '#A1A1AA',
                         fontSize: '0.85rem',
                       }}
                     >
-                      <Mail size={14} color="#94a3b8" />
+                      <Mail size={14} color="#71717A" />
                       <span style={{ wordBreak: 'break-all' }}>{u.email}</span>
                     </div>
 
@@ -1167,9 +1167,9 @@ export default function UserAdminPage() {
                           gap: '0.35rem',
                           padding: '0.2rem 0.55rem',
                           borderRadius: '6px',
-                          border: '1px solid #e2e8f0',
-                          backgroundColor: '#f8fafc',
-                          color: '#64748b',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
+                          backgroundColor: '#171918',
+                          color: '#A1A1AA',
                           fontSize: '0.725rem',
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -1178,9 +1178,9 @@ export default function UserAdminPage() {
                         title="Click to copy full ID"
                       >
                         {copiedId === u._id ? (
-                          <Check size={12} color="#10b981" />
+                          <Check size={12} color="#C6F432" />
                         ) : (
-                          <Copy size={12} color="#94a3b8" />
+                          <Copy size={12} color="#71717A" />
                         )}
                         <span>ID: {u._id ? u._id.slice(-8) : 'unknown'}</span>
                       </button>
@@ -1191,7 +1191,7 @@ export default function UserAdminPage() {
                           alignItems: 'center',
                           gap: '0.3rem',
                           fontSize: '0.75rem',
-                          color: '#94a3b8',
+                          color: '#71717A',
                         }}
                       >
                         <Calendar size={12} />
@@ -1204,17 +1204,17 @@ export default function UserAdminPage() {
                 {/* Role Switcher Pill Bar */}
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
+                    backgroundColor: '#171918',
                     borderRadius: '12px',
                     padding: '0.65rem 0.75rem',
-                    border: '1px solid #f1f5f9',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
                   }}
                 >
                   <div
                     style={{
                       fontSize: '0.7rem',
                       fontWeight: 800,
-                      color: '#94a3b8',
+                      color: '#71717A',
                       textTransform: 'uppercase',
                       letterSpacing: '0.06em',
                       marginBottom: '0.45rem',
@@ -1235,9 +1235,9 @@ export default function UserAdminPage() {
                           style={{
                             padding: '0.4rem 0.35rem',
                             borderRadius: '8px',
-                            border: isSelected ? '1.5px solid #6366f1' : '1px solid #e2e8f0',
-                            backgroundColor: isSelected ? '#ffffff' : 'transparent',
-                            color: isSelected ? '#4338ca' : '#64748b',
+                            border: isSelected ? '1.5px solid #C6F432' : '1px solid rgba(255, 255, 255, 0.12)',
+                            backgroundColor: isSelected ? '#C6F432' : 'transparent',
+                            color: isSelected ? '#C6F432' : '#A1A1AA',
                             fontSize: '0.75rem',
                             fontWeight: isSelected ? 800 : 600,
                             cursor: isSelf ? 'not-allowed' : 'pointer',
@@ -1259,7 +1259,7 @@ export default function UserAdminPage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     paddingTop: '0.75rem',
-                    borderTop: '1px solid #f1f5f9',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                   }}
                 >
                   {/* Status Switch with Gen Z Toggle */}
@@ -1277,7 +1277,7 @@ export default function UserAdminPage() {
                       style={{
                         fontSize: '0.8rem',
                         fontWeight: 700,
-                        color: u.isActive ? '#059669' : '#94a3b8',
+                        color: u.isActive ? '#C6F432' : '#71717A',
                       }}
                     >
                       {u.isActive ? 'Active' : 'Paused'}
@@ -1296,9 +1296,9 @@ export default function UserAdminPage() {
                       gap: '0.35rem',
                       padding: '0.4rem 0.75rem',
                       borderRadius: '8px',
-                      border: '1px solid #fecaca',
-                      backgroundColor: '#fef2f2',
-                      color: isSelf ? '#cbd5e1' : '#dc2626',
+                      border: '1px solid rgba(239, 68, 68, 0.30)',
+                      backgroundColor: 'rgba(239, 68, 68, 0.14)',
+                      color: isSelf ? 'rgba(255, 255, 255, 0.14)' : '#FCA5A5',
                       fontSize: '0.775rem',
                       fontWeight: 700,
                       cursor: isSelf ? 'not-allowed' : 'pointer',
@@ -1307,14 +1307,14 @@ export default function UserAdminPage() {
                     }}
                     onMouseEnter={(e) => {
                       if (!isSelf) {
-                        e.currentTarget.style.backgroundColor = '#ef4444';
+                        e.currentTarget.style.backgroundColor = '#F87171';
                         e.currentTarget.style.color = '#ffffff';
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isSelf) {
-                        e.currentTarget.style.backgroundColor = '#fef2f2';
-                        e.currentTarget.style.color = '#dc2626';
+                        e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.14)';
+                        e.currentTarget.style.color = '#FCA5A5';
                       }
                     }}
                   >
@@ -1336,7 +1336,7 @@ export default function UserAdminPage() {
             padding: 0,
             overflow: 'hidden',
             borderRadius: '16px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid rgba(255, 255, 255, 0.10)',
             boxShadow: '0 4px 20px -2px rgba(15, 23, 42, 0.05)',
           }}
         >
@@ -1392,7 +1392,7 @@ export default function UserAdminPage() {
 
                           <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                              <span style={{ fontWeight: 800, color: '#0f172a', fontSize: '0.925rem' }}>
+                              <span style={{ fontWeight: 800, color: '#FFFFFF', fontSize: '0.925rem' }}>
                                 {u.name}
                               </span>
                               {isSelf && (
@@ -1400,7 +1400,7 @@ export default function UserAdminPage() {
                                   style={{
                                     fontSize: '0.675rem',
                                     fontWeight: 800,
-                                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                                    background: 'linear-gradient(135deg, #C6F432 0%, #C6F432 100%)',
                                     color: '#ffffff',
                                     padding: '0.1rem 0.45rem',
                                     borderRadius: '9999px',
@@ -1414,7 +1414,7 @@ export default function UserAdminPage() {
                               onClick={() => handleCopyUserId(u._id)}
                               style={{
                                 fontSize: '0.75rem',
-                                color: '#94a3b8',
+                                color: '#71717A',
                                 cursor: 'pointer',
                                 display: 'inline-flex',
                                 alignItems: 'center',
@@ -1431,7 +1431,7 @@ export default function UserAdminPage() {
                       </td>
 
                       <td>
-                        <span style={{ fontSize: '0.875rem', color: '#475569', fontWeight: 500 }}>
+                        <span style={{ fontSize: '0.875rem', color: '#D4D4D8', fontWeight: 500 }}>
                           {u.email}
                         </span>
                       </td>
@@ -1444,11 +1444,11 @@ export default function UserAdminPage() {
                           style={{
                             padding: '0.4rem 0.75rem',
                             borderRadius: '8px',
-                            border: '1px solid #cbd5e1',
+                            border: '1px solid rgba(255, 255, 255, 0.14)',
                             fontSize: '0.825rem',
                             fontWeight: 700,
-                            backgroundColor: '#ffffff',
-                            color: '#0f172a',
+                            backgroundColor: '#121314',
+                            color: '#FFFFFF',
                             cursor: isSelf ? 'not-allowed' : 'pointer',
                           }}
                         >
@@ -1473,7 +1473,7 @@ export default function UserAdminPage() {
                             style={{
                               fontSize: '0.775rem',
                               fontWeight: 700,
-                              color: u.isActive ? '#059669' : '#94a3b8',
+                              color: u.isActive ? '#C6F432' : '#71717A',
                             }}
                           >
                             {u.isActive ? 'Active' : 'Paused'}
@@ -1481,7 +1481,7 @@ export default function UserAdminPage() {
                         </div>
                       </td>
 
-                      <td style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                      <td style={{ fontSize: '0.85rem', color: '#A1A1AA' }}>
                         {formatDate(u.createdAt)}
                       </td>
 
@@ -1494,9 +1494,9 @@ export default function UserAdminPage() {
                             style={{
                               padding: '0.35rem 0.75rem',
                               borderRadius: '8px',
-                              border: '1px solid #e2e8f0',
-                              backgroundColor: '#ffffff',
-                              color: '#334155',
+                              border: '1px solid rgba(255, 255, 255, 0.10)',
+                              backgroundColor: '#121314',
+                              color: '#E4E4E7',
                               fontSize: '0.775rem',
                               fontWeight: 700,
                               cursor: isSelf ? 'not-allowed' : 'pointer',
@@ -1512,9 +1512,9 @@ export default function UserAdminPage() {
                             style={{
                               padding: '0.35rem 0.65rem',
                               borderRadius: '8px',
-                              border: '1px solid #fecaca',
-                              backgroundColor: '#fef2f2',
-                              color: isSelf ? '#cbd5e1' : '#dc2626',
+                              border: '1px solid rgba(239, 68, 68, 0.30)',
+                              backgroundColor: 'rgba(239, 68, 68, 0.14)',
+                              color: isSelf ? 'rgba(255, 255, 255, 0.14)' : '#FCA5A5',
                               fontSize: '0.775rem',
                               fontWeight: 700,
                               cursor: isSelf ? 'not-allowed' : 'pointer',
@@ -1591,7 +1591,7 @@ export default function UserAdminPage() {
                   display: 'block',
                   fontSize: '0.85rem',
                   fontWeight: 700,
-                  color: '#0f172a',
+                  color: '#FFFFFF',
                   marginBottom: '0.5rem',
                 }}
               >
@@ -1636,9 +1636,9 @@ export default function UserAdminPage() {
                         padding: '0.85rem',
                         borderRadius: '12px',
                         border: isSelected
-                          ? '2px solid #6366f1'
-                          : '1px solid #e2e8f0',
-                        backgroundColor: isSelected ? '#f8faff' : '#ffffff',
+                          ? '2px solid #C6F432'
+                          : '1px solid rgba(255, 255, 255, 0.10)',
+                        backgroundColor: isSelected ? 'rgba(198, 244, 50, 0.10)' : '#161816',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease',
                       }}
@@ -1655,25 +1655,25 @@ export default function UserAdminPage() {
                           size={15}
                           color={
                             isSelected
-                              ? '#6366f1'
+                              ? '#C6F432'
                               : tier === 'Admin'
-                                ? '#a855f7'
+                                ? '#C6F432'
                                 : tier === 'HR'
-                                  ? '#f59e0b'
-                                  : '#64748b'
+                                  ? '#FDE047'
+                                  : '#A1A1AA'
                           }
                         />
                         <span
                           style={{
                             fontSize: '0.85rem',
                             fontWeight: 800,
-                            color: isSelected ? '#4338ca' : '#0f172a',
+                            color: isSelected ? '#C6F432' : '#FFFFFF',
                           }}
                         >
                           {label}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
+                      <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>
                         {desc}
                       </div>
                     </div>
@@ -1702,7 +1702,8 @@ export default function UserAdminPage() {
                 type="submit"
                 disabled={isSubmittingNewUser}
                 style={{
-                  background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                  background: '#C6F432',
+                  color: '#0B0B0C',
                 }}
               >
                 {isSubmittingNewUser ? 'Deploying...' : 'Deploy Credentials 🚀'}

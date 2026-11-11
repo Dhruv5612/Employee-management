@@ -21,8 +21,8 @@ export default function Breadcrumbs() {
   };
 
   return (
-    <nav style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem', color: '#64748b' }}>
-      <Link to="/dashboard" style={{ display: 'flex', alignItems: 'center', color: '#64748b' }}>
+    <nav style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem', color: '#A1A1AA' }}>
+      <Link to="/dashboard" style={{ display: 'flex', alignItems: 'center', color: '#A1A1AA' }}>
         <Home size={15} />
       </Link>
 
@@ -33,11 +33,11 @@ export default function Breadcrumbs() {
 
         return (
           <React.Fragment key={to}>
-            <ChevronRight size={14} color="#94a3b8" />
+            <ChevronRight size={14} color="#71717A" />
             {isLast ? (
-              <span style={{ fontWeight: 600, color: '#1e293b' }}>{name}</span>
+              <span style={{ fontWeight: 700, color: '#C6F432' }}>{name}</span>
             ) : (
-              <Link to={to} style={{ color: '#64748b' }}>
+              <Link to={to} style={{ color: '#A1A1AA' }}>
                 {name}
               </Link>
             )}

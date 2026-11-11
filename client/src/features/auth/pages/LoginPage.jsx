@@ -202,9 +202,9 @@ export default function LoginPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0f172a',
+        backgroundColor: '#0B0B0C',
         padding: '2rem 1.5rem',
-        backgroundImage: 'radial-gradient(circle at 50% 15%, rgba(99, 102, 241, 0.22) 0%, transparent 65%)',
+        backgroundImage: 'radial-gradient(ellipse 65% 45% at 50% 0%, rgba(198, 244, 50, 0.16) 0%, transparent 65%)',
       }}
     >
       <div style={{ width: '100%', maxWidth: '470px' }}>
@@ -216,14 +216,14 @@ export default function LoginPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              color: '#94a3b8',
+              color: '#71717A',
               fontSize: '0.85rem',
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#71717A')}
           >
             <ArrowLeft size={16} />
             <span>Back to Home</span>
@@ -238,7 +238,7 @@ export default function LoginPage() {
             padding: '2.5rem 2rem',
             boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
             borderRadius: '1.25rem',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#161816',
           }}
         >
           {/* Header */}
@@ -250,8 +250,8 @@ export default function LoginPage() {
                 borderRadius: '14px',
                 background:
                   step === 'OTP_VERIFICATION'
-                    ? 'linear-gradient(135deg, #10b981, #059669)'
-                    : 'linear-gradient(135deg, #4f46e5, #4338ca)',
+                    ? '#C6F432'
+                    : '#C6F432',
                 color: '#ffffff',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -266,10 +266,10 @@ export default function LoginPage() {
             >
               {step === 'OTP_VERIFICATION' ? <ShieldCheck size={28} /> : <Sparkles size={28} />}
             </div>
-            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.025em' }}>
+            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.025em' }}>
               {step === 'OTP_VERIFICATION' ? 'Two-Factor Approval' : 'Sign In to Workspace'}
             </h2>
-            <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.25rem' }}>
+            <p style={{ fontSize: '0.875rem', color: '#A1A1AA', marginTop: '0.25rem' }}>
               {step === 'OTP_VERIFICATION'
                 ? 'Confirm your identity using the Gmail OTP code'
                 : 'Enter your credentials to receive an approval code'}
@@ -281,10 +281,10 @@ export default function LoginPage() {
             <div
               style={{
                 padding: '0.75rem 1rem',
-                backgroundColor: '#fef2f2',
-                border: '1px solid #fecaca',
+                backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                border: '1px solid rgba(239, 68, 68, 0.30)',
                 borderRadius: '8px',
-                color: '#991b1b',
+                color: '#FCA5A5',
                 fontSize: '0.85rem',
                 marginBottom: '1.25rem',
                 display: 'flex',
@@ -337,7 +337,7 @@ export default function LoginPage() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#94a3b8',
+                        color: '#71717A',
                         cursor: 'pointer',
                         padding: '4px',
                         display: 'flex',
@@ -354,8 +354,8 @@ export default function LoginPage() {
                 {/* Password Criteria Feedback Checklist */}
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
-                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#161816',
+                    border: '1px solid rgba(255, 255, 255, 0.10)',
                     borderRadius: '8px',
                     padding: '0.65rem 0.85rem',
                     marginTop: '-0.35rem',
@@ -363,7 +363,7 @@ export default function LoginPage() {
                     fontSize: '0.75rem',
                   }}
                 >
-                  <div style={{ color: '#64748b', fontWeight: 600, marginBottom: '0.35rem' }}>
+                  <div style={{ color: '#A1A1AA', fontWeight: 600, marginBottom: '0.35rem' }}>
                     Password Requirements:
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem' }}>
@@ -372,7 +372,7 @@ export default function LoginPage() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        color: hasMinLength ? '#16a34a' : '#64748b',
+                        color: hasMinLength ? '#C6F432' : '#71717A',
                         fontWeight: hasMinLength ? 600 : 400,
                       }}
                     >
@@ -385,7 +385,7 @@ export default function LoginPage() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        color: hasAlphabet ? '#16a34a' : '#64748b',
+                        color: hasAlphabet ? '#C6F432' : '#71717A',
                         fontWeight: hasAlphabet ? 600 : 400,
                       }}
                     >
@@ -398,7 +398,7 @@ export default function LoginPage() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        color: hasNumber ? '#16a34a' : '#64748b',
+                        color: hasNumber ? '#C6F432' : '#71717A',
                         fontWeight: hasNumber ? 600 : 400,
                       }}
                     >
@@ -411,7 +411,7 @@ export default function LoginPage() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        color: hasSpecial ? '#16a34a' : '#64748b',
+                        color: hasSpecial ? '#C6F432' : '#71717A',
                         fontWeight: hasSpecial ? 600 : 400,
                       }}
                     >
@@ -426,7 +426,7 @@ export default function LoginPage() {
                     to="/forgot-password"
                     style={{
                       fontSize: '0.825rem',
-                      color: '#4f46e5',
+                      color: '#C6F432',
                       fontWeight: 600,
                       textDecoration: 'none',
                       display: 'inline-flex',
@@ -435,7 +435,7 @@ export default function LoginPage() {
                       transition: 'color 0.2s',
                     }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = '#3730a3')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#4f46e5')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#C6F432')}
                   >
                     <KeyRound size={13} />
                     <span>Forgot password?</span>
@@ -461,18 +461,18 @@ export default function LoginPage() {
               <div
                 style={{
                   padding: '0.85rem 1rem',
-                  backgroundColor: '#f1f5f9',
+                  backgroundColor: '#161816',
                   borderRadius: '10px',
                   marginBottom: '1.25rem',
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                <div style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>
                   {isDelivered
                     ? 'A 6-digit approval code was dispatched to your Gmail:'
                     : 'Safe-mode approval code (no external email sent) for:'}
                 </div>
-                <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#0f172a', marginTop: '2px' }}>
+                <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#FFFFFF', marginTop: '2px' }}>
                   {otpEmail}
                 </div>
               </div>
@@ -482,10 +482,10 @@ export default function LoginPage() {
                 <div
                   style={{
                     padding: '0.85rem 1rem',
-                    backgroundColor: '#f0fdf4',
-                    border: '1px solid #bbf7d0',
+                    backgroundColor: 'rgba(198, 244, 50, 0.10)',
+                    border: '1px solid rgba(198, 244, 50, 0.30)',
                     borderRadius: '10px',
-                    color: '#166534',
+                    color: '#C6F432',
                     fontSize: '0.825rem',
                     marginBottom: '1.25rem',
                     display: 'flex',
@@ -502,10 +502,10 @@ export default function LoginPage() {
                 <div
                   style={{
                     padding: '0.85rem 1rem',
-                    backgroundColor: '#eef2ff',
-                    border: '1px solid #c7d2fe',
+                    backgroundColor: 'rgba(198, 244, 50, 0.10)',
+                    border: '1px solid rgba(198, 244, 50, 0.32)',
                     borderRadius: '10px',
-                    color: '#312e81',
+                    color: '#FFFFFF',
                     fontSize: '0.825rem',
                     marginBottom: '1.25rem',
                     display: 'flex',
@@ -515,13 +515,13 @@ export default function LoginPage() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <KeyRound size={20} color="#4f46e5" style={{ flexShrink: 0 }} />
+                    <KeyRound size={20} color="#C6F432" style={{ flexShrink: 0 }} />
                     <div>
                       <strong>Demo / Safe Mode OTP:</strong>{' '}
                       <span style={{ fontFamily: 'monospace', fontWeight: 800, letterSpacing: '2px', fontSize: '0.95rem' }}>
                         {devOtp || 'Check server logs'}
                       </span>
-                      <div style={{ fontSize: '0.75rem', color: '#4338ca', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.75rem', color: '#C6F432', marginTop: '2px' }}>
                         Outbound email skipped for demo/non-routable domain to prevent mail bounces.
                       </div>
                     </div>
@@ -534,8 +534,8 @@ export default function LoginPage() {
                         if (errors.otp) setErrors({});
                       }}
                       style={{
-                        background: '#4f46e5',
-                        color: '#ffffff',
+                        background: '#C6F432',
+                        color: '#0B0B0C',
                         border: 'none',
                         borderRadius: '6px',
                         padding: '5px 10px',
@@ -557,7 +557,7 @@ export default function LoginPage() {
                     display: 'block',
                     fontSize: '0.85rem',
                     fontWeight: 600,
-                    color: '#334155',
+                    color: '#E4E4E7',
                     marginBottom: '0.4rem',
                     textAlign: 'center',
                   }}
@@ -584,10 +584,10 @@ export default function LoginPage() {
                     letterSpacing: '12px',
                     fontFamily: 'monospace',
                     borderRadius: '10px',
-                    border: errors.otp ? '2px solid #ef4444' : '2px solid #cbd5e1',
+                    border: errors.otp ? '2px solid #ef4444' : '2px solid rgba(198, 244, 50, 0.35)',
                     outline: 'none',
                     transition: 'border-color 0.2s',
-                    backgroundColor: '#fafafa',
+                    backgroundColor: '#161816',
                   }}
                 />
                 {errors.otp && (
@@ -605,8 +605,9 @@ export default function LoginPage() {
                 style={{
                   width: '100%',
                   padding: '0.8rem',
-                  backgroundColor: '#10b981',
-                  borderColor: '#10b981',
+                  backgroundColor: '#C6F432',
+                  borderColor: '#C6F432',
+                  color: '#0B0B0C',
                 }}
               >
                 Verify & Access Dashboard
@@ -631,7 +632,7 @@ export default function LoginPage() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#64748b',
+                    color: '#A1A1AA',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -650,7 +651,7 @@ export default function LoginPage() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: countdown > 0 ? '#94a3b8' : '#4f46e5',
+                    color: countdown > 0 ? '#71717A' : '#C6F432',
                     cursor: countdown > 0 ? 'not-allowed' : 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -668,9 +669,9 @@ export default function LoginPage() {
 
           {/* Sign Up Link */}
           {step === 'CREDENTIALS' && (
-            <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.85rem', color: '#64748b' }}>
+            <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.85rem', color: '#A1A1AA' }}>
               Don't have an account?{' '}
-              <Link to="/signup" style={{ fontWeight: 700, color: '#4f46e5' }}>
+              <Link to="/signup" style={{ fontWeight: 700, color: '#C6F432' }}>
                 Create an account
               </Link>
             </div>
@@ -678,7 +679,7 @@ export default function LoginPage() {
         </div>
 
         {/* Footer info */}
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#64748b', fontSize: '0.8rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#A1A1AA', fontSize: '0.8rem' }}>
           &copy; {new Date().getFullYear()} EmployeeHub Enterprise. All rights reserved.
         </div>
       </div>

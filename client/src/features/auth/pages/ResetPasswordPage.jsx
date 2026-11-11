@@ -127,9 +127,9 @@ export default function ResetPasswordPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0f172a',
+        backgroundColor: '#0B0B0C',
         padding: '3rem 1.5rem',
-        backgroundImage: 'radial-gradient(circle at 50% 15%, rgba(99, 102, 241, 0.22) 0%, transparent 65%)',
+        backgroundImage: 'radial-gradient(ellipse 65% 45% at 50% 0%, rgba(198, 244, 50, 0.16) 0%, transparent 65%)',
         overflowY: 'auto',
       }}
     >
@@ -142,14 +142,14 @@ export default function ResetPasswordPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              color: '#94a3b8',
+              color: '#71717A',
               fontSize: '0.85rem',
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#71717A')}
           >
             <ArrowLeft size={16} />
             <span>Back to Sign In</span>
@@ -164,7 +164,7 @@ export default function ResetPasswordPage() {
             padding: '2.5rem 2rem',
             boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
             borderRadius: '1.25rem',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#161816',
           }}
         >
           {/* Header */}
@@ -175,8 +175,8 @@ export default function ResetPasswordPage() {
                 height: '56px',
                 borderRadius: '16px',
                 background: isSuccess
-                  ? 'linear-gradient(135deg, #10b981, #059669)'
-                  : 'linear-gradient(135deg, #4f46e5, #4338ca)',
+                  ? '#C6F432'
+                  : '#C6F432',
                 color: '#ffffff',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -191,10 +191,10 @@ export default function ResetPasswordPage() {
               {isSuccess ? <CheckCircle2 size={30} /> : <ShieldCheck size={30} />}
             </div>
 
-            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.025em' }}>
+            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.025em' }}>
               {isSuccess ? 'Password Reset Complete!' : 'Set New Password'}
             </h2>
-            <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.35rem', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.875rem', color: '#A1A1AA', marginTop: '0.35rem', lineHeight: 1.5 }}>
               {isSuccess
                 ? 'Your password has been securely updated. You can now log into your workspace.'
                 : 'Create a new secure password for your workspace account'}
@@ -206,18 +206,18 @@ export default function ResetPasswordPage() {
             <div style={{ textAlign: 'center', padding: '0.5rem 0' }}>
               <div
                 style={{
-                  backgroundColor: '#f0fdf4',
-                  border: '1px solid #bbf7d0',
+                  backgroundColor: 'rgba(198, 244, 50, 0.10)',
+                  border: '1px solid rgba(198, 244, 50, 0.30)',
                   borderRadius: '12px',
                   padding: '1.25rem',
                   marginBottom: '1.5rem',
-                  color: '#166534',
+                  color: '#C6F432',
                 }}
               >
                 <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.35rem' }}>
                   Ready to Sign In!
                 </div>
-                <div style={{ fontSize: '0.85rem', color: '#15803d' }}>
+                <div style={{ fontSize: '0.85rem', color: '#E4E4E7' }}>
                   Redirecting to sign in page in <strong>{redirectCountdown}</strong> seconds...
                 </div>
               </div>
@@ -240,10 +240,10 @@ export default function ResetPasswordPage() {
                 <div
                   style={{
                     padding: '0.75rem 1rem',
-                    backgroundColor: '#fef2f2',
-                    border: '1px solid #fecaca',
+                    backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                    border: '1px solid rgba(239, 68, 68, 0.30)',
                     borderRadius: '8px',
-                    color: '#991b1b',
+                    color: '#FCA5A5',
                     fontSize: '0.85rem',
                     marginBottom: '1.25rem',
                     display: 'flex',
@@ -258,7 +258,7 @@ export default function ResetPasswordPage() {
                       <div style={{ marginTop: '0.35rem' }}>
                         <Link
                           to="/forgot-password"
-                          style={{ color: '#b91c1c', fontWeight: 700, textDecoration: 'underline' }}
+                          style={{ color: '#FCA5A5', fontWeight: 700, textDecoration: 'underline' }}
                         >
                           Click here to request a new reset link &rarr;
                         </Link>
@@ -288,7 +288,7 @@ export default function ResetPasswordPage() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#94a3b8',
+                      color: '#71717A',
                       cursor: 'pointer',
                       padding: '4px',
                       display: 'flex',
@@ -305,8 +305,8 @@ export default function ResetPasswordPage() {
               {/* Password Criteria Feedback Checklist */}
               <div
                 style={{
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#161816',
+                  border: '1px solid rgba(255, 255, 255, 0.10)',
                   borderRadius: '8px',
                   padding: '0.65rem 0.85rem',
                   marginTop: '-0.35rem',
@@ -314,7 +314,7 @@ export default function ResetPasswordPage() {
                   fontSize: '0.75rem',
                 }}
               >
-                <div style={{ color: '#64748b', fontWeight: 600, marginBottom: '0.35rem' }}>
+                <div style={{ color: '#A1A1AA', fontWeight: 600, marginBottom: '0.35rem' }}>
                   Password Requirements:
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem' }}>
@@ -323,7 +323,7 @@ export default function ResetPasswordPage() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      color: hasMinLength ? '#16a34a' : '#64748b',
+                      color: hasMinLength ? '#C6F432' : '#71717A',
                       fontWeight: hasMinLength ? 600 : 400,
                     }}
                   >
@@ -336,7 +336,7 @@ export default function ResetPasswordPage() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      color: hasAlphabet ? '#16a34a' : '#64748b',
+                      color: hasAlphabet ? '#C6F432' : '#71717A',
                       fontWeight: hasAlphabet ? 600 : 400,
                     }}
                   >
@@ -349,7 +349,7 @@ export default function ResetPasswordPage() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      color: hasNumber ? '#16a34a' : '#64748b',
+                      color: hasNumber ? '#C6F432' : '#71717A',
                       fontWeight: hasNumber ? 600 : 400,
                     }}
                   >
@@ -362,7 +362,7 @@ export default function ResetPasswordPage() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      color: hasSpecial ? '#16a34a' : '#64748b',
+                      color: hasSpecial ? '#C6F432' : '#71717A',
                       fontWeight: hasSpecial ? 600 : 400,
                     }}
                   >
@@ -392,7 +392,7 @@ export default function ResetPasswordPage() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#94a3b8',
+                      color: '#71717A',
                       cursor: 'pointer',
                       padding: '4px',
                       display: 'flex',
@@ -450,7 +450,7 @@ export default function ResetPasswordPage() {
                   to="/signin"
                   style={{
                     fontSize: '0.85rem',
-                    color: '#64748b',
+                    color: '#A1A1AA',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.35rem',
@@ -458,8 +458,8 @@ export default function ResetPasswordPage() {
                     textDecoration: 'none',
                     transition: 'color 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#4f46e5')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#64748b')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#C6F432')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#A1A1AA')}
                 >
                   <ArrowLeft size={15} /> Return to Sign In
                 </Link>

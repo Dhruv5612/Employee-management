@@ -175,39 +175,39 @@ export default function LeaveApprovalsPage() {
     if (t.includes('sick') || t.includes('medical')) {
       return {
         bg: '#fff1f2',
-        color: '#be123c',
-        border: '1px solid #fecdd3',
+        color: '#FCA5A5',
+        border: '1px solid rgba(239, 68, 68, 0.30)',
         label: type || 'Sick Leave',
       };
     }
     if (t.includes('casual') || t.includes('personal')) {
       return {
-        bg: '#eef2ff',
-        color: '#4338ca',
-        border: '1px solid #c7d2fe',
+        bg: 'rgba(198, 244, 50, 0.12)',
+        color: '#C6F432',
+        border: '1px solid rgba(198, 244, 50, 0.30)',
         label: type || 'Casual Leave',
       };
     }
     if (t.includes('annual') || t.includes('vacation') || t.includes('earned')) {
       return {
-        bg: '#ecfdf5',
-        color: '#047857',
-        border: '1px solid #a7f3d0',
+        bg: 'rgba(198, 244, 50, 0.12)',
+        color: '#C6F432',
+        border: '1px solid rgba(198, 244, 50, 0.30)',
         label: type || 'Annual Leave',
       };
     }
     if (t.includes('maternity') || t.includes('paternity')) {
       return {
         bg: '#fdf2f8',
-        color: '#9d174d',
-        border: '1px solid #fbcfe8',
+        color: '#C6F432',
+        border: '1px solid rgba(198, 244, 50, 0.25)',
         label: type || 'Parental Leave',
       };
     }
     return {
-      bg: '#f8fafc',
-      color: '#334155',
-      border: '1px solid #e2e8f0',
+      bg: '#171918',
+      color: '#E4E4E7',
+      border: '1px solid rgba(255, 255, 255, 0.10)',
       label: type || 'Standard Leave',
     };
   };
@@ -225,14 +225,14 @@ export default function LeaveApprovalsPage() {
               borderRadius: '9999px',
               fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#fffbeb',
-              color: '#b45309',
-              border: '1px solid #fde68a',
+              backgroundColor: 'rgba(250, 204, 21, 0.12)',
+              color: '#FDE047',
+              border: '1px solid rgba(250, 204, 21, 0.30)',
               boxShadow: '0 1px 3px rgba(245, 158, 11, 0.1)',
               whiteSpace: 'nowrap',
             }}
           >
-            <Clock size={13} color="#d97706" />
+            <Clock size={13} color="#FDE047" />
             <span>Pending Review</span>
           </span>
         );
@@ -247,14 +247,14 @@ export default function LeaveApprovalsPage() {
               borderRadius: '9999px',
               fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#ecfdf5',
-              color: '#047857',
-              border: '1px solid #a7f3d0',
+              backgroundColor: 'rgba(198, 244, 50, 0.12)',
+              color: '#C6F432',
+              border: '1px solid rgba(198, 244, 50, 0.30)',
               boxShadow: '0 1px 3px rgba(16, 185, 129, 0.1)',
               whiteSpace: 'nowrap',
             }}
           >
-            <CheckCircle2 size={13} color="#059669" />
+            <CheckCircle2 size={13} color="#C6F432" />
             <span>Approved</span>
           </span>
         );
@@ -269,14 +269,14 @@ export default function LeaveApprovalsPage() {
               borderRadius: '9999px',
               fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#fef2f2',
-              color: '#b91c1c',
-              border: '1px solid #fecaca',
+              backgroundColor: 'rgba(239, 68, 68, 0.14)',
+              color: '#FCA5A5',
+              border: '1px solid rgba(239, 68, 68, 0.30)',
               boxShadow: '0 1px 3px rgba(239, 68, 68, 0.1)',
               whiteSpace: 'nowrap',
             }}
           >
-            <XCircle size={13} color="#dc2626" />
+            <XCircle size={13} color="#FCA5A5" />
             <span>Rejected</span>
           </span>
         );
@@ -291,9 +291,9 @@ export default function LeaveApprovalsPage() {
               borderRadius: '9999px',
               fontSize: '0.78rem',
               fontWeight: 700,
-              backgroundColor: '#f1f5f9',
-              color: '#475569',
-              border: '1px solid #e2e8f0',
+              backgroundColor: '#171918',
+              color: '#D4D4D8',
+              border: '1px solid rgba(255, 255, 255, 0.10)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -311,8 +311,8 @@ export default function LeaveApprovalsPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <span
               style={{
-                backgroundColor: '#fef3c7',
-                color: '#b45309',
+                backgroundColor: 'rgba(250, 204, 21, 0.14)',
+                color: '#FDE047',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '6px',
                 fontSize: '0.75rem',
@@ -346,68 +346,68 @@ export default function LeaveApprovalsPage() {
       <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
               {isAdminOrHR ? 'Pending Action' : 'My Pending Leaves'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#fef3c7', color: '#b45309' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(250, 204, 21, 0.14)', color: '#FDE047' }}>
               <Clock size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.pending}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#b45309', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#FDE047', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Requires supervisor authorization' : 'Awaiting manager approval'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
               {isAdminOrHR ? 'Approved Leaves' : 'My Approved Leaves'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#d1fae5', color: '#065f46' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
               <CheckCircle2 size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.approved}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#059669', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Approved for current period' : 'Authorized time-off granted'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
               {isAdminOrHR ? 'Declined Requests' : 'My Declined Leaves'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#fee2e2', color: '#991b1b' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(239, 68, 68, 0.14)', color: '#FCA5A5' }}>
               <XCircle size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.rejected}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#dc2626', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#FCA5A5', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Declined or withdrawn' : 'Declined applications'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
               {isAdminOrHR ? 'Total Applications' : 'My Total Applications'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#e0e7ff', color: '#4338ca' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
               <Calendar size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
             {stats.total}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#4f46e5', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'All recorded leaves' : 'Total filed by you'}
           </div>
         </div>
@@ -421,7 +421,7 @@ export default function LeaveApprovalsPage() {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '1rem',
-          borderBottom: '1px solid #e2e8f0',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
           marginBottom: '1.25rem',
           paddingBottom: '0.5rem',
         }}
@@ -437,8 +437,8 @@ export default function LeaveApprovalsPage() {
                 padding: '0.55rem 1rem',
                 borderRadius: '8px',
                 border: 'none',
-                backgroundColor: filter === tab ? '#4f46e5' : '#f8fafc',
-                color: filter === tab ? '#ffffff' : '#64748b',
+                backgroundColor: filter === tab ? '#C6F432' : '#161816',
+                color: filter === tab ? '#0B0B0C' : '#A1A1AA',
                 fontWeight: 700,
                 fontSize: '0.85rem',
                 cursor: 'pointer',
@@ -453,8 +453,8 @@ export default function LeaveApprovalsPage() {
               {tab === 'Pending' && stats.pending > 0 && (
                 <span
                   style={{
-                    backgroundColor: filter === tab ? '#ffffff' : '#fef3c7',
-                    color: filter === tab ? '#4f46e5' : '#b45309',
+                    backgroundColor: filter === tab ? '#0B0B0C' : 'rgba(250, 204, 21, 0.14)',
+                    color: filter === tab ? '#C6F432' : '#FDE047',
                     borderRadius: '9999px',
                     padding: '0.1rem 0.5rem',
                     fontSize: '0.725rem',
@@ -473,7 +473,7 @@ export default function LeaveApprovalsPage() {
           <div style={{ position: 'relative', width: '260px' }}>
             <Search
               size={15}
-              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
+              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#71717A' }}
             />
             <input
               type="text"
@@ -484,10 +484,10 @@ export default function LeaveApprovalsPage() {
                 width: '100%',
                 padding: '0.45rem 0.75rem 0.45rem 2rem',
                 borderRadius: '8px',
-                border: '1px solid #cbd5e1',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
                 fontSize: '0.825rem',
                 outline: 'none',
-                backgroundColor: '#ffffff',
+                backgroundColor: '#121314',
               }}
             />
           </div>
@@ -496,10 +496,10 @@ export default function LeaveApprovalsPage() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#f1f5f9',
+              backgroundColor: '#171918',
               padding: '3px',
               borderRadius: '8px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid rgba(255, 255, 255, 0.10)',
             }}
           >
             <button
@@ -512,8 +512,8 @@ export default function LeaveApprovalsPage() {
                 padding: '0.35rem 0.7rem',
                 borderRadius: '6px',
                 border: 'none',
-                backgroundColor: viewMode === 'table' ? '#ffffff' : 'transparent',
-                color: viewMode === 'table' ? '#0f172a' : '#64748b',
+                backgroundColor: viewMode === 'table' ? '#C6F432' : 'transparent',
+                color: viewMode === 'table' ? '#0B0B0C' : '#A1A1AA',
                 fontWeight: 700,
                 fontSize: '0.775rem',
                 cursor: 'pointer',
@@ -533,8 +533,8 @@ export default function LeaveApprovalsPage() {
                 padding: '0.35rem 0.7rem',
                 borderRadius: '6px',
                 border: 'none',
-                backgroundColor: viewMode === 'cards' ? '#ffffff' : 'transparent',
-                color: viewMode === 'cards' ? '#0f172a' : '#64748b',
+                backgroundColor: viewMode === 'cards' ? '#C6F432' : 'transparent',
+                color: viewMode === 'cards' ? '#0B0B0C' : '#A1A1AA',
                 fontWeight: 700,
                 fontSize: '0.775rem',
                 cursor: 'pointer',
@@ -589,9 +589,9 @@ export default function LeaveApprovalsPage() {
                   <div
                     key={leave._id}
                     style={{
-                      backgroundColor: '#ffffff',
+                      backgroundColor: '#121314',
                       borderRadius: '12px',
-                      border: '1px solid #e2e8f0',
+                      border: '1px solid rgba(255, 255, 255, 0.10)',
                       padding: '1.25rem',
                       boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
                       display: 'flex',
@@ -609,7 +609,7 @@ export default function LeaveApprovalsPage() {
                               width: '42px',
                               height: '42px',
                               borderRadius: '10px',
-                              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                              background: 'linear-gradient(135deg, #C6F432, #C6F432)',
                               color: '#ffffff',
                               display: 'flex',
                               alignItems: 'center',
@@ -623,23 +623,23 @@ export default function LeaveApprovalsPage() {
                             {leave.employeeName?.charAt(0) || 'E'}
                           </div>
                           <div>
-                            <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.95rem' }}>{leave.employeeName}</div>
+                            <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.95rem' }}>{leave.employeeName}</div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '2px' }}>
                               <span
                                 style={{
                                   fontFamily: 'monospace',
                                   fontSize: '0.725rem',
                                   fontWeight: 600,
-                                  backgroundColor: '#f1f5f9',
-                                  color: '#475569',
+                                  backgroundColor: '#171918',
+                                  color: '#D4D4D8',
                                   padding: '1px 6px',
                                   borderRadius: '4px',
-                                  border: '1px solid #e2e8f0',
+                                  border: '1px solid rgba(255, 255, 255, 0.10)',
                                 }}
                               >
                                 {leave.employeeId}
                               </span>
-                              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>&bull; {leave.department || 'Operations'}</span>
+                              <span style={{ fontSize: '0.75rem', color: '#A1A1AA' }}>&bull; {leave.department || 'Operations'}</span>
                             </div>
                           </div>
                         </div>
@@ -663,9 +663,9 @@ export default function LeaveApprovalsPage() {
                         </span>
                         <span
                           style={{
-                            backgroundColor: '#f8fafc',
-                            color: '#334155',
-                            border: '1px solid #e2e8f0',
+                            backgroundColor: '#171918',
+                            color: '#E4E4E7',
+                            border: '1px solid rgba(255, 255, 255, 0.10)',
                             padding: '0.25rem 0.65rem',
                             borderRadius: '6px',
                             fontSize: '0.78rem',
@@ -675,13 +675,13 @@ export default function LeaveApprovalsPage() {
                             gap: '0.35rem',
                           }}
                         >
-                          <Calendar size={13} color="#6366f1" />
+                          <Calendar size={13} color="#C6F432" />
                           <span>{leave.startDate} &rarr; {leave.endDate}</span>
                           <span
                             style={{
-                              backgroundColor: '#f0fdf4',
-                              color: '#15803d',
-                              border: '1px solid #bbf7d0',
+                              backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                              color: '#C6F432',
+                              border: '1px solid rgba(198, 244, 50, 0.30)',
                               borderRadius: '9999px',
                               padding: '1px 6px',
                               fontSize: '0.7rem',
@@ -695,17 +695,17 @@ export default function LeaveApprovalsPage() {
                       {/* Reason Container */}
                       <div
                         style={{
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
+                          backgroundColor: '#171918',
+                          border: '1px solid rgba(255, 255, 255, 0.10)',
                           borderRadius: '8px',
                           padding: '0.65rem 0.85rem',
                           fontSize: '0.825rem',
-                          color: '#334155',
+                          color: '#E4E4E7',
                           lineHeight: '1.45',
                           marginBottom: '0.75rem',
                         }}
                       >
-                        <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                        <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#71717A', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                           Reason for Request
                         </div>
                         &ldquo;{leave.reason}&rdquo;
@@ -715,16 +715,16 @@ export default function LeaveApprovalsPage() {
                       {leave.reviewComment && (
                         <div
                           style={{
-                            backgroundColor: '#f5f3ff',
-                            borderLeft: '3px solid #8b5cf6',
+                            backgroundColor: '#171918',
+                            borderLeft: '3px solid #C6F432',
                             borderRadius: '0 6px 6px 0',
                             padding: '0.45rem 0.75rem',
                             fontSize: '0.775rem',
                             marginBottom: '0.75rem',
                           }}
                         >
-                          <span style={{ fontWeight: 700, color: '#6d28d9' }}>{leave.reviewedBy}:</span>{' '}
-                          <span style={{ color: '#5b21b6', fontStyle: 'italic' }}>{leave.reviewComment}</span>
+                          <span style={{ fontWeight: 700, color: '#C6F432' }}>{leave.reviewedBy}:</span>{' '}
+                          <span style={{ color: '#C6F432', fontStyle: 'italic' }}>{leave.reviewComment}</span>
                         </div>
                       )}
                     </div>
@@ -735,15 +735,15 @@ export default function LeaveApprovalsPage() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        borderTop: '1px solid #f1f5f9',
+                        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                         paddingTop: '0.85rem',
                         marginTop: '0.5rem',
                         fontSize: '0.775rem',
-                        color: '#64748b',
+                        color: '#A1A1AA',
                       }}
                     >
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                        <Clock size={13} color="#94a3b8" /> Filed on {leave.appliedDate}
+                        <Clock size={13} color="#71717A" /> Filed on {leave.appliedDate}
                       </span>
 
                       {isAdminOrHR && leave.status === 'Pending' && (
@@ -752,9 +752,9 @@ export default function LeaveApprovalsPage() {
                             type="button"
                             onClick={() => handleOpenReview(leave, 'Approved')}
                             style={{
-                              border: '1px solid #10b981',
-                              backgroundColor: '#ecfdf5',
-                              color: '#047857',
+                              border: '1px solid #C6F432',
+                              backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                              color: '#C6F432',
                               padding: '0.35rem 0.7rem',
                               borderRadius: '6px',
                               fontSize: '0.75rem',
@@ -771,9 +771,9 @@ export default function LeaveApprovalsPage() {
                             type="button"
                             onClick={() => handleOpenReview(leave, 'Rejected')}
                             style={{
-                              border: '1px solid #ef4444',
-                              backgroundColor: '#fef2f2',
-                              color: '#b91c1c',
+                              border: '1px solid #F87171',
+                              backgroundColor: 'rgba(239, 68, 68, 0.14)',
+                              color: '#FCA5A5',
                               padding: '0.35rem 0.7rem',
                               borderRadius: '6px',
                               fontSize: '0.75rem',
@@ -834,8 +834,8 @@ export default function LeaveApprovalsPage() {
                                 width: '38px',
                                 height: '38px',
                                 borderRadius: '10px',
-                                background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                                color: '#ffffff',
+                                background: '#C6F432',
+                                color: '#0B0B0C',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -848,7 +848,7 @@ export default function LeaveApprovalsPage() {
                               {leave.employeeName?.charAt(0) || 'E'}
                             </div>
                             <div>
-                              <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
+                              <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.925rem' }}>
                                 {leave.employeeName}
                               </div>
                               <span
@@ -856,11 +856,11 @@ export default function LeaveApprovalsPage() {
                                   fontFamily: 'monospace',
                                   fontSize: '0.725rem',
                                   fontWeight: 600,
-                                  backgroundColor: '#f1f5f9',
-                                  color: '#475569',
+                                  backgroundColor: '#171918',
+                                  color: '#D4D4D8',
                                   padding: '2px 7px',
                                   borderRadius: '4px',
-                                  border: '1px solid #e2e8f0',
+                                  border: '1px solid rgba(255, 255, 255, 0.10)',
                                   display: 'inline-block',
                                   marginTop: '3px',
                                 }}
@@ -880,15 +880,15 @@ export default function LeaveApprovalsPage() {
                               gap: '0.35rem',
                               padding: '0.3rem 0.65rem',
                               borderRadius: '6px',
-                              backgroundColor: '#f8fafc',
-                              border: '1px solid #e2e8f0',
+                              backgroundColor: '#171918',
+                              border: '1px solid rgba(255, 255, 255, 0.10)',
                               fontSize: '0.825rem',
                               fontWeight: 600,
-                              color: '#334155',
+                              color: '#E4E4E7',
                               whiteSpace: 'nowrap',
                             }}
                           >
-                            <Building2 size={13} color="#6366f1" />
+                            <Building2 size={13} color="#C6F432" />
                             {leave.department || 'Operations'}
                           </span>
                         </td>
@@ -922,13 +922,13 @@ export default function LeaveApprovalsPage() {
                                 gap: '0.35rem',
                                 fontSize: '0.85rem',
                                 fontWeight: 700,
-                                color: '#0f172a',
+                                color: '#FFFFFF',
                                 whiteSpace: 'nowrap',
                               }}
                             >
-                              <Calendar size={13} color="#6366f1" />
+                              <Calendar size={13} color="#C6F432" />
                               <span>{leave.startDate}</span>
-                              <span style={{ color: '#94a3b8' }}>&rarr;</span>
+                              <span style={{ color: '#71717A' }}>&rarr;</span>
                               <span>{leave.endDate}</span>
                             </div>
                             <div>
@@ -937,9 +937,9 @@ export default function LeaveApprovalsPage() {
                                   display: 'inline-block',
                                   fontSize: '0.725rem',
                                   fontWeight: 700,
-                                  color: '#15803d',
-                                  backgroundColor: '#f0fdf4',
-                                  border: '1px solid #bbf7d0',
+                                  color: '#C6F432',
+                                  backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                                  border: '1px solid rgba(198, 244, 50, 0.30)',
                                   padding: '1px 8px',
                                   borderRadius: '9999px',
                                   whiteSpace: 'nowrap',
@@ -956,12 +956,12 @@ export default function LeaveApprovalsPage() {
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxWidth: '280px' }}>
                             <div
                               style={{
-                                backgroundColor: '#f8fafc',
-                                border: '1px solid #e2e8f0',
+                                backgroundColor: '#171918',
+                                border: '1px solid rgba(255, 255, 255, 0.10)',
                                 borderRadius: '8px',
                                 padding: '0.5rem 0.75rem',
                                 fontSize: '0.825rem',
-                                color: '#334155',
+                                color: '#E4E4E7',
                                 lineHeight: '1.45',
                                 wordBreak: 'break-word',
                               }}
@@ -971,15 +971,15 @@ export default function LeaveApprovalsPage() {
                             {leave.reviewComment && (
                               <div
                                 style={{
-                                  backgroundColor: '#f5f3ff',
-                                  borderLeft: '3px solid #8b5cf6',
+                                  backgroundColor: '#171918',
+                                  borderLeft: '3px solid #C6F432',
                                   borderRadius: '0 6px 6px 0',
                                   padding: '0.35rem 0.65rem',
                                   fontSize: '0.75rem',
                                 }}
                               >
-                                <span style={{ fontWeight: 700, color: '#6d28d9' }}>{leave.reviewedBy}:</span>{' '}
-                                <span style={{ color: '#5b21b6', fontStyle: 'italic' }}>{leave.reviewComment}</span>
+                                <span style={{ fontWeight: 700, color: '#C6F432' }}>{leave.reviewedBy}:</span>{' '}
+                                <span style={{ color: '#C6F432', fontStyle: 'italic' }}>{leave.reviewComment}</span>
                               </div>
                             )}
                           </div>
@@ -994,15 +994,15 @@ export default function LeaveApprovalsPage() {
                               gap: '0.35rem',
                               fontSize: '0.775rem',
                               fontWeight: 600,
-                              color: '#64748b',
-                              backgroundColor: '#f8fafc',
-                              border: '1px solid #e2e8f0',
+                              color: '#A1A1AA',
+                              backgroundColor: '#171918',
+                              border: '1px solid rgba(255, 255, 255, 0.10)',
                               padding: '3px 8px',
                               borderRadius: '6px',
                               whiteSpace: 'nowrap',
                             }}
                           >
-                            <Clock size={12} color="#94a3b8" />
+                            <Clock size={12} color="#71717A" />
                             {leave.appliedDate}
                           </span>
                         </td>
@@ -1019,9 +1019,9 @@ export default function LeaveApprovalsPage() {
                                   type="button"
                                   onClick={() => handleOpenReview(leave, 'Approved')}
                                   style={{
-                                    border: '1px solid #10b981',
-                                    backgroundColor: '#ecfdf5',
-                                    color: '#047857',
+                                    border: '1px solid #C6F432',
+                                    backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                                    color: '#C6F432',
                                     padding: '0.35rem 0.75rem',
                                     borderRadius: '6px',
                                     fontSize: '0.775rem',
@@ -1041,9 +1041,9 @@ export default function LeaveApprovalsPage() {
                                   type="button"
                                   onClick={() => handleOpenReview(leave, 'Rejected')}
                                   style={{
-                                    border: '1px solid #ef4444',
-                                    backgroundColor: '#fef2f2',
-                                    color: '#b91c1c',
+                                    border: '1px solid #F87171',
+                                    backgroundColor: 'rgba(239, 68, 68, 0.14)',
+                                    color: '#FCA5A5',
                                     padding: '0.35rem 0.75rem',
                                     borderRadius: '6px',
                                     fontSize: '0.775rem',
@@ -1064,11 +1064,11 @@ export default function LeaveApprovalsPage() {
                                 style={{
                                   fontSize: '0.75rem',
                                   fontWeight: 600,
-                                  color: '#94a3b8',
-                                  backgroundColor: '#f8fafc',
+                                  color: '#71717A',
+                                  backgroundColor: '#171918',
                                   padding: '3px 8px',
                                   borderRadius: '6px',
-                                  border: '1px solid #e2e8f0',
+                                  border: '1px solid rgba(255, 255, 255, 0.10)',
                                 }}
                               >
                                 Reviewed
@@ -1095,8 +1095,8 @@ export default function LeaveApprovalsPage() {
           <div style={{ padding: '0.5rem 0' }}>
             <div
               style={{
-                backgroundColor: reviewAction === 'Approved' ? '#f0fdf4' : '#fef2f2',
-                border: `1px solid ${reviewAction === 'Approved' ? '#bbf7d0' : '#fecaca'}`,
+                backgroundColor: reviewAction === 'Approved' ? '#f0fdf4' : 'rgba(239, 68, 68, 0.14)',
+                border: `1px solid ${reviewAction === 'Approved' ? 'rgba(198, 244, 50, 0.30)' : 'rgba(239, 68, 68, 0.30)'}`,
                 borderRadius: '8px',
                 padding: '0.85rem 1rem',
                 marginBottom: '1.25rem',
@@ -1127,7 +1127,7 @@ export default function LeaveApprovalsPage() {
                   width: '100%',
                   padding: '0.6rem 0.75rem',
                   borderRadius: '6px',
-                  border: '1px solid #cbd5e1',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
                   fontSize: '0.85rem',
                   fontFamily: 'inherit',
                 }}
@@ -1175,19 +1175,19 @@ export default function LeaveApprovalsPage() {
             ) : (
               <div
                 style={{
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#171918',
+                  border: '1px solid rgba(255, 255, 255, 0.10)',
                   borderRadius: '8px',
                   padding: '0.75rem 1rem',
                   marginBottom: '1rem',
                   fontSize: '0.85rem',
                 }}
               >
-                <div style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 600 }}>APPLICANT</div>
-                <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.95rem' }}>
+                <div style={{ color: '#A1A1AA', fontSize: '0.75rem', fontWeight: 600 }}>APPLICANT</div>
+                <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.95rem' }}>
                   {user?.name || 'Employee'}
                 </div>
-                <div style={{ color: '#64748b', fontSize: '0.8rem' }}>{user?.email}</div>
+                <div style={{ color: '#A1A1AA', fontSize: '0.8rem' }}>{user?.email}</div>
               </div>
             )}
 
@@ -1248,7 +1248,7 @@ export default function LeaveApprovalsPage() {
                   width: '100%',
                   padding: '0.6rem 0.75rem',
                   borderRadius: '6px',
-                  border: '1px solid #cbd5e1',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
                   fontSize: '0.85rem',
                   fontFamily: 'inherit',
                 }}

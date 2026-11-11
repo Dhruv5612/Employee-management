@@ -266,9 +266,9 @@ export default function SignUpPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0f172a',
+        backgroundColor: '#0B0B0C',
         padding: '2.5rem 1.5rem',
-        backgroundImage: 'radial-gradient(circle at 50% 15%, rgba(99, 102, 241, 0.22) 0%, transparent 65%)',
+        backgroundImage: 'radial-gradient(ellipse 65% 45% at 50% 0%, rgba(198, 244, 50, 0.16) 0%, transparent 65%)',
       }}
     >
       <div style={{ width: '100%', maxWidth: '500px' }}>
@@ -280,14 +280,14 @@ export default function SignUpPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              color: '#94a3b8',
+              color: '#71717A',
               fontSize: '0.85rem',
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#71717A')}
           >
             <ArrowLeft size={16} />
             <span>Back to Home</span>
@@ -302,7 +302,7 @@ export default function SignUpPage() {
             padding: '2.5rem 2rem',
             boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.55)',
             borderRadius: '1.25rem',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#161816',
           }}
         >
           {/* Header */}
@@ -314,8 +314,8 @@ export default function SignUpPage() {
                 borderRadius: '14px',
                 background:
                   step === 'OTP'
-                    ? 'linear-gradient(135deg, #10b981, #059669)'
-                    : 'linear-gradient(135deg, #4f46e5, #4338ca)',
+                    ? '#C6F432'
+                    : '#C6F432',
                 color: '#ffffff',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -330,10 +330,10 @@ export default function SignUpPage() {
             >
               {step === 'OTP' ? <KeyRound size={26} /> : <Sparkles size={28} />}
             </div>
-            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.025em' }}>
+            <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.025em' }}>
               {step === 'OTP' ? 'Gmail Approval' : 'Create Work Account'}
             </h2>
-            <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.25rem' }}>
+            <p style={{ fontSize: '0.875rem', color: '#A1A1AA', marginTop: '0.25rem' }}>
               {step === 'OTP'
                 ? 'Confirm your work email to finish registration'
                 : 'Sign up for enterprise workspace access'}
@@ -344,10 +344,10 @@ export default function SignUpPage() {
             <div
               style={{
                 padding: '0.75rem 1rem',
-                backgroundColor: '#fef2f2',
-                border: '1px solid #fecaca',
+                backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                border: '1px solid rgba(239, 68, 68, 0.30)',
                 borderRadius: '8px',
-                color: '#991b1b',
+                color: '#FCA5A5',
                 fontSize: '0.85rem',
                 marginBottom: '1.25rem',
                 display: 'flex',
@@ -361,12 +361,12 @@ export default function SignUpPage() {
                 {errorBanner.toLowerCase().includes('already') ? (
                   <div style={{ fontSize: '0.775rem', marginTop: '0.25rem' }}>
                     This email is already registered.{' '}
-                    <Link to="/login" style={{ color: '#4f46e5', fontWeight: 700 }}>
+                    <Link to="/login" style={{ color: '#C6F432', fontWeight: 700 }}>
                       Sign in with OTP here →
                     </Link>
                   </div>
                 ) : (
-                  <div style={{ fontSize: '0.775rem', color: '#b91c1c', marginTop: '0.2rem' }}>
+                  <div style={{ fontSize: '0.775rem', color: '#FCA5A5', marginTop: '0.2rem' }}>
                     Please check the password requirements below.
                   </div>
                 )}
@@ -379,10 +379,10 @@ export default function SignUpPage() {
             <div
               style={{
                 padding: '0.65rem 0.85rem',
-                backgroundColor: '#ecfdf5',
-                border: '1px solid #a7f3d0',
+                backgroundColor: 'rgba(198, 244, 50, 0.10)',
+                border: '1px solid rgba(198, 244, 50, 0.30)',
                 borderRadius: '8px',
-                color: '#065f46',
+                color: '#C6F432',
                 fontSize: '0.8rem',
                 marginBottom: '1.25rem',
                 display: 'flex',
@@ -404,8 +404,8 @@ export default function SignUpPage() {
                   if (errors.otp) setErrors({});
                 }}
                 style={{
-                  background: '#059669',
-                  color: '#ffffff',
+                  background: '#C6F432',
+                  color: '#0B0B0C',
                   border: 'none',
                   borderRadius: '4px',
                   padding: '2px 8px',
@@ -431,7 +431,7 @@ export default function SignUpPage() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#6366f1',
+                    color: '#C6F432',
                     fontSize: '0.8rem',
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -505,7 +505,7 @@ export default function SignUpPage() {
                         style={{
                           background: 'none',
                           border: 'none',
-                          color: '#94a3b8',
+                          color: '#71717A',
                           cursor: 'pointer',
                           padding: '4px',
                           display: 'flex',
@@ -522,8 +522,8 @@ export default function SignUpPage() {
                   {/* Password Criteria Feedback Checklist */}
                   <div
                     style={{
-                      backgroundColor: '#f8fafc',
-                      border: '1px solid #e2e8f0',
+                      backgroundColor: '#161816',
+                      border: '1px solid rgba(255, 255, 255, 0.10)',
                       borderRadius: '8px',
                       padding: '0.65rem 0.85rem',
                       marginTop: '-0.35rem',
@@ -531,7 +531,7 @@ export default function SignUpPage() {
                       fontSize: '0.75rem',
                     }}
                   >
-                    <div style={{ color: '#64748b', fontWeight: 600, marginBottom: '0.35rem' }}>
+                    <div style={{ color: '#A1A1AA', fontWeight: 600, marginBottom: '0.35rem' }}>
                       Password must satisfy:
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem' }}>
@@ -540,7 +540,7 @@ export default function SignUpPage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.35rem',
-                          color: hasMinLength ? '#16a34a' : '#64748b',
+                          color: hasMinLength ? '#C6F432' : '#71717A',
                           fontWeight: hasMinLength ? 600 : 400,
                         }}
                       >
@@ -553,7 +553,7 @@ export default function SignUpPage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.35rem',
-                          color: hasAlphabet ? '#16a34a' : '#64748b',
+                          color: hasAlphabet ? '#C6F432' : '#71717A',
                           fontWeight: hasAlphabet ? 600 : 400,
                         }}
                       >
@@ -566,7 +566,7 @@ export default function SignUpPage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.35rem',
-                          color: hasNumber ? '#16a34a' : '#64748b',
+                          color: hasNumber ? '#C6F432' : '#71717A',
                           fontWeight: hasNumber ? 600 : 400,
                         }}
                       >
@@ -579,7 +579,7 @@ export default function SignUpPage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.35rem',
-                          color: hasSpecial ? '#16a34a' : '#64748b',
+                          color: hasSpecial ? '#C6F432' : '#71717A',
                           fontWeight: hasSpecial ? 600 : 400,
                         }}
                       >
@@ -606,7 +606,7 @@ export default function SignUpPage() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#94a3b8',
+                        color: '#71717A',
                         cursor: 'pointer',
                         padding: '4px',
                         display: 'flex',
@@ -638,18 +638,18 @@ export default function SignUpPage() {
               <div
                 style={{
                   padding: '0.85rem 1rem',
-                  backgroundColor: '#f1f5f9',
+                  backgroundColor: '#161816',
                   borderRadius: '10px',
                   marginBottom: '1.25rem',
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                <div style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>
                   {isDelivered
                     ? 'A one-time approval code was sent to:'
                     : 'Safe-mode verification (external email skipped) for:'}
                 </div>
-                <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#0f172a', marginTop: '2px' }}>
+                <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#FFFFFF', marginTop: '2px' }}>
                   {otpEmail}
                 </div>
               </div>
@@ -660,7 +660,7 @@ export default function SignUpPage() {
                     display: 'block',
                     fontSize: '0.85rem',
                     fontWeight: 600,
-                    color: '#334155',
+                    color: '#E4E4E7',
                     marginBottom: '0.4rem',
                     textAlign: 'center',
                   }}
@@ -687,10 +687,10 @@ export default function SignUpPage() {
                     letterSpacing: '12px',
                     fontFamily: 'monospace',
                     borderRadius: '10px',
-                    border: errors.otp ? '2px solid #ef4444' : '2px solid #cbd5e1',
+                    border: errors.otp ? '2px solid #ef4444' : '2px solid rgba(198, 244, 50, 0.35)',
                     outline: 'none',
                     transition: 'border-color 0.2s',
-                    backgroundColor: '#fafafa',
+                    backgroundColor: '#161816',
                   }}
                 />
                 {errors.otp && (
@@ -708,8 +708,9 @@ export default function SignUpPage() {
                 style={{
                   width: '100%',
                   padding: '0.8rem',
-                  backgroundColor: '#10b981',
-                  borderColor: '#10b981',
+                  backgroundColor: '#C6F432',
+                  borderColor: '#C6F432',
+                  color: '#0B0B0C',
                 }}
               >
                 Verify & Complete Registration
@@ -735,7 +736,7 @@ export default function SignUpPage() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#64748b',
+                    color: '#A1A1AA',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -754,7 +755,7 @@ export default function SignUpPage() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: countdown > 0 ? '#94a3b8' : '#4f46e5',
+                    color: countdown > 0 ? '#71717A' : '#C6F432',
                     cursor: countdown > 0 ? 'not-allowed' : 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -771,9 +772,9 @@ export default function SignUpPage() {
           )}
 
           {step === 'FORM' && (
-            <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.85rem', color: '#64748b' }}>
+            <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.85rem', color: '#A1A1AA' }}>
               Already have an account?{' '}
-              <Link to="/login" style={{ fontWeight: 700, color: '#4f46e5' }}>
+              <Link to="/login" style={{ fontWeight: 700, color: '#C6F432' }}>
                 Sign In
               </Link>
             </div>
@@ -781,7 +782,7 @@ export default function SignUpPage() {
         </div>
 
         {/* Footer info */}
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#64748b', fontSize: '0.8rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#A1A1AA', fontSize: '0.8rem' }}>
           &copy; {new Date().getFullYear()} EmployeeHub Enterprise. All rights reserved.
         </div>
       </div>

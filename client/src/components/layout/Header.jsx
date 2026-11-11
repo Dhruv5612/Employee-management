@@ -31,8 +31,8 @@ export default function Header({ user, onMenuToggle }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0.75rem 1.5rem',
-        backgroundColor: '#ffffff',
-        borderBottom: '1px solid #e2e8f0',
+        backgroundColor: 'rgba(11, 11, 12, 0.88)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.09)',
       }}
     >
       <div className="header-title-section" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -42,7 +42,7 @@ export default function Header({ user, onMenuToggle }) {
           style={{
             background: 'none',
             border: 'none',
-            color: '#334155',
+            color: '#E4E4E7',
             cursor: 'pointer',
             padding: '6px',
             display: 'flex',
@@ -67,8 +67,8 @@ export default function Header({ user, onMenuToggle }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.35rem',
-              background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-              color: '#ffffff',
+              background: '#C6F432',
+              color: '#0B0B0C',
               border: 'none',
               borderRadius: '8px',
               padding: '0.5rem 1rem',
@@ -100,9 +100,9 @@ export default function Header({ user, onMenuToggle }) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.35rem',
-            backgroundColor: '#fee2e2',
-            color: '#dc2626',
-            border: '1px solid #fecaca',
+            backgroundColor: 'rgba(239, 68, 68, 0.14)',
+            color: '#FCA5A5',
+            border: '1px solid rgba(239, 68, 68, 0.30)',
             borderRadius: '8px',
             padding: '0.45rem 0.85rem',
             fontSize: '0.825rem',
@@ -115,8 +115,8 @@ export default function Header({ user, onMenuToggle }) {
             e.currentTarget.style.color = '#ffffff';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#fee2e2';
-            e.currentTarget.style.color = '#dc2626';
+            e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.14)';
+            e.currentTarget.style.color = '#FCA5A5';
           }}
         >
           <span>Logout</span>
@@ -126,14 +126,14 @@ export default function Header({ user, onMenuToggle }) {
         <Link
           to="/announcements"
           style={{
-            color: '#64748b',
+            color: '#A1A1AA',
             display: 'flex',
             alignItems: 'center',
             padding: '7px',
             borderRadius: '10px',
             position: 'relative',
-            backgroundColor: '#f8fafc',
-            border: '1px solid #e2e8f0',
+            backgroundColor: '#161816',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
           }}
           title="Announcements & Notifications"
         >
@@ -146,8 +146,8 @@ export default function Header({ user, onMenuToggle }) {
               width: '8px',
               height: '8px',
               borderRadius: '50%',
-              backgroundColor: '#ec4899',
-              boxShadow: '0 0 8px #ec4899',
+              backgroundColor: '#C6F432',
+              boxShadow: '0 0 8px #C6F432',
             }}
           />
         </Link>
@@ -159,8 +159,8 @@ export default function Header({ user, onMenuToggle }) {
               width: '38px',
               height: '38px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
-              color: '#ffffff',
+              background: '#C6F432',
+              color: '#0B0B0C',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -181,8 +181,8 @@ export default function Header({ user, onMenuToggle }) {
               width: '11px',
               height: '11px',
               borderRadius: '50%',
-              backgroundColor: '#10b981',
-              border: '2px solid #ffffff',
+              backgroundColor: '#C6F432',
+              border: '2px solid #0B0B0C',
             }}
           />
         </Link>

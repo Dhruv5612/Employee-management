@@ -139,7 +139,7 @@ export default function ReportsPage() {
         }}
       >
         <div style={{ flex: '1 1 200px' }}>
-          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '0.35rem' }}>
+          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#D4D4D8', display: 'block', marginBottom: '0.35rem' }}>
             Filter Department
           </label>
           <select
@@ -158,7 +158,7 @@ export default function ReportsPage() {
         </div>
 
         <div style={{ flex: '1 1 160px' }}>
-          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '0.35rem' }}>
+          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#D4D4D8', display: 'block', marginBottom: '0.35rem' }}>
             Employment Status
           </label>
           <select
@@ -175,7 +175,7 @@ export default function ReportsPage() {
         </div>
 
         <div style={{ flex: '1 1 160px' }}>
-          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '0.35rem' }}>
+          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#D4D4D8', display: 'block', marginBottom: '0.35rem' }}>
             Joined After
           </label>
           <input
@@ -189,7 +189,7 @@ export default function ReportsPage() {
         </div>
 
         <div style={{ flex: '1 1 160px' }}>
-          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '0.35rem' }}>
+          <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#D4D4D8', display: 'block', marginBottom: '0.35rem' }}>
             Joined Before
           </label>
           <input
@@ -222,24 +222,24 @@ export default function ReportsPage() {
           {/* Summary Box */}
           <div className="card">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: '#eef2ff', color: '#4f46e5' }}>
+              <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.12)', color: '#C6F432' }}>
                 <Users size={22} />
               </div>
               <div>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Filtered Headcount</h3>
-                <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Records matching applied criteria</p>
+                <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Records matching applied criteria</p>
               </div>
             </div>
 
-            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem' }}>
               {summary?.totalEmployees ?? 0}
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', borderTop: '1px solid #f1f5f9', paddingTop: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem' }}>
               {summary?.statusBreakdown?.map((s) => (
                 <div key={s.status} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
-                  <span style={{ color: '#475569', fontWeight: 500 }}>{s.status}</span>
-                  <span style={{ fontWeight: 700, color: '#0f172a' }}>{s.count}</span>
+                  <span style={{ color: '#D4D4D8', fontWeight: 500 }}>{s.status}</span>
+                  <span style={{ fontWeight: 700, color: '#FFFFFF' }}>{s.count}</span>
                 </div>
               ))}
             </div>
@@ -248,12 +248,12 @@ export default function ReportsPage() {
           {/* Department breakdown */}
           <div className="card" style={{ gridColumn: 'span 2' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: '#ecfdf5', color: '#10b981' }}>
+              <div style={{ padding: '0.5rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.12)', color: '#C6F432' }}>
                 <Building2 size={22} />
               </div>
               <div>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Department Breakdown</h3>
-                <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Allocated headcount per business unit</p>
+                <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Allocated headcount per business unit</p>
               </div>
             </div>
 
@@ -276,12 +276,12 @@ export default function ReportsPage() {
                       <tr key={d.departmentCode}>
                         <td style={{ fontWeight: 600 }}>{d.departmentName}</td>
                         <td>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#4f46e5' }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#C6F432' }}>
                             {d.departmentCode}
                           </span>
                         </td>
                         <td style={{ textAlign: 'right', fontWeight: 700 }}>{d.count}</td>
-                        <td style={{ textAlign: 'right', color: '#64748b' }}>{pct}%</td>
+                        <td style={{ textAlign: 'right', color: '#A1A1AA' }}>{pct}%</td>
                       </tr>
                     );
                   })}
