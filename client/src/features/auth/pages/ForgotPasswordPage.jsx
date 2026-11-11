@@ -328,7 +328,7 @@ export default function ForgotPasswordPage() {
                 }}
               >
                 <div style={{ fontSize: '0.825rem', color: '#166534', fontWeight: 600, marginBottom: '0.4rem' }}>
-                  Password reset link sent to:
+                  {submittedResult?.resetUrl ? 'Password reset generated for:' : 'Password reset link sent to:'}
                 </div>
                 <div
                   style={{
@@ -367,30 +367,79 @@ export default function ForgotPasswordPage() {
                 </div>
 
                 <p style={{ fontSize: '0.8rem', color: '#15803d', marginTop: '0.75rem', lineHeight: 1.4 }}>
-                  Please check your inbox (and spam/junk folder) and click the link in the email to set your new password.
+                  {submittedResult?.resetUrl
+                    ? 'External email delivery was skipped for this demo/non-routable address. Use the direct recovery button below.'
+                    : 'Please check your inbox (and spam/junk folder) and click the link in the email to set your new password.'}
                 </p>
               </div>
 
               {/* Delivery notification badge */}
-              <div
-                style={{
-                  padding: '0.85rem 1rem',
-                  backgroundColor: '#f0fdf4',
-                  border: '1px solid #bbf7d0',
-                  borderRadius: '10px',
-                  color: '#166534',
-                  fontSize: '0.825rem',
-                  marginBottom: '1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.6rem',
-                }}
-              >
-                <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
-                <div>
-                  <strong>Email sent!</strong> A password reset link has been dispatched to <strong>{email.trim()}</strong>. Please check your inbox or spam folder.
+              {submittedResult?.resetUrl ? (
+                <div
+                  style={{
+                    padding: '0.95rem 1rem',
+                    backgroundColor: '#eef2ff',
+                    border: '1px solid #c7d2fe',
+                    borderRadius: '10px',
+                    color: '#312e81',
+                    fontSize: '0.825rem',
+                    marginBottom: '1.25rem',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.6rem' }}>
+                    <KeyRound size={18} color="#4f46e5" style={{ flexShrink: 0 }} />
+                    <div>
+                      <strong>Demo / Safe-Mode Recovery Link</strong> (outbound email skipped to avoid bounces)
+                    </div>
+                  </div>
+                  <Link
+                    to={submittedResult.resetUrl}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      backgroundColor: '#4f46e5',
+                      color: '#ffffff',
+                      padding: '0.5rem 0.9rem',
+                      borderRadius: '7px',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <span>Open Reset Password Page</span>
+                    <ExternalLink size={14} />
+                  </Link>
                 </div>
-              </div>
+              ) : (
+                <div
+                  style={{
+                    padding: '0.85rem 1rem',
+                    backgroundColor: '#f0fdf4',
+                    border: '1px solid #bbf7d0',
+                    borderRadius: '10px',
+                    color: '#166534',
+                    fontSize: '0.825rem',
+                    marginBottom: '1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                  }}
+                >
+                  <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
+                  <div>
+                    {submittedResult?.delivered ? (
+                      <>
+                        <strong>Email sent!</strong> A password reset link has been dispatched to <strong>{email.trim()}</strong>. Please check your inbox or spam folder.
+                      </>
+                    ) : (
+                      <>
+                        If an account exists with <strong>{email.trim()}</strong>, recovery instructions have been dispatched. Please check your inbox or spam folder.
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Step-by-Step Instructions */}
               <div

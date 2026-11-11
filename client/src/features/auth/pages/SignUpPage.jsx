@@ -38,6 +38,7 @@ export default function SignUpPage() {
   const [otp, setOtp] = useState('');
   const [otpEmail, setOtpEmail] = useState('');
   const [devOtp, setDevOtp] = useState('');
+  const [isDelivered, setIsDelivered] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -144,10 +145,15 @@ export default function SignUpPage() {
       if (res && res.requiresOtp) {
         setOtpEmail(res.email || formData.email.trim().toLowerCase());
         setDevOtp(res.devOtp || '');
+        setIsDelivered(!!res.delivered);
         setStep('OTP');
         setOtp('');
         setCountdown(60);
-        success(`Verification code dispatched to ${res.email || formData.email}`);
+        if (res.delivered) {
+          success(`Verification code dispatched to ${res.email || formData.email}`);
+        } else {
+          info('Demo / safe-mode verification code generated on screen.');
+        }
       } else if (res && res.token) {
         authStorage.setToken(res.token);
         authStorage.setUser(res.user);
@@ -219,9 +225,14 @@ export default function SignUpPage() {
     try {
       const emailToResend = (otpEmail || formData.email).trim().toLowerCase();
       const res = await authApi.resendOtp(emailToResend, 'signup');
-      if (res.devOtp) setDevOtp(res.devOtp);
+      setDevOtp(res.devOtp || '');
+      setIsDelivered(!!res.delivered);
       setCountdown(60);
-      success('A new confirmation code has been dispatched to your Gmail!');
+      if (res.delivered) {
+        success('A new confirmation code has been dispatched to your Gmail!');
+      } else {
+        info('New demo verification code generated on screen!');
+      }
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Failed to resend code.';
       setErrorBanner(msg);
@@ -363,8 +374,8 @@ export default function SignUpPage() {
             </div>
           )}
 
-          {/* Development / Offline OTP Hint if returned */}
-          {devOtp && (
+          {/* Development / Safe Mode OTP Hint if email was skipped or simulated */}
+          {step === 'OTP' && devOtp && (
             <div
               style={{
                 padding: '0.65rem 0.85rem',
@@ -377,17 +388,21 @@ export default function SignUpPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                gap: '0.5rem',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <CheckCircle2 size={16} color="#059669" />
                 <span>
-                  Dev / Console OTP Code: <strong style={{ letterSpacing: '1px' }}>{devOtp}</strong>
+                  Demo / Safe Mode OTP: <strong style={{ letterSpacing: '1px' }}>{devOtp}</strong>
                 </span>
               </div>
               <button
                 type="button"
-                onClick={() => setOtp(devOtp)}
+                onClick={() => {
+                  setOtp(devOtp);
+                  if (errors.otp) setErrors({});
+                }}
                 style={{
                   background: '#059669',
                   color: '#ffffff',
@@ -397,6 +412,7 @@ export default function SignUpPage() {
                   fontSize: '0.725rem',
                   fontWeight: 600,
                   cursor: 'pointer',
+                  flexShrink: 0,
                 }}
               >
                 Auto Fill
@@ -629,7 +645,9 @@ export default function SignUpPage() {
                 }}
               >
                 <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
-                  A one-time approval code was sent to:
+                  {isDelivered
+                    ? 'A one-time approval code was sent to:'
+                    : 'Safe-mode verification (external email skipped) for:'}
                 </div>
                 <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#0f172a', marginTop: '2px' }}>
                   {otpEmail}

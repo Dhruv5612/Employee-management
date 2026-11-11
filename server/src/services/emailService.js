@@ -1,8 +1,71 @@
 import nodemailer from 'nodemailer';
+import dns from 'dns/promises';
+
+const RESERVED_DEMO_DOMAINS = new Set([
+  'company.com',
+  'example.com',
+  'example.org',
+  'example.net',
+  'test.com',
+  'test.org',
+  'localhost',
+  'invalid',
+  'local',
+]);
+
+const RESERVED_TLD_SUFFIXES = ['.test', '.invalid', '.local', '.localhost', '.example'];
 
 class EmailService {
   constructor() {
     // Dynamic transporter lookup
+  }
+
+  /**
+   * Prevent sending real SMTP traffic to placeholder/demo domains or domains without MX records,
+   * which otherwise triggers 72-hour Gmail Mail Delivery Subsystem retry/bounce storms.
+   */
+  async checkDeliverability(email) {
+    const normalized = (email || '').trim().toLowerCase();
+    const parts = normalized.split('@');
+    if (parts.length !== 2 || !parts[0] || !parts[1]) {
+      return { deliverable: false, reason: 'invalid_email_format' };
+    }
+
+    const [localPart, domain] = parts;
+
+    if (localPart.startsWith('debug_user_test')) {
+      return { deliverable: false, reason: 'debug_test_address' };
+    }
+
+    if (
+      RESERVED_DEMO_DOMAINS.has(domain) ||
+      RESERVED_TLD_SUFFIXES.some((suffix) => domain.endsWith(suffix))
+    ) {
+      return { deliverable: false, reason: 'demo_or_reserved_domain' };
+    }
+
+    let timer;
+    try {
+      const timeoutPromise = new Promise((_, reject) => {
+        timer = setTimeout(
+          () => reject(Object.assign(new Error('DNS MX lookup timeout'), { code: 'ETIMEDOUT' })),
+          2500
+        );
+      });
+      const mxRecords = await Promise.race([dns.resolveMx(domain), timeoutPromise]);
+      if (!mxRecords || mxRecords.length === 0) {
+        return { deliverable: false, reason: 'no_mx_record' };
+      }
+      return { deliverable: true };
+    } catch (err) {
+      if (err && (err.code === 'ENOTFOUND' || err.code === 'ENODATA')) {
+        return { deliverable: false, reason: `dns_${err.code.toLowerCase()}` };
+      }
+      // Fail-open on transient DNS lookup errors so valid addresses still work
+      return { deliverable: true };
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   getTransporter() {
@@ -30,7 +93,11 @@ class EmailService {
   }
 
   async sendOtpEmail({ to, name = 'User', otp, purpose = 'Sign In Approval' }) {
-    const isSignup = purpose.toLowerCase().includes('signup') || purpose.toLowerCase().includes('register');
+    const lowerPurpose = (purpose || '').toLowerCase();
+    const isSignup =
+      lowerPurpose.includes('signup') ||
+      lowerPurpose.includes('register') ||
+      lowerPurpose.includes('registrat');
     const title = isSignup ? 'Verify Your Work Email' : 'Sign In Approval Code';
     const subtitle = isSignup
       ? 'Use this one-time code to complete your Employee Management registration.'
@@ -60,7 +127,7 @@ class EmailService {
         <div class="container">
           <div class="header">
             <div class="logo">EmployeeHub Enterprise</div>
-            <div style="font-size: 13px; opacity: 0.9; margin-top: 4px;">Gmail Authentication & Approval</div>
+            <div style="font-size: 13px; opacity: 0.9; margin-top: 4px;">${title}</div>
           </div>
           <div class="content">
             <div class="greeting">Hello ${name},</div>
@@ -89,28 +156,57 @@ class EmailService {
     console.log(`✨ OTP CODE: ${otp}`);
     console.log(`=======================================================`);
 
-    const transporter = this.getTransporter();
-    if (transporter) {
-      try {
-        const sender = (process.env.GMAIL_USER || process.env.EMAIL_USER || '').trim();
-        const info = await transporter.sendMail({
-          from: `"Employee Management" <${sender}>`,
-          to,
-          subject: `Your ${purpose} Code: ${otp} - Employee Management`,
-          html: htmlContent,
-          text: `Your ${purpose} code is ${otp}. Valid for 10 minutes.`,
-        });
-        console.log(`[EmailService] Real email successfully sent to ${to}: ${info.messageId}`);
-        return { success: true, messageId: info.messageId, delivered: true, otp };
-      } catch (sendErr) {
-        console.error(`[EmailService] Failed to send email via Gmail (${sendErr.message}). Fallback to console OTP.`);
-        return { success: true, delivered: false, simulated: true, otp, error: sendErr.message };
-      }
-    } else {
-      console.log(`[EmailService] Gmail credentials not yet set in server/.env. Using console OTP mode.`);
+    const dispatch = await this.dispatchEmail({
+      to,
+      subject: `Your ${purpose} Code: ${otp} - Employee Management`,
+      html: htmlContent,
+      text: `Your ${purpose} code is ${otp}. Valid for 10 minutes.`,
+    });
+
+    return { ...dispatch, otp };
+  }
+
+  async dispatchEmail({ to, subject, html, text }) {
+    const deliverability = await this.checkDeliverability(to);
+    if (!deliverability.deliverable) {
+      console.log(
+        `[EmailService] Skipped outbound Gmail SMTP to ${to} (reason: ${deliverability.reason}) to prevent mail-daemon bounce loops.`
+      );
+      return {
+        success: true,
+        delivered: false,
+        simulated: true,
+        skippedReason: deliverability.reason,
+      };
     }
 
-    return { success: true, delivered: false, simulated: true, otp };
+    const transporter = this.getTransporter();
+    if (!transporter) {
+      console.log(`[EmailService] Gmail credentials not configured. Using simulated mode.`);
+      return { success: true, delivered: false, simulated: true, skippedReason: 'smtp_not_configured' };
+    }
+
+    try {
+      const sender = (process.env.GMAIL_USER || process.env.EMAIL_USER || '').trim();
+      const info = await transporter.sendMail({
+        from: `"Employee Management" <${sender}>`,
+        to,
+        subject,
+        html,
+        text,
+      });
+      console.log(`[EmailService] Real email successfully sent to ${to}: ${info.messageId}`);
+      return { success: true, messageId: info.messageId, delivered: true, simulated: false };
+    } catch (sendErr) {
+      console.error(`[EmailService] Failed to send email via Gmail (${sendErr.message}). Fallback to simulated mode.`);
+      return {
+        success: true,
+        delivered: false,
+        simulated: true,
+        skippedReason: 'smtp_send_failed',
+        error: sendErr.message,
+      };
+    }
   }
 
   async sendPasswordResetEmail({ to, name = 'User', resetUrl, token }) {
@@ -175,28 +271,14 @@ class EmailService {
     console.log(`🔑 Token: ${token}`);
     console.log(`=======================================================`);
 
-    const transporter = this.getTransporter();
-    if (transporter) {
-      try {
-        const sender = (process.env.GMAIL_USER || process.env.EMAIL_USER || '').trim();
-        const info = await transporter.sendMail({
-          from: `"Employee Management" <${sender}>`,
-          to,
-          subject: `Reset Your Password - Employee Management`,
-          html: htmlContent,
-          text: `Reset your password by visiting this link: ${resetUrl}. Valid for 60 minutes.`,
-        });
-        console.log(`[EmailService] Password reset email successfully sent to ${to}: ${info.messageId}`);
-        return { success: true, messageId: info.messageId, delivered: true, resetUrl, token };
-      } catch (sendErr) {
-        console.error(`[EmailService] Failed to send password reset email via Gmail (${sendErr.message}). Fallback to simulated mode.`);
-        return { success: true, delivered: false, simulated: true, resetUrl, token, error: sendErr.message };
-      }
-    } else {
-      console.log(`[EmailService] Gmail credentials not set in server/.env. Using simulated reset link mode.`);
-    }
+    const dispatch = await this.dispatchEmail({
+      to,
+      subject: `Reset Your Password - Employee Management`,
+      html: htmlContent,
+      text: `Reset your password by visiting this link: ${resetUrl}. Valid for 60 minutes.`,
+    });
 
-    return { success: true, delivered: false, simulated: true, resetUrl, token };
+    return { ...dispatch, resetUrl, token };
   }
 }
 

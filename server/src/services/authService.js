@@ -8,6 +8,23 @@ import { ApiError } from '../utils/ApiError.js';
 import { AuditLog } from '../models/AuditLog.js';
 
 export class AuthService {
+  static formatOtpResponse({ email, otp, sendResult, deliveredMessage, extraFields = {} }) {
+    const delivered = !!sendResult?.delivered;
+    const simulated = !delivered;
+
+    return {
+      ...extraFields,
+      email,
+      delivered,
+      simulated,
+      skippedReason: sendResult?.skippedReason,
+      message: delivered
+        ? deliveredMessage
+        : `Demo / safe verification code generated for ${email} (outbound email skipped to avoid bounces).`,
+      devOtp: simulated ? otp : undefined,
+    };
+  }
+
   static generateToken(user) {
     const secret = process.env.JWT_ACCESS_SECRET || 'super_secure_jwt_secret_key_emp_mgmt_2026_xyz';
     const expiresIn = process.env.JWT_ACCESS_EXPIRES_IN || '7d';
@@ -60,15 +77,13 @@ export class AuthService {
       purpose: 'Sign In Approval',
     });
 
-    return {
-      requiresOtp: true,
+    return this.formatOtpResponse({
       email: normalizedEmail,
-      delivered: !!sendResult.delivered,
-      message: sendResult.delivered
-        ? `Credentials authenticated! A 6-digit approval code was sent to your Gmail (${normalizedEmail})`
-        : `Credentials authenticated! Simulated OTP: ${otp}`,
-      devOtp: !sendResult.delivered ? otp : undefined,
-    };
+      otp,
+      sendResult,
+      deliveredMessage: `Credentials authenticated! A 6-digit approval code was sent to your Gmail (${normalizedEmail})`,
+      extraFields: { requiresOtp: true },
+    });
   }
 
   // --- OPTION 2: Gmail OTP Login (Passwordless) ---
@@ -107,15 +122,13 @@ export class AuthService {
       purpose: 'Sign In Approval',
     });
 
-    return {
-      requiresOtp: true,
+    return this.formatOtpResponse({
       email: normalizedEmail,
-      delivered: !!sendResult.delivered,
-      message: sendResult.delivered
-        ? `A 6-digit approval code has been sent directly to your Gmail (${normalizedEmail})`
-        : `Email credentials (GMAIL_PASS) not set in server/.env. Simulated OTP: ${otp}`,
-      devOtp: otp,
-    };
+      otp,
+      sendResult,
+      deliveredMessage: `A 6-digit approval code has been sent directly to your Gmail (${normalizedEmail})`,
+      extraFields: { requiresOtp: true },
+    });
   }
 
   static async verifyLoginOtp({ email, otp }) {
@@ -210,15 +223,13 @@ export class AuthService {
       purpose: 'Account Registration',
     });
 
-    return {
-      requiresOtp: true,
+    return this.formatOtpResponse({
       email: normalizedEmail,
-      delivered: !!sendResult.delivered,
-      message: sendResult.delivered
-        ? `A 6-digit confirmation code has been sent directly to your Gmail (${normalizedEmail})`
-        : `Email credentials (GMAIL_PASS) not set in server/.env. Simulated OTP: ${otp}`,
-      devOtp: otp,
-    };
+      otp,
+      sendResult,
+      deliveredMessage: `A 6-digit confirmation code has been sent directly to your Gmail (${normalizedEmail})`,
+      extraFields: { requiresOtp: true },
+    });
   }
 
   static async verifySignupOtp({ email, otp }) {
@@ -307,6 +318,7 @@ export class AuthService {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
+    let sendResult;
     if (purpose === 'signup') {
       const existingUser = await User.findOne({ email: normalizedEmail });
       if (existingUser) {
@@ -327,7 +339,7 @@ export class AuthService {
         pendingData: existingRecord.pendingData,
       });
 
-      await emailService.sendOtpEmail({
+      sendResult = await emailService.sendOtpEmail({
         to: normalizedEmail,
         name: existingRecord.pendingData.name,
         otp,
@@ -347,7 +359,7 @@ export class AuthService {
         expiresAt: new Date(Date.now() + 10 * 60 * 1000),
       });
 
-      await emailService.sendOtpEmail({
+      sendResult = await emailService.sendOtpEmail({
         to: normalizedEmail,
         name: user.name,
         otp,
@@ -355,11 +367,13 @@ export class AuthService {
       });
     }
 
-    return {
-      success: true,
-      message: `A new verification code has been dispatched to ${normalizedEmail}`,
-      devOtp: process.env.NODE_ENV === 'development' ? otp : undefined,
-    };
+    return this.formatOtpResponse({
+      email: normalizedEmail,
+      otp,
+      sendResult,
+      deliveredMessage: `A new verification code has been dispatched to ${normalizedEmail}`,
+      extraFields: { success: true },
+    });
   }
 
   static async signup({ name, email, password, phone = '', role = 'Viewer' }) {
@@ -447,17 +461,25 @@ export class AuthService {
       token: resetToken,
     });
 
+    const delivered = !!sendResult.delivered;
+    const simulated = !delivered;
+
     return {
       success: true,
-      delivered: !!sendResult.delivered,
-      simulated: !sendResult.delivered,
+      delivered,
+      simulated,
+      skippedReason: sendResult.skippedReason,
       email: normalizedEmail,
-      message: sendResult.delivered
+      message: delivered
         ? `A password reset link has been dispatched to your email (${normalizedEmail}). Please check your inbox.`
-        : `Password reset email dispatched for ${normalizedEmail}.`,
-      resetToken, // Returned for ease of testing/dev
-      resetUrl: `/reset-password/${resetToken}`,
-      fullResetUrl,
+        : `Safe / demo recovery link generated for ${normalizedEmail} (outbound email skipped to avoid bounces).`,
+      ...(simulated || process.env.NODE_ENV === 'development'
+        ? {
+            resetToken,
+            resetUrl: `/reset-password/${resetToken}`,
+            fullResetUrl,
+          }
+        : {}),
     };
   }
 

@@ -468,33 +468,88 @@ export default function LoginPage() {
                 }}
               >
                 <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
-                  A 6-digit approval code was dispatched to your Gmail:
+                  {isDelivered
+                    ? 'A 6-digit approval code was dispatched to your Gmail:'
+                    : 'Safe-mode approval code (no external email sent) for:'}
                 </div>
                 <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#0f172a', marginTop: '2px' }}>
                   {otpEmail}
                 </div>
               </div>
 
-              {/* Delivery notification badge */}
-              <div
-                style={{
-                  padding: '0.85rem 1rem',
-                  backgroundColor: '#f0fdf4',
-                  border: '1px solid #bbf7d0',
-                  borderRadius: '10px',
-                  color: '#166534',
-                  fontSize: '0.825rem',
-                  marginBottom: '1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.6rem',
-                }}
-              >
-                <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
-                <div>
-                  <strong>Email sent!</strong> A 6-digit approval code was dispatched directly to your Gmail (<strong>{otpEmail}</strong>). Please check your inbox or spam folder.
+              {/* Delivery notification or Safe/Demo Mode OTP badge */}
+              {isDelivered ? (
+                <div
+                  style={{
+                    padding: '0.85rem 1rem',
+                    backgroundColor: '#f0fdf4',
+                    border: '1px solid #bbf7d0',
+                    borderRadius: '10px',
+                    color: '#166534',
+                    fontSize: '0.825rem',
+                    marginBottom: '1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                  }}
+                >
+                  <CheckCircle2 size={20} color="#16a34a" style={{ flexShrink: 0 }} />
+                  <div>
+                    <strong>Email sent!</strong> A 6-digit approval code was dispatched directly to your Gmail (<strong>{otpEmail}</strong>). Please check your inbox or spam folder.
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div
+                  style={{
+                    padding: '0.85rem 1rem',
+                    backgroundColor: '#eef2ff',
+                    border: '1px solid #c7d2fe',
+                    borderRadius: '10px',
+                    color: '#312e81',
+                    fontSize: '0.825rem',
+                    marginBottom: '1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <KeyRound size={20} color="#4f46e5" style={{ flexShrink: 0 }} />
+                    <div>
+                      <strong>Demo / Safe Mode OTP:</strong>{' '}
+                      <span style={{ fontFamily: 'monospace', fontWeight: 800, letterSpacing: '2px', fontSize: '0.95rem' }}>
+                        {devOtp || 'Check server logs'}
+                      </span>
+                      <div style={{ fontSize: '0.75rem', color: '#4338ca', marginTop: '2px' }}>
+                        Outbound email skipped for demo/non-routable domain to prevent mail bounces.
+                      </div>
+                    </div>
+                  </div>
+                  {devOtp && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOtp(devOtp);
+                        if (errors.otp) setErrors({});
+                      }}
+                      style={{
+                        background: '#4f46e5',
+                        color: '#ffffff',
+                        border: 'none',
+                        borderRadius: '6px',
+                        padding: '5px 10px',
+                        fontSize: '0.75rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        flexShrink: 0,
+                      }}
+                    >
+                      Auto Fill
+                    </button>
+                  )}
+                </div>
+              )}
 
               <div style={{ marginBottom: '1.25rem' }}>
                 <label
