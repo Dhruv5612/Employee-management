@@ -3,16 +3,16 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recha
 
 export default function StatusChart({ data = [] }) {
   const COLORS = {
-    Active: '#C6F432',
-    Inactive: '#52525B',
-    'On Leave': '#FFFFFF',
+    Active: '#10b981',
+    Inactive: '#64748b',
+    'On Leave': '#f59e0b',
   };
 
   const chartData = data.filter((d) => d.count > 0);
 
   if (chartData.length === 0) {
     return (
-      <div style={{ textAlign: 'center', padding: '3rem', color: '#71717A' }}>
+      <div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
         No status data available
       </div>
     );
@@ -33,7 +33,7 @@ export default function StatusChart({ data = [] }) {
             nameKey="status"
           >
             {chartData.map((entry) => (
-              <Cell key={`cell-${entry.status}`} fill={COLORS[entry.status] || '#A1A1AA'} />
+              <Cell key={`cell-${entry.status}`} fill={COLORS[entry.status] || '#cbd5e1'} />
             ))}
           </Pie>
           <Tooltip
@@ -43,7 +43,7 @@ export default function StatusChart({ data = [] }) {
                 return (
                   <div
                     style={{
-                      backgroundColor: '#141614',
+                      backgroundColor: '#1e293b',
                       color: '#ffffff',
                       padding: '0.65rem 0.85rem',
                       borderRadius: '8px',
@@ -52,7 +52,7 @@ export default function StatusChart({ data = [] }) {
                     }}
                   >
                     <div style={{ fontWeight: 700 }}>{item.name}</div>
-                    <div style={{ color: COLORS[item.name] || '#A1A1AA', marginTop: '0.2rem' }}>
+                    <div style={{ color: COLORS[item.name] || '#cbd5e1', marginTop: '0.2rem' }}>
                       Headcount: <strong>{item.value}</strong>
                     </div>
                   </div>
@@ -65,7 +65,7 @@ export default function StatusChart({ data = [] }) {
             verticalAlign="bottom"
             height={36}
             formatter={(value) => (
-              <span style={{ color: '#E4E4E7', fontSize: '0.85rem', fontWeight: 600 }}>{value}</span>
+              <span style={{ color: '#475569', fontSize: '0.85rem', fontWeight: 600 }}>{value}</span>
             )}
           />
         </PieChart>

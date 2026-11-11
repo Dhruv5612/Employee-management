@@ -23,14 +23,14 @@ export default function Pagination({
         justifyContent: 'space-between',
         padding: '1rem 1.25rem',
         borderTop: '1px solid var(--border-color)',
-        backgroundColor: '#121314',
+        backgroundColor: '#ffffff',
         flexWrap: 'wrap',
         gap: '1rem',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.875rem', color: '#A1A1AA' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.875rem', color: '#64748b' }}>
         <span>
-          Showing <strong style={{ color: '#FFFFFF' }}>{startRecord}</strong> to <strong style={{ color: '#FFFFFF' }}>{endRecord}</strong> of <strong style={{ color: '#C6F432' }}>{totalRecords}</strong> records
+          Showing <strong>{startRecord}</strong> to <strong>{endRecord}</strong> of <strong>{totalRecords}</strong> records
         </span>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -42,10 +42,9 @@ export default function Pagination({
             style={{
               padding: '0.25rem 0.5rem',
               borderRadius: '6px',
-              border: '1px solid rgba(255,255,255,0.14)',
+              border: '1px solid var(--border-color)',
               fontSize: '0.85rem',
-              backgroundColor: '#161816',
-              color: '#FFFFFF',
+              backgroundColor: '#fff',
             }}
           >
             <option value={5}>5</option>
@@ -66,7 +65,7 @@ export default function Pagination({
           Previous
         </Button>
 
-        <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#E4E4E7', padding: '0 0.5rem' }}>
+        <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#334155', padding: '0 0.5rem' }}>
           Page {page} of {Math.max(1, totalPages)}
         </span>
 

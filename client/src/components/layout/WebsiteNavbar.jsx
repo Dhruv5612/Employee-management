@@ -1,121 +1,177 @@
-import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Users, Menu, X, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Sparkles, Menu, X, LogIn, UserPlus } from 'lucide-react';
 
 export default function WebsiteNavbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const handleFeaturesClick = (e) => {
-    setMobileOpen(false);
-    if (location.pathname === '/') {
-      e.preventDefault();
-      const el = document.getElementById('features');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      e.preventDefault();
-      navigate('/#features');
-      setTimeout(() => {
-        const el = document.getElementById('features');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  };
-
-  const navItems = [
-    { label: 'Home', to: '/', active: location.pathname === '/' && !location.hash },
-    { label: 'Features', to: '/#features', onClick: handleFeaturesClick, active: location.hash === '#features' },
-    { label: 'About Us', to: '/about', active: location.pathname === '/about' },
-    { label: 'Contact Us', to: '/contact', active: location.pathname === '/contact' },
-  ];
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="website-header">
-      <div className="website-container website-header-inner">
-        <Link to="/" className="website-logo" onClick={() => setMobileOpen(false)}>
-          <div className="website-logo-mark">
-            <Users size={18} strokeWidth={2.4} />
+      <div className="website-nav-container">
+        {/* Brand Logo: Always links to Home */}
+        <Link to="/" className="website-brand" id="brand-logo-link">
+          <div className="website-brand-logo">
+            <Sparkles size={22} />
           </div>
-          <span>EmployeeHub</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span className="website-brand-text">EmployeeHub</span>
+            <span className="website-brand-badge">v2.4</span>
+          </div>
         </Link>
 
-        <nav className="website-nav" aria-label="Public Navigation">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              onClick={item.onClick}
-              className={`website-nav-link ${item.active ? 'active' : ''}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Desktop Navigation Links */}
+        <nav>
+          <ul className="website-nav-links">
+            <li>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+                id="nav-link-home"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <a href="/#features" className="website-nav-link" id="nav-link-features">
+                Features
+              </a>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+                id="nav-link-about"
+              >
+                About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+                id="nav-link-contact"
+              >
+                Contact Us
+              </NavLink>
+            </li>
+          </ul>
         </nav>
 
-        <div className="website-nav-actions">
-          <Link to="/login" className="nav-pill-ghost">
-            Sign In
-          </Link>
-          <Link to="/signup" className="nav-pill-white">
-            Get Started
-            <ArrowRight size={14} strokeWidth={2.5} />
-          </Link>
-        </div>
-
-        <button
-          type="button"
-          className="website-mobile-btn"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          aria-label="Toggle Menu"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      <div className={`website-mobile-drawer ${mobileOpen ? 'open' : ''}`}>
-        {navItems.map((item) => (
+        {/* Action Buttons: Always display Sign In and Sign Up - never switch to Go to Dashboard */}
+        <div className="website-nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
           <Link
-            key={item.label}
-            to={item.to}
-            onClick={(e) => {
-              if (item.onClick) item.onClick(e);
-              setMobileOpen(false);
-            }}
+            to="/signin"
+            id="nav-btn-signin"
+            className="btn btn-outline"
             style={{
-              padding: '0.65rem 0.75rem',
-              borderRadius: '10px',
-              color: item.active ? '#C6F432' : '#E4E4E7',
-              backgroundColor: item.active ? 'rgba(198, 244, 50, 0.10)' : 'transparent',
-              fontWeight: item.active ? 700 : 500,
-              fontSize: '0.95rem',
+              color: '#e2e8f0',
+              borderColor: 'rgba(255, 255, 255, 0.2)',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              padding: '0.55rem 1.15rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: '0.9rem',
+              fontWeight: 600,
             }}
           >
-            {item.label}
-          </Link>
-        ))}
-
-        <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <Link
-            to="/login"
-            onClick={() => setMobileOpen(false)}
-            className="nav-pill-ghost"
-            style={{ flex: 1, justifyContent: 'center' }}
-          >
-            Sign In
+            <LogIn size={15} />
+            <span>Sign In</span>
           </Link>
           <Link
             to="/signup"
-            onClick={() => setMobileOpen(false)}
-            className="nav-pill-white"
-            style={{ flex: 1, justifyContent: 'center' }}
+            id="nav-btn-signup"
+            className="btn btn-primary"
+            style={{
+              background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+              boxShadow: '0 4px 14px rgba(99, 102, 241, 0.35)',
+              padding: '0.55rem 1.25rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+            }}
           >
-            Get Started
+            <UserPlus size={15} />
+            <span>Sign Up</span>
           </Link>
         </div>
+
+        {/* Mobile Hamburger Toggle */}
+        <button
+          type="button"
+          className="website-mobile-toggle"
+          id="mobile-nav-toggle-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Drawer */}
+      {isMobileMenuOpen && (
+        <div className="website-mobile-drawer" id="mobile-nav-drawer">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </NavLink>
+          <a
+            href="/#features"
+            className="website-nav-link"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Features
+          </a>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => `website-nav-link ${isActive ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contact Us
+          </NavLink>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.75rem' }}>
+            <Link
+              to="/signin"
+              className="btn btn-secondary"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <LogIn size={16} />
+              <span>Sign In</span>
+            </Link>
+            <Link
+              to="/signup"
+              className="btn btn-primary"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <UserPlus size={16} />
+              <span>Create Account (Sign Up)</span>
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

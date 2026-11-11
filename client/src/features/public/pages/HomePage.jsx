@@ -1,800 +1,768 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Sparkles,
   Users,
-  ShieldCheck,
-  CalendarClock,
-  Wallet,
   Building2,
+  ShieldCheck,
   Activity,
+  FileSpreadsheet,
+  Zap,
   ArrowRight,
   CheckCircle2,
+  LogIn,
+  UserPlus,
   ChevronDown,
-  Sparkles,
-  Lock,
+  ChevronUp,
+  Search,
+  Filter,
+  Check,
+  Star,
+  Shield,
   Layers,
-  Zap,
-  Quote,
 } from 'lucide-react';
 
-const PREVIEW_TABS = [
-  { id: 'directory', label: 'Employee Directory', icon: Users },
-  { id: 'departments', label: 'Departments Matrix', icon: Building2 },
-  { id: 'audits', label: 'Security & Audits', icon: ShieldCheck },
-];
-
-const SAMPLE_DIRECTORY = [
-  { name: 'Elena Rostova', role: 'Principal Architect', dept: 'Engineering', status: 'Active', avatar: 'ER' },
-  { name: 'Marcus Vance', role: 'People Operations Lead', dept: 'Human Resources', status: 'Active', avatar: 'MV' },
-  { name: 'Sarah Jenkins', role: 'Product Designer', dept: 'Design Studio', status: 'On Leave', avatar: 'SJ' },
-  { name: 'Devon Brooks', role: 'Security Engineer', dept: 'Platform Sec', status: 'Active', avatar: 'DB' },
-];
-
-const SAMPLE_DEPARTMENTS = [
-  { name: 'Engineering & AI', head: 'Elena Rostova', members: 42, budget: '$4.8M', health: '98%' },
-  { name: 'Product & Design', head: 'Sarah Jenkins', members: 18, budget: '$1.9M', health: '95%' },
-  { name: 'Human Resources', head: 'Marcus Vance', members: 9, budget: '$860K', health: '100%' },
-  { name: 'Platform Security', head: 'Devon Brooks', members: 14, budget: '$2.1M', health: '97%' },
-];
-
-const SAMPLE_AUDITS = [
-  { event: 'OTP Verified Sign-In', actor: 'Admin • dhruv@company.com', scope: 'Auth Gateway', time: '2m ago' },
-  { event: 'Leave Request Approved', actor: 'HR Lead • Marcus Vance', scope: 'Leave Engine', time: '14m ago' },
-  { event: 'Payroll Cycle Locked', actor: 'Finance • System Bot', scope: 'Payroll Ledger', time: '1h ago' },
-  { event: 'Role Policy Updated', actor: 'Admin • Superuser', scope: 'RBAC Matrix', time: '3h ago' },
-];
-
-const FEATURES = [
-  {
-    icon: Users,
-    title: 'Unified Workforce Directory',
-    desc: 'Searchable employee profiles, role assignments, contract metadata, and instant onboarding states in one command view.',
-    accent: true,
-  },
-  {
-    icon: CalendarClock,
-    title: 'Instant Leave Governance',
-    desc: 'Structured sick, casual, and earned time-off queues with supervisor remarks, balance tracking, and audit trails.',
-    accent: false,
-  },
-  {
-    icon: ShieldCheck,
-    title: '2FA Email OTP Security',
-    desc: 'Every workspace login and password recovery enforces expiring one-time verification codes and RBAC enforcement.',
-    accent: true,
-  },
-  {
-    icon: Wallet,
-    title: 'Precision Payroll & Attendance',
-    desc: 'Daily check-in timelines, shift reconciliation, bonus disbursements, and instant payslip transparency.',
-    accent: false,
-  },
-  {
-    icon: Building2,
-    title: 'Department Hierarchy',
-    desc: 'Track headcount allocations, team budgets, department leads, and safe member reassignment without orphans.',
-    accent: true,
-  },
-  {
-    icon: Activity,
-    title: 'Immutable Activity Telemetry',
-    desc: 'Real-time operational logs capturing status transitions, policy updates, and role changes across every panel.',
-    accent: false,
-  },
-];
-
-const STEPS = [
-  {
-    num: '01',
-    title: 'Provision Your Workspace',
-    desc: 'Spin up Admin, HR, and Employee role tiers in seconds with verified email OTP authentication.',
-  },
-  {
-    num: '02',
-    title: 'Synchronize Teams & Rosters',
-    desc: 'Organize departments, onboard staff members, and calibrate daily shift schedules from one hub.',
-  },
-  {
-    num: '03',
-    title: 'Automate Daily Decisions',
-    desc: 'Approve leaves, monitor attendance pulse metrics, and audit enterprise health in real time.',
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: 'EmployeeHub replaced three fragmented HR spreadsheets overnight. Leave approvals and payroll checks now take under two minutes.',
-    author: 'Nadia Patel',
-    role: 'VP of Operations, Horizon Labs',
-  },
-  {
-    quote: 'The Admin and HR views give crystal-clear separation while still letting employees inspect their own attendance and announcements.',
-    author: 'Lucas Meyer',
-    role: 'Head of People, LinearOps',
-  },
-  {
-    quote: 'Security auditing plus instant 2FA OTP logins gave our compliance team complete confidence on day one.',
-    author: 'Priya Nair',
-    role: 'CISO, Veridian Cloud',
-  },
-];
-
-const FAQS = [
-  {
-    q: 'How do Admin, HR, and Employee panels differ?',
-    a: 'Administrators oversee user provisioning, full activity logs, and global configuration; HR manages recruitment, departments, leaves, attendance, and payroll; Employees view their personalized workspace, apply for leave, track attendance, and read broadcasts.',
-  },
-  {
-    q: 'Does EmployeeHub enforce Two-Factor Authentication?',
-    a: 'Yes. Sign-up verification, sign-in verification, and password resets use single-use 6-digit OTPs with built-in cooldown guards and cryptographic hashing.',
-  },
-  {
-    q: 'Can departments be restructured without losing employee records?',
-    a: 'Yes. Our department reassignment modal transfers team members safely between units while keeping activity history intact.',
-  },
-  {
-    q: 'Is my data persistent across deployments?',
-    a: 'Yes. Live workspaces connect directly to MongoDB Atlas persistence with strict role-based API authorization.',
-  },
-];
-
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState('directory');
-  const [openFaq, setOpenFaq] = useState(0);
+  const [activeMockupTab, setActiveMockupTab] = useState('directory');
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  // Sample Mockup Data for Interactive Hero
+  const sampleEmployees = [
+    {
+      id: 'EMP-101',
+      name: 'Sarah Connor',
+      role: 'Staff Software Engineer',
+      dept: 'Engineering',
+      status: 'Active',
+      email: 's.connor@company.com',
+      avatarBg: '#6366f1',
+    },
+    {
+      id: 'EMP-102',
+      name: 'Marcus Vance',
+      role: 'Product Design Lead',
+      dept: 'Product',
+      status: 'Active',
+      email: 'm.vance@company.com',
+      avatarBg: '#8b5cf6',
+    },
+    {
+      id: 'EMP-103',
+      name: 'Elena Rostova',
+      role: 'People Operations VP',
+      dept: 'Human Resources',
+      status: 'On Leave',
+      email: 'e.rostova@company.com',
+      avatarBg: '#ec4899',
+    },
+    {
+      id: 'EMP-104',
+      name: 'David Kim',
+      role: 'Infrastructure Architect',
+      dept: 'Engineering',
+      status: 'Active',
+      email: 'd.kim@company.com',
+      avatarBg: '#06b6d4',
+    },
+  ];
+
+  const sampleDepartments = [
+    { name: 'Engineering & Technology', head: 'David Kim', budget: '$1,450,000', members: 48, color: '#6366f1' },
+    { name: 'Product Experience & UI/UX', head: 'Marcus Vance', budget: '$720,000', members: 22, color: '#8b5cf6' },
+    { name: 'Human Resources & Talent', head: 'Elena Rostova', budget: '$480,000', members: 12, color: '#ec4899' },
+    { name: 'Corporate Operations', head: 'Sarah Connor', budget: '$350,000', members: 9, color: '#10b981' },
+  ];
+
+  const sampleAuditLogs = [
+    { action: 'ROLE_ELEVATION', details: 'Promoted Marcus Vance to Admin role', time: '2 mins ago', user: 'admin@company.com' },
+    { action: 'EMPLOYEE_CREATED', details: 'Added new profile for Sarah Connor (#EMP-101)', time: '14 mins ago', user: 'hr@company.com' },
+    { action: 'DEPARTMENT_UPDATED', details: 'Increased Engineering headcount budget by 12%', time: '1 hour ago', user: 'admin@company.com' },
+    { action: 'SECURITY_LOGIN', details: 'Successful 2FA session from US-East gateway', time: '2 hours ago', user: 'viewer@company.com' },
+  ];
+
+  const faqs = [
+    {
+      q: 'How does EmployeeHub simplify team and workforce management?',
+      a: 'EmployeeHub provides a unified system where HR managers and administrators can track complete employee lifecycles, configure department hierarchies with budgets, enforce role-based security (Admin, HR, Viewer), and review immutable audit histories—all within a fast, responsive interface.',
+    },
+    {
+      q: 'Can I test the platform without setting up a backend database?',
+      a: 'Yes! EmployeeHub includes an interactive offline Demo Mode that simulates full CRUD operations, role switching, and analytics directly in your browser. You can switch to the live MongoDB + Express API with a single click.',
+    },
+    {
+      q: 'What roles and permissions are supported?',
+      a: 'The system natively supports three distinct security tiers: Admin (full system configuration, user role management, and audit inspection), HR Manager (employee and department creation/editing, report exports), and Viewer (read-only directory browsing).',
+    },
+    {
+      q: 'Can I export employee rosters and payroll reports?',
+      a: 'Yes, the Reports feature allows administrators and HR managers to instantly export filtered employee data, department salary distributions, and organizational metrics into formatted CSV files.',
+    },
+  ];
 
   return (
     <div className="landing-page">
-      {/* ===================================================================
-          HERO SECTION WITH VERTICAL LIME AURORA BEAMS
-      =================================================================== */}
+      {/* 1. HERO SECTION */}
       <section className="landing-hero">
-        <div className="hero-glow" />
-
-        <div className="website-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-          <div className="hero-eyebrow">
-            <Sparkles size={13} />
-            <span>WORKFORCE COMMAND OS • ENTERPRISE V2.4</span>
+        <div className="landing-container">
+          <div className="landing-badge" id="hero-badge">
+            <Sparkles size={16} color="#818cf8" />
+            <span>Next-Gen Workforce Management Suite • v2.4</span>
           </div>
 
-          <div className="hero-headline-row">
-            {/* Left Floating Metrics */}
-            <div className="hero-side-metrics">
-              <div>
-                <div className="hero-metric-val">3x</div>
-                <div className="hero-metric-lbl">Faster Approvals</div>
-              </div>
-              <div>
-                <div className="hero-metric-val">99.9%</div>
-                <div className="hero-metric-lbl">Payroll Accuracy</div>
-              </div>
+          <h1 className="landing-hero-title">
+            Modern Employee Management, Built for <span>High-Performance</span> Teams
+          </h1>
+
+          <p className="landing-hero-subtitle">
+            Centralize your employee directory, organize department hierarchies, enforce granular role security, and
+            track real-time activity audits in one elegant, enterprise-ready platform.
+          </p>
+
+          <div className="landing-hero-actions">
+            <Link to="/signup" className="btn btn-primary" id="hero-cta-signup" style={{ padding: '0.85rem 1.85rem', fontSize: '1rem' }}>
+              <UserPlus size={18} />
+              <span>Get Started Free</span>
+              <ArrowRight size={16} />
+            </Link>
+
+            <Link
+              to="/signin"
+              className="btn btn-secondary"
+              id="hero-cta-signin"
+              style={{
+                padding: '0.85rem 1.75rem',
+                fontSize: '1rem',
+                backgroundColor: 'rgba(30, 41, 59, 0.7)',
+                color: '#ffffff',
+                borderColor: 'rgba(255, 255, 255, 0.15)',
+              }}
+            >
+              <LogIn size={18} color="#818cf8" />
+              <span>Live Demo / Sign In</span>
+            </Link>
+          </div>
+
+          {/* Trust Highlights */}
+          <div className="landing-trust-bar">
+            <div className="landing-trust-item">
+              <CheckCircle2 size={16} color="#10b981" />
+              <span>Instant 2-Minute Deployment</span>
             </div>
-
-            {/* Editorial Serif Headline */}
-            <div>
-              <h1 className="hero-title">
-                Lead <em>smarter</em> than
-                <br />
-                your standup.
-              </h1>
-              <p className="hero-subtitle">
-                Orchestrate every employee, shift roster, department, and leave approval
-                in one Midnight Black command center built for speed.
-              </p>
-
-              <div className="hero-actions">
-                <Link to="/signup" className="hero-cta-lime">
-                  Try it free
-                  <ArrowRight size={16} strokeWidth={2.5} />
-                </Link>
-                <Link to="/login" className="hero-cta-glass">
-                  Sign in to workspace
-                </Link>
-              </div>
+            <div className="landing-trust-item">
+              <Shield size={16} color="#6366f1" />
+              <span>SOC-2 Type II Certified</span>
             </div>
-
-            {/* Right Floating Metrics */}
-            <div className="hero-side-metrics right">
-              <div>
-                <div className="hero-metric-val">50K+</div>
-                <div className="hero-metric-lbl">Active Profiles</div>
-              </div>
-              <div>
-                <div className="hero-metric-val">2.4M</div>
-                <div className="hero-metric-lbl">Shifts Synced</div>
-              </div>
+            <div className="landing-trust-item">
+              <Zap size={16} color="#f59e0b" />
+              <span>Demo Storage & Live API Ready</span>
             </div>
           </div>
 
-          {/* 3 Tilted Perspective Obsidian Cards Over Vertical Lime Beams */}
-          <div className="hero-aura-stage">
-            <div className="hero-aura-beams" />
-            <div className="hero-aura-stripes" />
+          {/* INTERACTIVE DASHBOARD SHOWCASE */}
+          <div className="mockup-wrapper" id="live-dashboard-preview">
+            <div className="mockup-header-bar">
+              <div className="mockup-dots">
+                <span className="mockup-dot" style={{ backgroundColor: '#ef4444' }} />
+                <span className="mockup-dot" style={{ backgroundColor: '#f59e0b' }} />
+                <span className="mockup-dot" style={{ backgroundColor: '#10b981' }} />
+              </div>
 
-            <div className="hero-trio-grid">
-              {/* Left Tilted Card: Live Queue / Staff Activity */}
-              <div className="hero-tilt-card left">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', fontWeight: 700, color: '#E4E4E7' }}>
-                    <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#C6F432' }} />
-                    Live Approvals
-                  </span>
-                  <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: '#71717A' }}>QUEUE</span>
+              {/* Tabs for switching mockup view */}
+              <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(15, 23, 42, 0.6)', padding: '0.25rem', borderRadius: '10px' }}>
+                <button
+                  type="button"
+                  onClick={() => setActiveMockupTab('directory')}
+                  style={{
+                    border: 'none',
+                    background: activeMockupTab === 'directory' ? '#4f46e5' : 'transparent',
+                    color: activeMockupTab === 'directory' ? '#ffffff' : '#94a3b8',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '7px',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  Staff Directory
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveMockupTab('departments')}
+                  style={{
+                    border: 'none',
+                    background: activeMockupTab === 'departments' ? '#4f46e5' : 'transparent',
+                    color: activeMockupTab === 'departments' ? '#ffffff' : '#94a3b8',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '7px',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  Departments
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveMockupTab('audits')}
+                  style={{
+                    border: 'none',
+                    background: activeMockupTab === 'audits' ? '#4f46e5' : 'transparent',
+                    color: activeMockupTab === 'audits' ? '#ffffff' : '#94a3b8',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '7px',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  Audit Activity
+                </button>
+              </div>
+
+              <div style={{ fontSize: '0.75rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600 }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                Online (1,248 Active)
+              </div>
+            </div>
+
+            <div className="mockup-content">
+              {/* Tab 1: Directory Preview */}
+              {activeMockupTab === 'directory' && (
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '1rem',
+                      flexWrap: 'wrap',
+                      gap: '0.75rem',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <div
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.06)',
+                          borderRadius: '8px',
+                          padding: '0.4rem 0.75rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          fontSize: '0.825rem',
+                          color: '#cbd5e1',
+                        }}
+                      >
+                        <Search size={14} color="#94a3b8" />
+                        <span>Filter by name, department, role...</span>
+                      </div>
+                      <div
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.06)',
+                          borderRadius: '8px',
+                          padding: '0.4rem 0.75rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.4rem',
+                          fontSize: '0.825rem',
+                          color: '#cbd5e1',
+                        }}
+                      >
+                        <Filter size={14} color="#94a3b8" />
+                        <span>All Departments</span>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Showing 4 of 1,248 employees</span>
+                  </div>
+
+                  <div style={{ overflowX: 'auto' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
+                      <thead>
+                        <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#94a3b8' }}>
+                          <th style={{ padding: '0.65rem 0.85rem', fontWeight: 600 }}>Employee</th>
+                          <th style={{ padding: '0.65rem 0.85rem', fontWeight: 600 }}>Role</th>
+                          <th style={{ padding: '0.65rem 0.85rem', fontWeight: 600 }}>Department</th>
+                          <th style={{ padding: '0.65rem 0.85rem', fontWeight: 600 }}>Status</th>
+                          <th style={{ padding: '0.65rem 0.85rem', fontWeight: 600, textAlign: 'right' }}>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sampleEmployees.map((emp) => (
+                          <tr key={emp.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                            <td style={{ padding: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                              <div
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  backgroundColor: emp.avatarBg,
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontWeight: 700,
+                                  color: '#fff',
+                                  fontSize: '0.75rem',
+                                }}
+                              >
+                                {emp.name.split(' ').map((n) => n[0]).join('')}
+                              </div>
+                              <div>
+                                <div style={{ fontWeight: 600, color: '#f8fafc' }}>{emp.name}</div>
+                                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{emp.email}</div>
+                              </div>
+                            </td>
+                            <td style={{ padding: '0.85rem', color: '#cbd5e1' }}>{emp.role}</td>
+                            <td style={{ padding: '0.85rem' }}>
+                              <span
+                                style={{
+                                  padding: '0.2rem 0.6rem',
+                                  borderRadius: '6px',
+                                  backgroundColor: 'rgba(99, 102, 241, 0.15)',
+                                  color: '#a5b4fc',
+                                  fontSize: '0.75rem',
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {emp.dept}
+                              </span>
+                            </td>
+                            <td style={{ padding: '0.85rem' }}>
+                              <span
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '0.35rem',
+                                  padding: '0.2rem 0.6rem',
+                                  borderRadius: '9999px',
+                                  fontSize: '0.75rem',
+                                  fontWeight: 600,
+                                  backgroundColor: emp.status === 'Active' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+                                  color: emp.status === 'Active' ? '#34d399' : '#fbbf24',
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    width: '6px',
+                                    height: '6px',
+                                    borderRadius: '50%',
+                                    backgroundColor: emp.status === 'Active' ? '#10b981' : '#f59e0b',
+                                  }}
+                                />
+                                {emp.status}
+                              </span>
+                            </td>
+                            <td style={{ padding: '0.85rem', textAlign: 'right' }}>
+                              <Link
+                                to="/signin"
+                                style={{
+                                  fontSize: '0.75rem',
+                                  color: '#818cf8',
+                                  fontWeight: 600,
+                                  textDecoration: 'none',
+                                }}
+                              >
+                                View Details →
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+              )}
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-                  {[
-                    { code: 'ER', label: 'staff: leave_approved #204', badge: 'Approved', tone: 'lime' },
-                    { code: 'MV', label: 'roster: shift_check_in #88', badge: 'Active', tone: 'outline' },
-                    { code: 'SJ', label: 'dept: design_sync #19', badge: 'In Review', tone: 'muted' },
-                    { code: 'DB', label: 'sec: otp_policy_sync #12', badge: 'Synced', tone: 'muted' },
-                  ].map((item) => (
+              {/* Tab 2: Departments Preview */}
+              {activeMockupTab === 'departments' && (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+                  {sampleDepartments.map((dept, idx) => (
                     <div
-                      key={item.code}
+                      key={idx}
+                      style={{
+                        background: 'rgba(15, 23, 42, 0.6)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '12px',
+                        padding: '1.25rem',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                        <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '0.95rem' }}>{dept.name}</div>
+                        <Building2 size={16} color={dept.color} />
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.75rem' }}>
+                        Lead: <strong style={{ color: '#cbd5e1' }}>{dept.head}</strong>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                        <span style={{ color: '#64748b' }}>Headcount: {dept.members} staff</span>
+                        <span style={{ color: '#34d399', fontWeight: 600 }}>{dept.budget}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Tab 3: Audit Activity Preview */}
+              {activeMockupTab === 'audits' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {sampleAuditLogs.map((log, idx) => (
+                    <div
+                      key={idx}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        gap: '0.6rem',
-                        padding: '0.58rem 0.72rem',
-                        borderRadius: '11px',
-                        background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.07)',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '10px',
+                        background: 'rgba(15, 23, 42, 0.5)',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', minWidth: 0 }}>
-                        <span style={{
-                          width: '22px',
-                          height: '22px',
-                          borderRadius: '6px',
-                          background: 'rgba(255,255,255,0.08)',
-                          color: '#FFFFFF',
-                          fontSize: '0.64rem',
-                          fontWeight: 800,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}>
-                          {item.code}
-                        </span>
-                        <span style={{ fontSize: '0.74rem', color: '#D4D4D8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {item.label}
-                        </span>
-                      </div>
-
-                      <span style={{
-                        fontSize: '0.65rem',
-                        fontWeight: 800,
-                        padding: '0.18rem 0.55rem',
-                        borderRadius: '9999px',
-                        flexShrink: 0,
-                        ...(item.tone === 'lime'
-                          ? { background: '#C6F432', color: '#0B0B0C' }
-                          : item.tone === 'outline'
-                            ? { background: 'rgba(198,244,50,0.12)', color: '#C6F432', border: '1px solid rgba(198,244,50,0.35)' }
-                            : { background: 'rgba(255,255,255,0.08)', color: '#A1A1AA' }),
-                      }}>
-                        {item.badge}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Center Focal Card: Workforce Score */}
-              <div className="hero-tilt-card center">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', fontWeight: 700, color: '#FFFFFF' }}>
-                    <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#C6F432', boxShadow: '0 0 8px #C6F432' }} />
-                    Workforce score
-                  </span>
-                  <span style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    color: '#C6F432',
-                    padding: '0.2rem 0.65rem',
-                    borderRadius: '9999px',
-                    border: '1px solid rgba(198, 244, 50, 0.42)',
-                    background: 'rgba(198, 244, 50, 0.10)',
-                  }}>
-                    Auto-sync on
-                  </span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <span style={{
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '3.6rem',
-                    lineHeight: 0.95,
-                    color: '#FFFFFF',
-                  }}>
-                    94
-                  </span>
-                  <span style={{ fontSize: '0.78rem', color: '#A1A1AA', fontWeight: 500 }}>
-                    / 100 org health
-                  </span>
-                </div>
-
-                {/* Lime Green Rising Sparkline SVG */}
-                <div style={{ marginTop: '0.65rem' }}>
-                  <svg viewBox="0 0 280 96" style={{ width: '100%', height: '92px', overflow: 'visible' }}>
-                    <defs>
-                      <linearGradient id="limeSparkFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#C6F432" stopOpacity="0.38" />
-                        <stop offset="100%" stopColor="#C6F432" stopOpacity="0.0" />
-                      </linearGradient>
-                    </defs>
-                    <line x1="0" y1="24" x2="280" y2="24" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <line x1="0" y1="54" x2="280" y2="54" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <polygon
-                      fill="url(#limeSparkFill)"
-                      points="0,80 42,68 84,72 126,48 168,52 210,28 245,32 280,10 280,96 0,96"
-                    />
-                    <polyline
-                      fill="none"
-                      stroke="#C6F432"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      points="0,80 42,68 84,72 126,48 168,52 210,28 245,32 280,10"
-                    />
-                    <circle cx="280" cy="10" r="4.5" fill="#C6F432" />
-                  </svg>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.66rem', color: '#71717A', fontFamily: 'var(--font-mono)' }}>
-                    <span>Mon</span>
-                    <span>Wed</span>
-                    <span>Fri</span>
-                    <span style={{ color: '#C6F432' }}>Live</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Tilted Card: Shift & Leave Timeline */}
-              <div className="hero-tilt-card right">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.9rem' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', fontWeight: 700, color: '#E4E4E7' }}>
-                    <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#C6F432' }} />
-                    Roster timeline
-                  </span>
-                  <span style={{ fontSize: '0.7rem', color: '#A1A1AA', fontFamily: 'var(--font-mono)' }}>TODAY</span>
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.64rem', color: '#71717A', fontFamily: 'var(--font-mono)', marginBottom: '0.75rem' }}>
-                  <span>09:00</span>
-                  <span>11:00</span>
-                  <span>13:00</span>
-                  <span>15:00</span>
-                  <span>17:00</span>
-                </div>
-
-                <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '0.68rem', paddingLeft: '0.15rem' }}>
-                  {/* Vertical Active Playhead */}
-                  <div style={{
-                    position: 'absolute',
-                    left: '52%',
-                    top: '-6px',
-                    bottom: '-6px',
-                    width: '1.5px',
-                    background: 'rgba(198, 244, 50, 0.55)',
-                    zIndex: 1,
-                  }}>
-                    <span style={{
-                      position: 'absolute',
-                      top: '-3px',
-                      left: '-3px',
-                      width: '7px',
-                      height: '7px',
-                      borderRadius: '50%',
-                      background: '#C6F432',
-                      boxShadow: '0 0 8px #C6F432',
-                    }} />
-                  </div>
-
-                  {[
-                    { left: '8%', w: '30%', lime: false },
-                    { left: '44%', w: '36%', lime: true },
-                    { left: '16%', w: '44%', lime: true },
-                    { left: '54%', w: '38%', lime: false },
-                    { left: '24%', w: '32%', lime: true },
-                  ].map((bar, idx) => (
-                    <div key={idx} style={{ height: '15px', background: 'rgba(255,255,255,0.03)', borderRadius: '5px', position: 'relative' }}>
-                      <div style={{
-                        position: 'absolute',
-                        left: bar.left,
-                        width: bar.w,
-                        top: 0,
-                        bottom: 0,
-                        borderRadius: '5px',
-                        background: bar.lime ? '#C6F432' : '#27272A',
-                        boxShadow: bar.lime ? '0 0 14px rgba(198, 244, 50, 0.25)' : 'none',
-                      }} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================================================================
-          INTERACTIVE WORKSPACE PREVIEW WINDOW
-      =================================================================== */}
-      <section style={{ padding: '3.5rem 0 5.5rem' }}>
-        <div className="website-container">
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <span className="section-tag">Interactive Telemetry</span>
-            <h2 className="section-heading">
-              Inspect every department in <em>real time</em>.
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.75rem' }}>
-            <div className="genz-tab-pill" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
-              {PREVIEW_TABS.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={activeTab === tab.id ? 'active' : ''}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
-                  >
-                    <Icon size={14} />
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mockup-wrapper">
-            <div className="mockup-window">
-              {/* Top Bar */}
-              <div style={{
-                padding: '0.85rem 1.25rem',
-                borderBottom: '1px solid rgba(255,255,255,0.08)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                background: '#141614',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#27272A' }} />
-                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#27272A' }} />
-                  <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#C6F432' }} />
-                  <span style={{ marginLeft: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#71717A' }}>
-                    employeehub.app / command-center / {activeTab}
-                  </span>
-                </div>
-                <span style={{
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  color: '#C6F432',
-                  background: 'rgba(198,244,50,0.12)',
-                  padding: '0.2rem 0.65rem',
-                  borderRadius: '9999px',
-                  border: '1px solid rgba(198,244,50,0.28)',
-                }}>
-                  LIVE SYNC
-                </span>
-              </div>
-
-              {/* Preview Body */}
-              <div style={{ padding: '1.75rem' }}>
-                {activeTab === 'directory' && (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1rem' }}>
-                    {SAMPLE_DIRECTORY.map((emp) => (
-                      <div
-                        key={emp.name}
-                        style={{
-                          padding: '1.15rem',
-                          borderRadius: '14px',
-                          background: '#161816',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '0.8rem',
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <div style={{
-                            width: '36px',
-                            height: '36px',
-                            borderRadius: '10px',
-                            background: '#C6F432',
-                            color: '#0B0B0C',
-                            fontWeight: 800,
-                            fontSize: '0.8rem',
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div
+                          style={{
+                            width: '28px',
+                            height: '28px',
+                            borderRadius: '8px',
+                            backgroundColor: 'rgba(99, 102, 241, 0.15)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                          }}>
-                            {emp.avatar}
-                          </div>
-                          <span className={`status-badge ${emp.status === 'Active' ? 'active' : 'on-leave'}`}>
-                            {emp.status}
-                          </span>
+                          }}
+                        >
+                          <Activity size={14} color="#818cf8" />
                         </div>
                         <div>
-                          <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.95rem' }}>{emp.name}</div>
-                          <div style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>{emp.role}</div>
-                        </div>
-                        <div style={{ fontSize: '0.74rem', fontFamily: 'var(--font-mono)', color: '#71717A', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.6rem' }}>
-                          DEPT // {emp.dept.toUpperCase()}
+                          <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#f8fafc' }}>{log.details}</div>
+                          <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Triggered by: {log.user}</div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
-
-                {activeTab === 'departments' && (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
-                    {SAMPLE_DEPARTMENTS.map((dept) => (
-                      <div
-                        key={dept.name}
-                        style={{
-                          padding: '1.15rem',
-                          borderRadius: '14px',
-                          background: '#161816',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                        }}
-                      >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
-                          <span style={{ fontWeight: 700, color: '#FFFFFF' }}>{dept.name}</span>
-                          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#C6F432' }}>{dept.health}</span>
-                        </div>
-                        <div style={{ fontSize: '0.8rem', color: '#A1A1AA', marginBottom: '0.75rem' }}>
-                          Lead: {dept.head}
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: '#E4E4E7' }}>
-                          <span>{dept.members} Staff</span>
-                          <span style={{ color: '#C6F432' }}>{dept.budget}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {activeTab === 'audits' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-                    {SAMPLE_AUDITS.map((log) => (
-                      <div
-                        key={log.event}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          flexWrap: 'wrap',
-                          gap: '0.75rem',
-                          padding: '0.9rem 1.15rem',
-                          borderRadius: '12px',
-                          background: '#161816',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                          <CheckCircle2 size={16} style={{ color: '#C6F432' }} />
-                          <div>
-                            <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.9rem' }}>{log.event}</div>
-                            <div style={{ fontSize: '0.78rem', color: '#A1A1AA' }}>{log.actor}</div>
-                          </div>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                          <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: '#C6F432', background: 'rgba(198,244,50,0.1)', padding: '0.2rem 0.6rem', borderRadius: '9999px' }}>
-                            {log.scope}
-                          </span>
-                          <span style={{ fontSize: '0.75rem', color: '#71717A', fontFamily: 'var(--font-mono)' }}>{log.time}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+                      <div style={{ fontSize: '0.75rem', color: '#94a3b8', whiteSpace: 'nowrap' }}>{log.time}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===================================================================
-          FEATURES SECTION
-      =================================================================== */}
-      <section id="features" style={{ padding: '5rem 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="website-container">
-          <div style={{ maxWidth: '640px', marginBottom: '3.25rem' }}>
-            <span className="section-tag">Core Capabilities</span>
-            <h2 className="section-heading">
-              Built for high-velocity <em>people operations</em>.
-            </h2>
-            <p className="section-subheading" style={{ marginTop: '0.85rem' }}>
-              Every module shares a unified Midnight Black design system engineered for clarity across Admin, HR, and Employee teams.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.35rem' }}>
-            {FEATURES.map((feat) => {
-              const Icon = feat.icon;
-              return (
-                <div key={feat.title} className="feature-card">
-                  <div
-                    className="feature-icon-box"
-                    style={{
-                      background: feat.accent ? '#C6F432' : 'rgba(255, 255, 255, 0.08)',
-                      color: feat.accent ? '#0B0B0C' : '#FFFFFF',
-                      border: feat.accent ? 'none' : '1px solid rgba(255,255,255,0.14)',
-                    }}
-                  >
-                    <Icon size={22} />
-                  </div>
-                  <h3 style={{ fontSize: '1.12rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.55rem' }}>
-                    {feat.title}
-                  </h3>
-                  <p style={{ fontSize: '0.9rem', color: '#A1A1AA', lineHeight: 1.65 }}>
-                    {feat.desc}
-                  </p>
-                </div>
-              );
-            })}
+      {/* 2. STATS BANNER */}
+      <section className="landing-stats-strip">
+        <div className="landing-container">
+          <div className="landing-stats-grid">
+            <div>
+              <div className="landing-stat-number">15,000+</div>
+              <div className="landing-stat-label">Active Profiles Managed</div>
+            </div>
+            <div>
+              <div className="landing-stat-number">99.98%</div>
+              <div className="landing-stat-label">System Uptime Guarantee</div>
+            </div>
+            <div>
+              <div className="landing-stat-number">45%</div>
+              <div className="landing-stat-label">Less Administrative Friction</div>
+            </div>
+            <div>
+              <div className="landing-stat-number">150+</div>
+              <div className="landing-stat-label">Enterprise Tech Clients</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===================================================================
-          3-STEP WORKFLOW
-      =================================================================== */}
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="website-container">
-          <div style={{ textAlign: 'center', marginBottom: '3.25rem' }}>
-            <span className="section-tag">Workflow Architecture</span>
-            <h2 className="section-heading">
-              Up and running in <em>three crisp steps</em>.
-            </h2>
+      {/* 3. CORE FEATURES SECTION */}
+      <section className="landing-section" id="features">
+        <div className="landing-container">
+          <div className="landing-section-header">
+            <div className="landing-section-badge">Platform Capabilities</div>
+            <h2 className="landing-section-title">Everything You Need to Run Modern People Operations</h2>
+            <p className="landing-section-desc">
+              From employee lifecycle tracking to tamper-evident audit history, EmployeeHub brings enterprise-grade
+              rigor to your everyday workflow.
+            </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.35rem' }}>
-            {STEPS.map((step) => (
-              <div key={step.num} className="step-card">
-                <div className="step-number">{step.num}</div>
-                <h3 style={{ fontSize: '1.12rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.55rem' }}>
-                  {step.title}
-                </h3>
-                <p style={{ fontSize: '0.9rem', color: '#A1A1AA', lineHeight: 1.65 }}>
-                  {step.desc}
+          <div className="features-grid">
+            {/* Feature 1 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8' }}>
+                <Users size={24} />
+              </div>
+              <h3 className="feature-card-title">Employee Directory</h3>
+              <p className="feature-card-desc">
+                Rich employee profiles, instant search, department filters, and contact cards with compensation and
+                status histories.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
+                <Building2 size={24} />
+              </div>
+              <h3 className="feature-card-title">Department Architecture</h3>
+              <p className="feature-card-desc">
+                Organize company departments, assign department heads, monitor headcount allocations, and track budgets
+                effortlessly.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
+                <ShieldCheck size={24} />
+              </div>
+              <h3 className="feature-card-title">Role-Based Security</h3>
+              <p className="feature-card-desc">
+                Granular multi-tier permissions for Admins, HR Managers, and Viewers to ensure sensitive employee data is
+                always protected.
+              </p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
+                <Activity size={24} />
+              </div>
+              <h3 className="feature-card-title">Immutable Audit Trail</h3>
+              <p className="feature-card-desc">
+                Every mutation, creation, deletion, and role elevation is timestamped with actor details for SOC-2 and
+                GDPR compliance.
+              </p>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa' }}>
+                <FileSpreadsheet size={24} />
+              </div>
+              <h3 className="feature-card-title">Reports & CSV Exports</h3>
+              <p className="feature-card-desc">
+                Generate real-time analytics summaries, salary distributions, and downloadable CSV rosters for payroll
+                and executives.
+              </p>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="feature-card">
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(236, 72, 153, 0.15)', color: '#f472b6' }}>
+                <Zap size={24} />
+              </div>
+              <h3 className="feature-card-title">Offline & Hybrid Mode</h3>
+              <p className="feature-card-desc">
+                Toggle between local browser storage demo mode and high-availability Express + MongoDB production API
+                seamlessly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. HOW IT WORKS */}
+      <section className="landing-section" style={{ backgroundColor: 'rgba(15, 23, 42, 0.7)' }}>
+        <div className="landing-container">
+          <div className="landing-section-header">
+            <div className="landing-section-badge">Fast & Intuitive</div>
+            <h2 className="landing-section-title">Get Started in Three Simple Steps</h2>
+            <p className="landing-section-desc">
+              Zero complicated configurations. Deploy your team's workforce portal in minutes.
+            </p>
+          </div>
+
+          <div className="steps-grid">
+            <div className="step-card">
+              <div className="step-number">01</div>
+              <h3 className="step-title">Create Work Account</h3>
+              <p className="step-desc">
+                Sign up with your work email or log in using your HR or Employee credentials.
+              </p>
+            </div>
+
+            <div className="step-card">
+              <div className="step-number">02</div>
+              <h3 className="step-title">Organize Structure</h3>
+              <p className="step-desc">
+                Setup your company departments, assign team leads, set department budgets, and import existing staff rosters.
+              </p>
+            </div>
+
+            <div className="step-card">
+              <div className="step-number">03</div>
+              <h3 className="step-title">Scale & Audit</h3>
+              <p className="step-desc">
+                Manage daily requests, inspect real-time audit logs, export compliance spreadsheets, and monitor team growth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. TESTIMONIALS */}
+      <section className="landing-section">
+        <div className="landing-container">
+          <div className="landing-section-header">
+            <div className="landing-section-badge">Customer Success</div>
+            <h2 className="landing-section-title">Loved by People Ops & Engineering Leads</h2>
+            <p className="landing-section-desc">
+              See what forward-thinking organizations are saying about EmployeeHub.
+            </p>
+          </div>
+
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div>
+                <div style={{ display: 'flex', gap: '0.25rem', color: '#f59e0b', marginBottom: '1rem' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill="#f59e0b" />
+                  ))}
+                </div>
+                <p className="testimonial-quote">
+                  "EmployeeHub replaced three disjointed spreadsheets and a clunky legacy HR portal. Our onboarding time
+                  plummeted by 45% in the first quarter alone."
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================================================================
-          TESTIMONIALS
-      =================================================================== */}
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="website-container">
-          <div style={{ textAlign: 'center', marginBottom: '3.25rem' }}>
-            <span className="section-tag">Customer Proof</span>
-            <h2 className="section-heading">
-              Trusted by modern <em>HR &amp; Engineering</em> leaders.
-            </h2>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.35rem' }}>
-            {TESTIMONIALS.map((t) => (
-              <div key={t.author} className="testimonial-card">
+              <div className="testimonial-author">
+                <div className="testimonial-avatar">JD</div>
                 <div>
-                  <Quote size={24} style={{ color: '#C6F432', marginBottom: '1rem' }} />
-                  <p style={{ fontSize: '0.95rem', color: '#E4E4E7', lineHeight: 1.7 }}>
-                    “{t.quote}”
-                  </p>
-                </div>
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1rem' }}>
-                  <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.92rem' }}>{t.author}</div>
-                  <div style={{ fontSize: '0.78rem', color: '#A1A1AA' }}>{t.role}</div>
+                  <div className="testimonial-name">Jessica Davis</div>
+                  <div className="testimonial-role">Chief People Officer, Apex Cloud</div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="testimonial-card">
+              <div>
+                <div style={{ display: 'flex', gap: '0.25rem', color: '#f59e0b', marginBottom: '1rem' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill="#f59e0b" />
+                  ))}
+                </div>
+                <p className="testimonial-quote">
+                  "The real-time audit log and granular RBAC tiers gave our security team complete confidence. It passed
+                  our strict compliance review on day one."
+                </p>
+              </div>
+              <div className="testimonial-author">
+                <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #10b981, #06b6d4)' }}>
+                  RK
+                </div>
+                <div>
+                  <div className="testimonial-name">Rohan Kapoor</div>
+                  <div className="testimonial-role">VP of Engineering, ScaleDynamics</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <div>
+                <div style={{ display: 'flex', gap: '0.25rem', color: '#f59e0b', marginBottom: '1rem' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill="#f59e0b" />
+                  ))}
+                </div>
+                <p className="testimonial-quote">
+                  "The UI is lightning fast. Everything from editing employee profiles to generating department reports
+                  happens in milliseconds. Our managers actually enjoy using it."
+                </p>
+              </div>
+              <div className="testimonial-author">
+                <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #ec4899, #f43f5e)' }}>
+                  ML
+                </div>
+                <div>
+                  <div className="testimonial-name">Maya Lindstrom</div>
+                  <div className="testimonial-role">Director of Talent, NovaVentures</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===================================================================
-          FAQ ACCORDION
-      =================================================================== */}
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="website-container" style={{ maxWidth: '820px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.75rem' }}>
-            <span className="section-tag">Common Questions</span>
-            <h2 className="section-heading">
-              Everything you need to <em>know</em>.
-            </h2>
+      {/* 6. FAQ SECTION */}
+      <section className="landing-section" style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)' }}>
+        <div className="landing-container">
+          <div className="landing-section-header">
+            <div className="landing-section-badge">Got Questions?</div>
+            <h2 className="landing-section-title">Frequently Asked Questions</h2>
+            <p className="landing-section-desc">
+              Have questions about security, deployment, or enterprise capabilities? Find your answers below.
+            </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-            {FAQS.map((item, idx) => {
-              const isOpen = openFaq === idx;
+          <div className="faq-container">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
               return (
-                <div key={item.q} className="faq-item">
+                <div key={idx} className="faq-item">
                   <button
                     type="button"
-                    onClick={() => setOpenFaq(isOpen ? -1 : idx)}
-                    style={{
-                      width: '100%',
-                      padding: '1.25rem 1.5rem',
-                      background: 'transparent',
-                      border: 'none',
-                      color: '#FFFFFF',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '1rem',
-                      textAlign: 'left',
-                      fontSize: '0.98rem',
-                      fontWeight: 700,
-                    }}
+                    className="faq-question"
+                    onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
+                    aria-expanded={isOpen}
                   >
-                    <span>{item.q}</span>
-                    <ChevronDown
-                      size={18}
-                      style={{
-                        color: '#C6F432',
-                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                        flexShrink: 0,
-                      }}
-                    />
+                    <span>{faq.q}</span>
+                    {isOpen ? <ChevronUp size={20} color="#818cf8" /> : <ChevronDown size={20} color="#94a3b8" />}
                   </button>
-                  {isOpen && (
-                    <div style={{ padding: '0 1.5rem 1.35rem', color: '#A1A1AA', fontSize: '0.9rem', lineHeight: 1.68 }}>
-                      {item.a}
-                    </div>
-                  )}
+                  {isOpen && <div className="faq-answer">{faq.a}</div>}
                 </div>
               );
             })}
           </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem', color: '#94a3b8', fontSize: '0.925rem' }}>
+            Still have questions?{' '}
+            <Link to="/contact" style={{ color: '#818cf8', fontWeight: 700, textDecoration: 'underline' }}>
+              Contact our enterprise team
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ===================================================================
-          FINAL CTA BANNER
-      =================================================================== */}
-      <section style={{ padding: '3rem 0 6rem' }}>
-        <div className="website-container">
+      {/* 7. HIGH-IMPACT BOTTOM CTA BANNER */}
+      <section className="landing-section" style={{ paddingTop: '2rem', paddingBottom: '6rem' }}>
+        <div className="landing-container">
           <div className="cta-banner-card">
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.35rem 0.9rem',
-              borderRadius: '9999px',
-              background: 'rgba(198,244,50,0.14)',
-              border: '1px solid rgba(198,244,50,0.35)',
-              color: '#C6F432',
-              fontSize: '0.76rem',
-              fontWeight: 700,
-              marginBottom: '1.25rem',
-            }}>
-              <Zap size={13} />
-              DEPLOY IN UNDER 60 SECONDS
-            </div>
-
-            <h2 className="section-heading" style={{ marginBottom: '1rem' }}>
-              Upgrade your workforce command <em>today</em>.
-            </h2>
-            <p style={{ fontSize: '1rem', color: '#A1A1AA', maxWidth: '540px', margin: '0 auto 2rem', lineHeight: 1.65 }}>
-              Launch with 2FA OTP security, instant role separation, and real-time analytics across every device.
+            <h2 className="cta-banner-title">Ready to Elevate Your Workplace Management?</h2>
+            <p className="cta-banner-subtitle">
+              Join hundreds of forward-thinking teams streamlining employee operations today. Sign up free or explore the
+              interactive workspace.
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.85rem' }}>
-              <Link to="/signup" className="hero-cta-lime">
-                Create Organization Account
-                <ArrowRight size={16} />
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <Link
+                to="/signup"
+                className="btn btn-secondary"
+                id="bottom-cta-signup"
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#4338ca',
+                  fontWeight: 700,
+                  padding: '0.85rem 1.85rem',
+                  fontSize: '1rem',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+                }}
+              >
+                <UserPlus size={18} />
+                <span>Create Free Account</span>
               </Link>
-              <Link to="/contact" className="hero-cta-glass">
-                <Lock size={15} />
-                Talk to Enterprise Team
+
+              <Link
+                to="/signin"
+                className="btn btn-outline"
+                id="bottom-cta-signin"
+                style={{
+                  color: '#ffffff',
+                  borderColor: 'rgba(255, 255, 255, 0.35)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  padding: '0.85rem 1.75rem',
+                  fontSize: '1rem',
+                }}
+              >
+                <LogIn size={18} />
+                <span>Sign In to Dashboard</span>
               </Link>
             </div>
           </div>

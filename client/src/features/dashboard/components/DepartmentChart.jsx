@@ -12,7 +12,7 @@ import {
 export default function DepartmentChart({ data = [] }) {
   if (!data || data.length === 0) {
     return (
-      <div style={{ textAlign: 'center', padding: '3rem', color: '#71717A' }}>
+      <div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
         No department data available
       </div>
     );
@@ -31,10 +31,10 @@ export default function DepartmentChart({ data = [] }) {
           data={chartData}
           margin={{ top: 20, right: 30, left: 0, bottom: 25 }}
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.08)" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
           <XAxis
             dataKey="name"
-            tick={{ fill: '#A1A1AA', fontSize: 12 }}
+            tick={{ fill: '#64748b', fontSize: 12 }}
             interval={0}
             angle={-15}
             textAnchor="end"
@@ -42,7 +42,7 @@ export default function DepartmentChart({ data = [] }) {
           />
           <YAxis
             allowDecimals={false}
-            tick={{ fill: '#A1A1AA', fontSize: 12 }}
+            tick={{ fill: '#64748b', fontSize: 12 }}
             domain={[0, 'auto']}
           />
           <Tooltip
@@ -52,7 +52,7 @@ export default function DepartmentChart({ data = [] }) {
                 return (
                   <div
                     style={{
-                      backgroundColor: '#141614',
+                      backgroundColor: '#1e293b',
                       color: '#ffffff',
                       padding: '0.65rem 0.85rem',
                       borderRadius: '8px',
@@ -61,7 +61,7 @@ export default function DepartmentChart({ data = [] }) {
                     }}
                   >
                     <div style={{ fontWeight: 700 }}>{item.name}</div>
-                    <div style={{ color: '#C6F432', marginTop: '0.2rem' }}>
+                    <div style={{ color: '#818cf8', marginTop: '0.2rem' }}>
                       Employees: <strong>{item.employees}</strong>
                     </div>
                   </div>
@@ -72,7 +72,7 @@ export default function DepartmentChart({ data = [] }) {
           />
           <Bar
             dataKey="employees"
-            fill="#C6F432"
+            fill="#4f46e5"
             radius={[6, 6, 0, 0]}
             maxBarSize={45}
           />

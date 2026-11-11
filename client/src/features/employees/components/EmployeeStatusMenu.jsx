@@ -39,7 +39,7 @@ export default function EmployeeStatusMenu({ currentStatus, onStatusChange, disa
         title="Click to change employment status"
       >
         <StatusBadge status={currentStatus} />
-        <ChevronDown size={14} color="#A1A1AA" />
+        <ChevronDown size={14} color="#64748b" />
       </button>
 
       {isOpen && (
@@ -48,7 +48,7 @@ export default function EmployeeStatusMenu({ currentStatus, onStatusChange, disa
             position: 'absolute',
             top: 'calc(100% + 4px)',
             left: 0,
-            backgroundColor: '#121314',
+            backgroundColor: '#ffffff',
             borderRadius: '8px',
             border: '1px solid var(--border-color)',
             boxShadow: 'var(--shadow-lg)',
@@ -79,15 +79,15 @@ export default function EmployeeStatusMenu({ currentStatus, onStatusChange, disa
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontSize: '0.825rem',
-                color: status === currentStatus ? '#C6F432' : '#E4E4E7',
+                color: status === currentStatus ? '#4f46e5' : '#334155',
                 fontWeight: status === currentStatus ? 700 : 500,
                 textAlign: 'left',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#171918')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f1f5f9')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
             >
               <span>{status}</span>
-              {status === currentStatus && <Check size={14} color="#C6F432" />}
+              {status === currentStatus && <Check size={14} color="#4f46e5" />}
             </button>
           ))}
         </div>

@@ -92,10 +92,10 @@ export default function SettingsPage() {
         {/* Security & Password */}
         <div className="card" style={{ padding: '1.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.25rem' }}>
-            <Lock size={20} color="#C6F432" />
+            <Lock size={20} color="#4f46e5" />
             <div>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 700 }}>Security & Password</h3>
-              <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Update your authentication credentials</p>
+              <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Update your authentication credentials</p>
             </div>
           </div>
 
@@ -140,10 +140,10 @@ export default function SettingsPage() {
         {/* Preferences */}
         <div className="card" style={{ padding: '1.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.25rem' }}>
-            <Sliders size={20} color="#C6F432" />
+            <Sliders size={20} color="#10b981" />
             <div>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 700 }}>Workspace Preferences</h3>
-              <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Customize your notification and layout options</p>
+              <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Customize your notification and layout options</p>
             </div>
           </div>
 
@@ -155,15 +155,15 @@ export default function SettingsPage() {
                 justifyContent: 'space-between',
                 padding: '0.85rem 1rem',
                 borderRadius: '8px',
-                backgroundColor: '#171918',
+                backgroundColor: '#f8fafc',
                 cursor: 'pointer',
               }}
             >
               <div>
-                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#FFFFFF' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#0f172a' }}>
                   Email Notifications
                 </div>
-                <div style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>
+                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
                   Receive email alerts for status changes and employee lifecycle updates
                 </div>
               </div>
@@ -182,15 +182,15 @@ export default function SettingsPage() {
                 justifyContent: 'space-between',
                 padding: '0.85rem 1rem',
                 borderRadius: '8px',
-                backgroundColor: '#171918',
+                backgroundColor: '#f8fafc',
                 cursor: 'pointer',
               }}
             >
               <div>
-                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#FFFFFF' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#0f172a' }}>
                   Compact Table Density
                 </div>
-                <div style={{ fontSize: '0.8rem', color: '#A1A1AA' }}>
+                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
                   Reduce table padding to fit more records on screen
                 </div>
               </div>
@@ -213,10 +213,10 @@ export default function SettingsPage() {
         {/* Sessions & Sign Out */}
         <div className="card" style={{ padding: '1.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.25rem' }}>
-            <Laptop size={20} color="#A1A1AA" />
+            <Laptop size={20} color="#64748b" />
             <div>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 700 }}>Active Session</h3>
-              <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Current login details and device authorization</p>
+              <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Current login details and device authorization</p>
             </div>
           </div>
 
@@ -224,8 +224,8 @@ export default function SettingsPage() {
             style={{
               padding: '0.85rem 1rem',
               borderRadius: '8px',
-              backgroundColor: '#171918',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #f1f5f9',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -233,10 +233,10 @@ export default function SettingsPage() {
             }}
           >
             <div>
-              <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#FFFFFF' }}>
+              <div style={{ fontWeight: 600, fontSize: '0.875rem', color: '#1e293b' }}>
                 Current Browser Session
               </div>
-              <div style={{ fontSize: '0.775rem', color: '#A1A1AA' }}>
+              <div style={{ fontSize: '0.775rem', color: '#64748b' }}>
                 Signed in as {user?.email} &bull; JWT Token Active
               </div>
             </div>
@@ -244,8 +244,8 @@ export default function SettingsPage() {
             <span
               style={{
                 fontSize: '0.75rem',
-                color: '#C6F432',
-                backgroundColor: 'rgba(198, 244, 50, 0.12)',
+                color: '#10b981',
+                backgroundColor: '#ecfdf5',
                 padding: '0.2rem 0.5rem',
                 borderRadius: '6px',
                 fontWeight: 700,

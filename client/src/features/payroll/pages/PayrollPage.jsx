@@ -172,8 +172,8 @@ export default function PayrollPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <span
               style={{
-                backgroundColor: 'rgba(198, 244, 50, 0.14)',
-                color: '#C6F432',
+                backgroundColor: '#dcfce7',
+                color: '#15803d',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '6px',
                 fontSize: '0.75rem',
@@ -209,68 +209,68 @@ export default function PayrollPage() {
       <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
               {isAdminOrHR ? 'Total Monthly Disbursal' : 'My Total Disbursed'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#dcfce7', color: '#16a34a' }}>
               <DollarSign size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
             ${stats.totalPayroll.toLocaleString()}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#16a34a', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Net wages across active payruns' : 'Net compensation paid to you'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
               {isAdminOrHR ? 'Disbursed Salaries' : 'My Paid Payslips'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(198, 244, 50, 0.14)', color: '#C6F432' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#e0e7ff', color: '#4f46e5' }}>
               <CheckCircle2 size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
             {stats.paidCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#C6F432', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#4f46e5', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Completed bank payments' : 'Successfully received disbursements'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
               {isAdminOrHR ? 'Pending Payruns' : 'My Pending Payruns'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: 'rgba(250, 204, 21, 0.14)', color: '#FDE047' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#fef3c7', color: '#b45309' }}>
               <Clock size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
             {stats.pendingCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#FDE047', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#b45309', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Awaiting disbursement approval' : 'In bank processing queue'}
           </div>
         </div>
 
         <div className="card" style={{ padding: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
               {isAdminOrHR ? 'Average Net Salary' : 'My Average Net Pay'}
             </span>
-            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#171918', color: '#D4D4D8' }}>
+            <div style={{ padding: '0.4rem', borderRadius: '8px', backgroundColor: '#f1f5f9', color: '#475569' }}>
               <Receipt size={18} />
             </div>
           </div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.5rem' }}>
+          <div style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginTop: '0.5rem' }}>
             ${stats.avgSalary.toLocaleString()}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#A1A1AA', fontWeight: 600, marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 600, marginTop: '0.25rem' }}>
             {isAdminOrHR ? 'Per employee average compensation' : 'Average net monthly wage'}
           </div>
         </div>
@@ -293,7 +293,7 @@ export default function PayrollPage() {
           <div style={{ position: 'relative', width: '280px' }}>
             <Search
               size={16}
-              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#71717A' }}
+              style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
             />
             <input
               type="text"
@@ -304,7 +304,7 @@ export default function PayrollPage() {
                 width: '100%',
                 padding: '0.5rem 0.5rem 0.5rem 2.2rem',
                 borderRadius: '6px',
-                border: '1px solid rgba(255, 255, 255, 0.14)',
+                border: '1px solid #cbd5e1',
                 fontSize: '0.85rem',
               }}
             />
@@ -316,10 +316,10 @@ export default function PayrollPage() {
             style={{
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
-              border: '1px solid rgba(255, 255, 255, 0.14)',
+              border: '1px solid #cbd5e1',
               fontSize: '0.85rem',
               fontWeight: 600,
-              backgroundColor: '#121314',
+              backgroundColor: '#ffffff',
             }}
           >
             {[
@@ -348,10 +348,10 @@ export default function PayrollPage() {
             style={{
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
-              border: '1px solid rgba(255, 255, 255, 0.14)',
+              border: '1px solid #cbd5e1',
               fontSize: '0.85rem',
               fontWeight: 600,
-              backgroundColor: '#121314',
+              backgroundColor: '#ffffff',
             }}
           >
             {['2025', '2026', '2027'].map((y) => (
@@ -367,10 +367,10 @@ export default function PayrollPage() {
             style={{
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
-              border: '1px solid rgba(255, 255, 255, 0.14)',
+              border: '1px solid #cbd5e1',
               fontSize: '0.85rem',
               fontWeight: 600,
-              backgroundColor: '#121314',
+              backgroundColor: '#ffffff',
             }}
           >
             <option value="All">All Statuses</option>
@@ -420,8 +420,8 @@ export default function PayrollPage() {
                             width: '38px',
                             height: '38px',
                             borderRadius: '10px',
-                            background: '#C6F432',
-                            color: '#0B0B0C',
+                            background: 'linear-gradient(135deg, #10b981, #059669)',
+                            color: '#ffffff',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -434,7 +434,7 @@ export default function PayrollPage() {
                           {item.employeeName?.charAt(0) || 'E'}
                         </div>
                         <div>
-                          <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.925rem' }}>
+                          <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.925rem' }}>
                             {item.employeeName}
                           </div>
                           <span
@@ -442,11 +442,11 @@ export default function PayrollPage() {
                               fontFamily: 'monospace',
                               fontSize: '0.725rem',
                               fontWeight: 600,
-                              backgroundColor: '#171918',
-                              color: '#D4D4D8',
+                              backgroundColor: '#f1f5f9',
+                              color: '#475569',
                               padding: '2px 7px',
                               borderRadius: '4px',
-                              border: '1px solid rgba(255, 255, 255, 0.10)',
+                              border: '1px solid #e2e8f0',
                               display: 'inline-block',
                               marginTop: '3px',
                             }}
@@ -463,22 +463,22 @@ export default function PayrollPage() {
                           style={{
                             fontSize: '0.85rem',
                             fontWeight: 700,
-                            color: '#FFFFFF',
+                            color: '#1e293b',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '0.3rem',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Building2 size={13} color="#C6F432" />
+                          <Building2 size={13} color="#6366f1" />
                           {item.department}
                         </span>
                         <span
                           style={{
                             fontSize: '0.725rem',
-                            color: '#A1A1AA',
-                            backgroundColor: '#171918',
-                            border: '1px solid rgba(255, 255, 255, 0.10)',
+                            color: '#64748b',
+                            backgroundColor: '#f8fafc',
+                            border: '1px solid #e2e8f0',
                             borderRadius: '4px',
                             padding: '1px 6px',
                             width: 'fit-content',
@@ -493,9 +493,9 @@ export default function PayrollPage() {
                     <td>
                       <span
                         style={{
-                          backgroundColor: '#171918',
-                          color: '#E4E4E7',
-                          border: '1px solid rgba(255, 255, 255, 0.10)',
+                          backgroundColor: '#f8fafc',
+                          color: '#334155',
+                          border: '1px solid #e2e8f0',
                           padding: '0.3rem 0.65rem',
                           borderRadius: '6px',
                           fontSize: '0.8rem',
@@ -506,7 +506,7 @@ export default function PayrollPage() {
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <Calendar size={12} color="#C6F432" />
+                        <Calendar size={12} color="#6366f1" />
                         {item.month} {item.year}
                       </span>
                     </td>
@@ -515,12 +515,12 @@ export default function PayrollPage() {
                       <span
                         style={{
                           fontWeight: 700,
-                          color: '#E4E4E7',
+                          color: '#334155',
                           fontSize: '0.875rem',
-                          backgroundColor: '#171918',
+                          backgroundColor: '#f8fafc',
                           padding: '0.25rem 0.55rem',
                           borderRadius: '6px',
-                          border: '1px solid rgba(255, 255, 255, 0.10)',
+                          border: '1px solid #e2e8f0',
                           display: 'inline-block',
                           whiteSpace: 'nowrap',
                         }}
@@ -531,11 +531,11 @@ export default function PayrollPage() {
                     <td>
                       <span
                         style={{
-                          color: '#C6F432',
+                          color: '#047857',
                           fontWeight: 700,
                           fontSize: '0.875rem',
-                          backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                          border: '1px solid rgba(198, 244, 50, 0.30)',
+                          backgroundColor: '#ecfdf5',
+                          border: '1px solid #a7f3d0',
                           padding: '0.25rem 0.55rem',
                           borderRadius: '6px',
                           display: 'inline-block',
@@ -548,11 +548,11 @@ export default function PayrollPage() {
                     <td>
                       <span
                         style={{
-                          color: '#FCA5A5',
+                          color: '#b91c1c',
                           fontWeight: 700,
                           fontSize: '0.875rem',
-                          backgroundColor: 'rgba(239, 68, 68, 0.14)',
-                          border: '1px solid rgba(239, 68, 68, 0.30)',
+                          backgroundColor: '#fef2f2',
+                          border: '1px solid #fecaca',
                           padding: '0.25rem 0.55rem',
                           borderRadius: '6px',
                           display: 'inline-block',
@@ -568,9 +568,9 @@ export default function PayrollPage() {
                         style={{
                           fontSize: '0.95rem',
                           fontWeight: 800,
-                          color: '#C6F432',
-                          backgroundColor: 'rgba(198, 244, 50, 0.14)',
-                          border: '1px solid #C6F432',
+                          color: '#065f46',
+                          backgroundColor: '#d1fae5',
+                          border: '1px solid #6ee7b7',
                           padding: '0.35rem 0.75rem',
                           borderRadius: '8px',
                           display: 'inline-block',
@@ -592,13 +592,13 @@ export default function PayrollPage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                            color: '#C6F432',
-                            border: '1px solid rgba(198, 244, 50, 0.30)',
+                            backgroundColor: '#ecfdf5',
+                            color: '#065f46',
+                            border: '1px solid #a7f3d0',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <CheckCircle2 size={13} color="#C6F432" /> Paid
+                          <CheckCircle2 size={13} color="#059669" /> Paid
                         </span>
                       ) : item.paymentStatus === 'Processing' ? (
                         <span
@@ -610,13 +610,13 @@ export default function PayrollPage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: 'rgba(198, 244, 50, 0.14)',
-                            color: '#C6F432',
-                            border: '1px solid rgba(198, 244, 50, 0.30)',
+                            backgroundColor: '#e0e7ff',
+                            color: '#4338ca',
+                            border: '1px solid #c7d2fe',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={13} color="#C6F432" /> Processing
+                          <Clock size={13} color="#6366f1" /> Processing
                         </span>
                       ) : (
                         <span
@@ -628,13 +628,13 @@ export default function PayrollPage() {
                             borderRadius: '9999px',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            backgroundColor: 'rgba(250, 204, 21, 0.12)',
-                            color: '#FDE047',
-                            border: '1px solid rgba(250, 204, 21, 0.30)',
+                            backgroundColor: '#fffbeb',
+                            color: '#b45309',
+                            border: '1px solid #fde68a',
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          <Clock size={13} color="#FDE047" /> Pending
+                          <Clock size={13} color="#d97706" /> Pending
                         </span>
                       )}
                     </td>
@@ -645,9 +645,9 @@ export default function PayrollPage() {
                           type="button"
                           onClick={() => openPayslip(item)}
                           style={{
-                            border: '1px solid rgba(255, 255, 255, 0.14)',
-                            backgroundColor: '#121314',
-                            color: '#E4E4E7',
+                            border: '1px solid #cbd5e1',
+                            backgroundColor: '#ffffff',
+                            color: '#334155',
                             padding: '0.35rem 0.7rem',
                             borderRadius: '6px',
                             fontSize: '0.775rem',
@@ -667,9 +667,9 @@ export default function PayrollPage() {
                             type="button"
                             onClick={() => handleMarkPaid(item)}
                             style={{
-                              border: '1px solid #C6F432',
-                              backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                              color: '#C6F432',
+                              border: '1px solid #10b981',
+                              backgroundColor: '#ecfdf5',
+                              color: '#047857',
                               padding: '0.3rem 0.6rem',
                               borderRadius: '6px',
                               fontSize: '0.75rem',
@@ -689,7 +689,7 @@ export default function PayrollPage() {
                             style={{
                               border: 'none',
                               background: 'transparent',
-                              color: '#71717A',
+                              color: '#94a3b8',
                               padding: '0.3rem',
                               cursor: 'pointer',
                             }}
@@ -784,8 +784,8 @@ export default function PayrollPage() {
             {/* Calculated Net Box */}
             <div
               style={{
-                backgroundColor: '#171918',
-                border: '1px solid rgba(255, 255, 255, 0.10)',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 borderRadius: '8px',
                 padding: '0.85rem 1rem',
                 marginBottom: '1rem',
@@ -794,8 +794,8 @@ export default function PayrollPage() {
                 alignItems: 'center',
               }}
             >
-              <span style={{ fontSize: '0.85rem', color: '#A1A1AA', fontWeight: 600 }}>Estimated Net Pay:</span>
-              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#C6F432' }}>
+              <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Estimated Net Pay:</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#16a34a' }}>
                 ${calculatedNet.toLocaleString()}
               </span>
             </div>
@@ -856,10 +856,10 @@ export default function PayrollPage() {
             <div
               id="printable-payslip"
               style={{
-                border: '1px solid rgba(255, 255, 255, 0.10)',
+                border: '1px solid #e2e8f0',
                 borderRadius: '8px',
                 padding: '1.5rem',
-                backgroundColor: '#121314',
+                backgroundColor: '#ffffff',
               }}
             >
               {/* Header */}
@@ -867,25 +867,25 @@ export default function PayrollPage() {
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  borderBottom: '2px solid #FFFFFF',
+                  borderBottom: '2px solid #0f172a',
                   paddingBottom: '1rem',
                   marginBottom: '1rem',
                 }}
               >
                 <div>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF' }}>EmployeeHub Enterprise</h3>
-                  <div style={{ fontSize: '0.75rem', color: '#A1A1AA' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a' }}>EmployeeHub Enterprise</h3>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
                     100 Innovation Way, Suite 400 • New York, NY
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: '#A1A1AA' }}>Tax ID: US-EIN-9920194</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Tax ID: US-EIN-9920194</div>
                 </div>
 
                 <div style={{ textAlign: 'right' }}>
                   <div
                     style={{
                       display: 'inline-block',
-                      backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                      color: '#C6F432',
+                      backgroundColor: '#eef2ff',
+                      color: '#4f46e5',
                       padding: '0.2rem 0.6rem',
                       borderRadius: '4px',
                       fontSize: '0.75rem',
@@ -894,7 +894,7 @@ export default function PayrollPage() {
                   >
                     OFFICIAL PAYSLIP
                   </div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, marginTop: '0.3rem', color: '#FFFFFF' }}>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 700, marginTop: '0.3rem', color: '#0f172a' }}>
                     {activePayslip.month} {activePayslip.year}
                   </div>
                 </div>
@@ -906,7 +906,7 @@ export default function PayrollPage() {
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   gap: '1rem',
-                  backgroundColor: '#171918',
+                  backgroundColor: '#f8fafc',
                   padding: '1rem',
                   borderRadius: '6px',
                   marginBottom: '1.25rem',
@@ -915,28 +915,28 @@ export default function PayrollPage() {
               >
                 <div>
                   <div>
-                    <span style={{ color: '#A1A1AA' }}>Employee Name:</span>{' '}
+                    <span style={{ color: '#64748b' }}>Employee Name:</span>{' '}
                     <strong>{activePayslip.employeeName}</strong>
                   </div>
                   <div style={{ marginTop: '0.25rem' }}>
-                    <span style={{ color: '#A1A1AA' }}>Employee ID:</span> <strong>{activePayslip.employeeId}</strong>
+                    <span style={{ color: '#64748b' }}>Employee ID:</span> <strong>{activePayslip.employeeId}</strong>
                   </div>
                   <div style={{ marginTop: '0.25rem' }}>
-                    <span style={{ color: '#A1A1AA' }}>Department:</span> <strong>{activePayslip.department}</strong>
+                    <span style={{ color: '#64748b' }}>Department:</span> <strong>{activePayslip.department}</strong>
                   </div>
                 </div>
 
                 <div>
                   <div>
-                    <span style={{ color: '#A1A1AA' }}>Designation:</span>{' '}
+                    <span style={{ color: '#64748b' }}>Designation:</span>{' '}
                     <strong>{activePayslip.designation}</strong>
                   </div>
                   <div style={{ marginTop: '0.25rem' }}>
-                    <span style={{ color: '#A1A1AA' }}>Payment Mode:</span>{' '}
+                    <span style={{ color: '#64748b' }}>Payment Mode:</span>{' '}
                     <strong>{activePayslip.paymentMethod}</strong>
                   </div>
                   <div style={{ marginTop: '0.25rem' }}>
-                    <span style={{ color: '#A1A1AA' }}>Disbursal Date:</span>{' '}
+                    <span style={{ color: '#64748b' }}>Disbursal Date:</span>{' '}
                     <strong>{activePayslip.paymentDate || 'Pending'}</strong>
                   </div>
                 </div>
@@ -949,8 +949,8 @@ export default function PayrollPage() {
                     style={{
                       fontSize: '0.85rem',
                       fontWeight: 700,
-                      color: '#C6F432',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
+                      color: '#15803d',
+                      borderBottom: '1px solid #e2e8f0',
                       paddingBottom: '0.4rem',
                       marginBottom: '0.5rem',
                     }}
@@ -971,7 +971,7 @@ export default function PayrollPage() {
                       justifyContent: 'space-between',
                       fontSize: '0.85rem',
                       fontWeight: 700,
-                      borderTop: '1px dashed rgba(255, 255, 255, 0.14)',
+                      borderTop: '1px dashed #cbd5e1',
                       paddingTop: '0.4rem',
                       marginTop: '0.5rem',
                     }}
@@ -986,8 +986,8 @@ export default function PayrollPage() {
                     style={{
                       fontSize: '0.85rem',
                       fontWeight: 700,
-                      color: '#FCA5A5',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
+                      color: '#b91c1c',
+                      borderBottom: '1px solid #e2e8f0',
                       paddingBottom: '0.4rem',
                       marginBottom: '0.5rem',
                     }}
@@ -1004,7 +1004,7 @@ export default function PayrollPage() {
                       justifyContent: 'space-between',
                       fontSize: '0.85rem',
                       fontWeight: 700,
-                      borderTop: '1px dashed rgba(255, 255, 255, 0.14)',
+                      borderTop: '1px dashed #cbd5e1',
                       paddingTop: '0.4rem',
                       marginTop: '0.5rem',
                     }}
@@ -1018,9 +1018,8 @@ export default function PayrollPage() {
               {/* Net Payable Highlight */}
               <div
                 style={{
-                  backgroundColor: '#0B0B0C',
-                  border: '1px solid rgba(198, 244, 50, 0.35)',
-                  color: '#FFFFFF',
+                  backgroundColor: '#0f172a',
+                  color: '#ffffff',
                   padding: '1rem',
                   borderRadius: '6px',
                   display: 'flex',
@@ -1029,12 +1028,12 @@ export default function PayrollPage() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: '#71717A', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     Net Disbursed Amount
                   </div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.14)' }}>Directly transferred to employee account</div>
+                  <div style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>Directly transferred to employee account</div>
                 </div>
-                <div style={{ fontSize: '1.65rem', fontWeight: 800, color: '#C6F432' }}>
+                <div style={{ fontSize: '1.65rem', fontWeight: 800, color: '#4ade80' }}>
                   ${Number(activePayslip.netSalary).toLocaleString()}
                 </div>
               </div>

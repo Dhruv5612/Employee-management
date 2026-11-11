@@ -73,10 +73,10 @@ export default function ReassignModal({
         <div
           style={{
             padding: '0.85rem 1rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
+            backgroundColor: '#eff6ff',
+            border: '1px solid #bfdbfe',
             borderRadius: '8px',
-            color: '#FFFFFF',
+            color: '#1e40af',
             fontSize: '0.875rem',
             marginBottom: '1.25rem',
             display: 'flex',
@@ -91,7 +91,7 @@ export default function ReassignModal({
           </span>
         </div>
 
-        <p style={{ fontSize: '0.875rem', color: '#A1A1AA', marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '1.25rem' }}>
           Select the destination department where all existing members of{' '}
           <strong>{sourceDepartment.name}</strong> will be securely reassigned.
         </p>

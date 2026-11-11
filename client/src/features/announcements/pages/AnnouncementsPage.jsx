@@ -113,8 +113,8 @@ export default function AnnouncementsPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <span
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                color: '#C6F432',
+                backgroundColor: '#ede9fe',
+                color: '#6d28d9',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '6px',
                 fontSize: '0.75rem',
@@ -165,9 +165,9 @@ export default function AnnouncementsPage() {
               style={{
                 padding: '0.4rem 0.85rem',
                 borderRadius: '9999px',
-                border: selectedCategory === cat ? '1px solid #C6F432' : '1px solid rgba(255, 255, 255, 0.14)',
-                backgroundColor: selectedCategory === cat ? '#C6F432' : '#ffffff',
-                color: selectedCategory === cat ? '#ffffff' : '#D4D4D8',
+                border: selectedCategory === cat ? '1px solid #4f46e5' : '1px solid #cbd5e1',
+                backgroundColor: selectedCategory === cat ? '#4f46e5' : '#ffffff',
+                color: selectedCategory === cat ? '#ffffff' : '#475569',
                 fontSize: '0.8rem',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -183,7 +183,7 @@ export default function AnnouncementsPage() {
         <div style={{ position: 'relative', width: '260px' }}>
           <Search
             size={16}
-            style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#71717A' }}
+            style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
           />
           <input
             type="text"
@@ -194,7 +194,7 @@ export default function AnnouncementsPage() {
               width: '100%',
               padding: '0.45rem 0.5rem 0.45rem 2.2rem',
               borderRadius: '6px',
-              border: '1px solid rgba(255, 255, 255, 0.14)',
+              border: '1px solid #cbd5e1',
               fontSize: '0.85rem',
             }}
           />
@@ -222,11 +222,11 @@ export default function AnnouncementsPage() {
               style={{
                 padding: '1.5rem',
                 borderLeft: item.isPinned
-                  ? '4px solid #C6F432'
+                  ? '4px solid #4f46e5'
                   : item.priority === 'High'
-                  ? '4px solid #F87171'
-                  : '4px solid rgba(255, 255, 255, 0.10)',
-                backgroundColor: item.isPinned ? 'rgba(198, 244, 50, 0.06)' : '#121314',
+                  ? '4px solid #ef4444'
+                  : '4px solid #e2e8f0',
+                backgroundColor: item.isPinned ? '#faf5ff' : '#ffffff',
                 position: 'relative',
               }}
             >
@@ -245,8 +245,8 @@ export default function AnnouncementsPage() {
                   {item.isPinned && (
                     <span
                       style={{
-                        backgroundColor: '#C6F432',
-                        color: '#0B0B0C',
+                        backgroundColor: '#4f46e5',
+                        color: '#ffffff',
                         padding: '0.2rem 0.6rem',
                         borderRadius: '9999px',
                         fontSize: '0.725rem',
@@ -264,16 +264,16 @@ export default function AnnouncementsPage() {
                     style={{
                       backgroundColor:
                         item.category === 'Urgent Notice'
-                          ? 'rgba(239, 68, 68, 0.14)'
+                          ? '#fee2e2'
                           : item.category === 'Policy Update'
-                          ? 'rgba(250, 204, 21, 0.14)'
-                          : 'rgba(198, 244, 50, 0.14)',
+                          ? '#fef3c7'
+                          : '#e0e7ff',
                       color:
                         item.category === 'Urgent Notice'
-                          ? '#FCA5A5'
+                          ? '#991b1b'
                           : item.category === 'Policy Update'
-                          ? '#FDE047'
-                          : '#C6F432',
+                          ? '#b45309'
+                          : '#4338ca',
                       padding: '0.2rem 0.55rem',
                       borderRadius: '6px',
                       fontSize: '0.75rem',
@@ -286,8 +286,8 @@ export default function AnnouncementsPage() {
                   {item.priority === 'High' && (
                     <span
                       style={{
-                        backgroundColor: 'rgba(239, 68, 68, 0.14)',
-                        color: '#FCA5A5',
+                        backgroundColor: '#fee2e2',
+                        color: '#b91c1c',
                         padding: '0.2rem 0.5rem',
                         borderRadius: '4px',
                         fontSize: '0.7rem',
@@ -298,7 +298,7 @@ export default function AnnouncementsPage() {
                     </span>
                   )}
 
-                  <span style={{ fontSize: '0.75rem', color: '#A1A1AA' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
                     Audience: <strong>{item.targetAudience || 'All Employees'}</strong>
                   </span>
                 </div>
@@ -310,7 +310,7 @@ export default function AnnouncementsPage() {
                       alignItems: 'center',
                       gap: '0.3rem',
                       fontSize: '0.75rem',
-                      color: '#A1A1AA',
+                      color: '#64748b',
                     }}
                   >
                     <Calendar size={13} /> {item.date}
@@ -323,7 +323,7 @@ export default function AnnouncementsPage() {
                       style={{
                         background: 'none',
                         border: 'none',
-                        color: '#71717A',
+                        color: '#94a3b8',
                         cursor: 'pointer',
                         padding: '4px',
                       }}
@@ -340,7 +340,7 @@ export default function AnnouncementsPage() {
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: 800,
-                  color: '#FFFFFF',
+                  color: '#0f172a',
                   marginBottom: '0.75rem',
                   lineHeight: '1.3',
                 }}
@@ -352,7 +352,7 @@ export default function AnnouncementsPage() {
               <p
                 style={{
                   fontSize: '0.9rem',
-                  color: '#E4E4E7',
+                  color: '#334155',
                   lineHeight: '1.6',
                   whiteSpace: 'pre-wrap',
                   marginBottom: '1rem',
@@ -364,13 +364,13 @@ export default function AnnouncementsPage() {
               {/* Author Footer */}
               <div
                 style={{
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderTop: '1px solid #f1f5f9',
                   paddingTop: '0.75rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
                   fontSize: '0.8rem',
-                  color: '#A1A1AA',
+                  color: '#64748b',
                 }}
               >
                 <div
@@ -378,8 +378,8 @@ export default function AnnouncementsPage() {
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(198, 244, 50, 0.14)',
-                    color: '#C6F432',
+                    backgroundColor: '#e0e7ff',
+                    color: '#4338ca',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -470,7 +470,7 @@ export default function AnnouncementsPage() {
                   type="checkbox"
                   checked={formData.isPinned}
                   onChange={(e) => setFormData((prev) => ({ ...prev, isPinned: e.target.checked }))}
-                  style={{ width: '16px', height: '16px', accentColor: '#C6F432' }}
+                  style={{ width: '16px', height: '16px', accentColor: '#4f46e5' }}
                 />
                 <span>Pin this announcement at the top of the board</span>
               </label>
@@ -489,7 +489,7 @@ export default function AnnouncementsPage() {
                   width: '100%',
                   padding: '0.6rem 0.75rem',
                   borderRadius: '6px',
-                  border: '1px solid rgba(255, 255, 255, 0.14)',
+                  border: '1px solid #cbd5e1',
                   fontSize: '0.85rem',
                   fontFamily: 'inherit',
                   lineHeight: '1.5',

@@ -69,7 +69,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
           alignItems: 'center',
           gap: '0.75rem',
           padding: '1.25rem 1.25rem 1rem',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          borderBottom: '1px solid #f1f5f9',
         }}
       >
         <div
@@ -78,21 +78,21 @@ export default function Sidebar({ user, isOpen, onClose }) {
             height: '38px',
             borderRadius: '8px',
             backgroundColor: 'rgba(249, 115, 22, 0.15)',
-            color: '#C6F432',
+            color: '#f97316',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
           }}
         >
-          <Building size={22} color="#C6F432" />
+          <Building size={22} color="#f97316" />
         </div>
         <div>
           <div
             style={{
               fontSize: '1.05rem',
               fontWeight: 800,
-              color: '#C6F432',
+              color: '#f97316',
               lineHeight: 1.15,
               letterSpacing: '-0.01em',
             }}
@@ -110,7 +110,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
             fontWeight: 800,
             textTransform: 'uppercase',
             letterSpacing: '0.08em',
-            color: '#71717A',
+            color: '#94a3b8',
             padding: '0.25rem 0.75rem 0.6rem',
           }}
         >
@@ -128,11 +128,11 @@ export default function Sidebar({ user, isOpen, onClose }) {
             style={{
               fontSize: '0.65rem',
               fontWeight: 800,
-              backgroundColor: 'rgba(198, 244, 50, 0.12)',
-              color: '#C6F432',
+              backgroundColor: '#ecfdf5',
+              color: '#059669',
               padding: '0.1rem 0.45rem',
               borderRadius: '9999px',
-              border: '1px solid rgba(198, 244, 50, 0.30)',
+              border: '1px solid #a7f3d0',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.25rem',
@@ -192,7 +192,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
                 fontWeight: 800,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                color: '#71717A',
+                color: '#94a3b8',
                 padding: '1rem 0.75rem 0.5rem',
               }}
             >
@@ -250,8 +250,8 @@ export default function Sidebar({ user, isOpen, onClose }) {
                 style={{
                   fontSize: '0.625rem',
                   fontWeight: 800,
-                  background: '#C6F432',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                  color: '#ffffff',
                   padding: '0.1rem 0.45rem',
                   borderRadius: '9999px',
                   boxShadow: '0 2px 6px rgba(99, 102, 241, 0.3)',
@@ -263,7 +263,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
           </>
         )}
 
-        <div style={{ height: '1px', backgroundColor: 'rgba(255, 255, 255, 0.08)', margin: '0.65rem 0' }} />
+        <div style={{ height: '1px', backgroundColor: '#f1f5f9', margin: '0.65rem 0' }} />
 
         <NavLink
           to="/profile"
@@ -291,7 +291,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
               padding: '0.75rem',
               borderRadius: '8px',
               backgroundColor: demoActive ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.04)',
-              border: `1px solid ${demoActive ? '#FDE047' : 'rgba(255, 255, 255, 0.08)'}`,
+              border: `1px solid ${demoActive ? '#f59e0b' : 'rgba(255, 255, 255, 0.08)'}`,
               cursor: 'pointer',
               marginBottom: '0.75rem',
               display: 'flex',
@@ -301,17 +301,17 @@ export default function Sidebar({ user, isOpen, onClose }) {
             }}
           >
             <div>
-              <div style={{ fontSize: '0.775rem', fontWeight: 700, color: demoActive ? '#FDE047' : '#E4E4E7' }}>
+              <div style={{ fontSize: '0.775rem', fontWeight: 700, color: demoActive ? '#fbbf24' : '#cbd5e1' }}>
                 {demoActive ? 'Demo Storage Mode' : 'Live API Mode'}
               </div>
-              <div style={{ fontSize: '0.675rem', color: '#71717A' }}>
+              <div style={{ fontSize: '0.675rem', color: '#94a3b8' }}>
                 {demoActive ? 'Using Local Browser Data' : 'Express + MongoDB'}
               </div>
             </div>
             {demoActive ? (
-              <ToggleRight size={22} color="#FDE047" />
+              <ToggleRight size={22} color="#f59e0b" />
             ) : (
-              <ToggleLeft size={22} color="#71717A" />
+              <ToggleLeft size={22} color="#64748b" />
             )}
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
               style={{
                 fontSize: '0.875rem',
                 fontWeight: 600,
-                color: '#FFFFFF',
+                color: '#0f172a',
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
@@ -343,13 +343,13 @@ export default function Sidebar({ user, isOpen, onClose }) {
             <div
               style={{
                 fontSize: '0.725rem',
-                color: '#A1A1AA',
+                color: '#64748b',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.25rem',
               }}
             >
-              <Shield size={12} color="#C6F432" />
+              <Shield size={12} color="#f97316" />
               <span>{user?.role || 'Admin'}</span>
             </div>
           </div>
@@ -361,7 +361,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
           style={{
             background: 'none',
             border: 'none',
-            color: '#71717A',
+            color: '#94a3b8',
             cursor: 'pointer',
             padding: '6px',
             borderRadius: '6px',
@@ -371,7 +371,7 @@ export default function Sidebar({ user, isOpen, onClose }) {
             transition: 'color 0.2s',
           }}
           onMouseEnter={(e) => (e.currentTarget.style.color = '#ef4444')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = '#71717A')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = '#94a3b8')}
         >
           <LogOut size={18} />
         </button>

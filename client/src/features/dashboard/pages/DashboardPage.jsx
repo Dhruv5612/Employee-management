@@ -246,7 +246,7 @@ export default function DashboardPage() {
         style={{
           marginBottom: '2rem',
           padding: '2.25rem 2.5rem',
-          background: 'radial-gradient(ellipse 60% 80% at 88% 12%, rgba(198, 244, 50, 0.16) 0%, transparent 62%), linear-gradient(135deg, #121314 0%, #0E100E 55%, #161A12 100%)',
+          background: 'linear-gradient(135deg, #0b0f19 0%, #161838 50%, #241b49 100%)',
           borderRadius: '24px',
           border: '1px solid rgba(255, 255, 255, 0.15)',
           boxShadow: '0 24px 48px -12px rgba(11, 15, 25, 0.7), 0 0 45px rgba(99, 102, 241, 0.15)',
@@ -271,11 +271,11 @@ export default function DashboardPage() {
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   border: '1px solid rgba(165, 180, 252, 0.35)',
-                  color: '#C6F432',
+                  color: '#e0e7ff',
                   boxShadow: '0 2px 10px rgba(99, 102, 241, 0.2)',
                 }}
               >
-                <Sparkles size={13} color="#C6F432" />
+                <Sparkles size={13} color="#fbbf24" />
                 <span>Workforce HQ • Live Matrix</span>
               </span>
 
@@ -290,7 +290,7 @@ export default function DashboardPage() {
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
                   fontWeight: 700,
-                  color: '#C6F432',
+                  color: '#6ee7b7',
                   border: '1px solid rgba(52, 211, 153, 0.4)',
                   boxShadow: '0 2px 10px rgba(16, 185, 129, 0.15)',
                 }}
@@ -318,7 +318,7 @@ export default function DashboardPage() {
             <p
               style={{
                 fontSize: '0.95rem',
-                color: '#A1A1AA',
+                color: '#cbd5e1',
                 marginTop: '0.6rem',
                 lineHeight: 1.55,
                 maxWidth: '620px',
@@ -342,22 +342,22 @@ export default function DashboardPage() {
                   padding: '0.65rem 1.35rem',
                   borderRadius: '14px',
                   border: '1px solid rgba(255, 255, 255, 0.35)',
-                  background: '#C6F432',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #ff5722 0%, #ff1744 50%, #d500f9 100%)',
+                  color: '#ffffff',
                   fontSize: '0.875rem',
                   fontWeight: 800,
                   letterSpacing: '0.02em',
                   cursor: 'pointer',
-                  boxShadow: '0 0 24px rgba(198, 244, 50, 0.32)',
+                  boxShadow: '0 0 20px rgba(255, 23, 68, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5)',
                   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
-                  e.currentTarget.style.boxShadow = '0 0 32px rgba(198, 244, 50, 0.48)';
+                  e.currentTarget.style.boxShadow = '0 0 28px rgba(255, 23, 68, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.7)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 0 24px rgba(198, 244, 50, 0.32)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 23, 68, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5)';
                 }}
               >
                 <Plus size={17} strokeWidth={2.8} />
@@ -381,7 +381,7 @@ export default function DashboardPage() {
                   boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2)',
                 }}
               >
-                <Calendar size={16} color="#C6F432" />
+                <Calendar size={16} color="#38bdf8" />
                 <span>{formattedDate}</span>
               </div>
 
@@ -408,15 +408,15 @@ export default function DashboardPage() {
                       border: viewMode === 'executive' ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
                       background:
                         viewMode === 'executive'
-                          ? '#C6F432'
+                          ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)'
                           : 'transparent',
-                      color: viewMode === 'executive' ? '#0B0B0C' : '#A1A1AA',
+                      color: viewMode === 'executive' ? '#ffffff' : 'rgba(255, 255, 255, 0.82)',
                       fontSize: '0.8rem',
                       fontWeight: 800,
                       cursor: 'pointer',
                       boxShadow:
                         viewMode === 'executive'
-                          ? '0 4px 16px rgba(198, 244, 50, 0.3)'
+                          ? '0 4px 16px rgba(139, 92, 246, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45)'
                           : 'none',
                       transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                       textShadow: viewMode === 'executive' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : 'none',
@@ -445,15 +445,15 @@ export default function DashboardPage() {
                       border: viewMode === 'employee' ? '1px solid rgba(255, 255, 255, 0.4)' : 'none',
                       background:
                         viewMode === 'employee'
-                          ? '#C6F432'
+                          ? 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)'
                           : 'transparent',
-                      color: viewMode === 'employee' ? '#0B0B0C' : '#A1A1AA',
+                      color: viewMode === 'employee' ? '#ffffff' : 'rgba(255, 255, 255, 0.82)',
                       fontSize: '0.8rem',
                       fontWeight: 800,
                       cursor: 'pointer',
                       boxShadow:
                         viewMode === 'employee'
-                          ? '0 4px 16px rgba(198, 244, 50, 0.3)'
+                          ? '0 4px 16px rgba(139, 92, 246, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45)'
                           : 'none',
                       transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                       textShadow: viewMode === 'employee' ? '0 1px 2px rgba(0, 0, 0, 0.3)' : 'none',
@@ -500,7 +500,7 @@ export default function DashboardPage() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                <Zap size={16} color="#C6F432" />
+                <Zap size={16} color="#fbbf24" />
                 <span
                   style={{
                     fontSize: '0.775rem',
@@ -518,7 +518,7 @@ export default function DashboardPage() {
                   fontSize: '0.725rem',
                   fontWeight: 800,
                   backgroundColor: 'rgba(16, 185, 129, 0.25)',
-                  color: '#C6F432',
+                  color: '#6ee7b7',
                   padding: '0.2rem 0.6rem',
                   borderRadius: '9999px',
                   border: '1px solid rgba(52, 211, 153, 0.45)',
@@ -555,9 +555,9 @@ export default function DashboardPage() {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <span className="pulse-dot online" />
-                  <span style={{ fontSize: '0.85rem', color: '#E4E4E7', fontWeight: 600 }}>Active Roster</span>
+                  <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 600 }}>Active Roster</span>
                 </div>
-                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#C6F432' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#6ee7b7' }}>
                   {attendanceCount} Present Today &rarr;
                 </span>
               </Link>
@@ -587,10 +587,10 @@ export default function DashboardPage() {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <ClipboardList size={15} color="#C6F432" />
-                  <span style={{ fontSize: '0.85rem', color: '#FDE047', fontWeight: 600 }}>Time-Off Requests</span>
+                  <ClipboardList size={15} color="#fbbf24" />
+                  <span style={{ fontSize: '0.85rem', color: '#fef3c7', fontWeight: 600 }}>Time-Off Requests</span>
                 </div>
-                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#FDE047' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#fbbf24' }}>
                   {leaveStats.pending} Pending Review &rarr;
                 </span>
               </Link>
@@ -619,10 +619,10 @@ export default function DashboardPage() {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <Megaphone size={15} color="#C6F432" />
-                  <span style={{ fontSize: '0.85rem', color: '#E4E4E7', fontWeight: 600 }}>Company Notices</span>
+                  <Megaphone size={15} color="#e879f9" />
+                  <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 600 }}>Company Notices</span>
                 </div>
-                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#C6F432' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 800, color: '#e879f9' }}>
                   {announcements.length || 3} Bulletins &rarr;
                 </span>
               </Link>
@@ -648,8 +648,8 @@ export default function DashboardPage() {
             className="bento-card"
             style={{
               padding: '1.5rem',
-              backgroundColor: '#121314',
-              borderTop: '3px solid #FDE047',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #f59e0b',
               position: 'relative',
               cursor: 'pointer',
             }}
@@ -660,8 +660,8 @@ export default function DashboardPage() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #FDE047 0%, #EAB308 100%)',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -677,9 +677,9 @@ export default function DashboardPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  backgroundColor: 'rgba(250, 204, 21, 0.12)',
-                  color: '#FDE047',
-                  border: '1px solid rgba(250, 204, 21, 0.30)',
+                  backgroundColor: '#fffbeb',
+                  color: '#b45309',
+                  border: '1px solid #fde68a',
                   padding: '0.2rem 0.55rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
@@ -697,7 +697,7 @@ export default function DashboardPage() {
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: '#A1A1AA',
+                  color: '#64748b',
                 }}
               >
                 Pending Leaves
@@ -706,7 +706,7 @@ export default function DashboardPage() {
                 style={{
                   fontSize: '2.35rem',
                   fontWeight: 900,
-                  color: '#FFFFFF',
+                  color: '#0f172a',
                   lineHeight: 1.1,
                   marginTop: '0.35rem',
                   letterSpacing: '-0.03em',
@@ -717,7 +717,7 @@ export default function DashboardPage() {
               <div
                 style={{
                   fontSize: '0.75rem',
-                  color: '#FDE047',
+                  color: '#ea580c',
                   fontWeight: 700,
                   marginTop: '0.65rem',
                   display: 'flex',
@@ -738,8 +738,8 @@ export default function DashboardPage() {
             className="bento-card"
             style={{
               padding: '1.5rem',
-              backgroundColor: '#121314',
-              borderTop: '3px solid #C6F432',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #10b981',
               position: 'relative',
               cursor: 'pointer',
             }}
@@ -750,8 +750,8 @@ export default function DashboardPage() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #C6F432 0%, #A6D11D 100%)',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -767,9 +767,9 @@ export default function DashboardPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                  color: '#C6F432',
-                  border: '1px solid rgba(198, 244, 50, 0.30)',
+                  backgroundColor: '#ecfdf5',
+                  color: '#059669',
+                  border: '1px solid #a7f3d0',
                   padding: '0.2rem 0.55rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
@@ -787,7 +787,7 @@ export default function DashboardPage() {
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: '#A1A1AA',
+                  color: '#64748b',
                 }}
               >
                 Approved (Month)
@@ -796,7 +796,7 @@ export default function DashboardPage() {
                 style={{
                   fontSize: '2.35rem',
                   fontWeight: 900,
-                  color: '#FFFFFF',
+                  color: '#0f172a',
                   lineHeight: 1.1,
                   marginTop: '0.35rem',
                   letterSpacing: '-0.03em',
@@ -807,7 +807,7 @@ export default function DashboardPage() {
               <div
                 style={{
                   fontSize: '0.75rem',
-                  color: '#C6F432',
+                  color: '#059669',
                   fontWeight: 700,
                   marginTop: '0.65rem',
                   display: 'flex',
@@ -828,8 +828,8 @@ export default function DashboardPage() {
             className="bento-card"
             style={{
               padding: '1.5rem',
-              backgroundColor: '#121314',
-              borderTop: '3px solid #FFFFFF',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #3b82f6',
               position: 'relative',
               cursor: 'pointer',
             }}
@@ -840,8 +840,8 @@ export default function DashboardPage() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #D4D4D8 100%)',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -857,9 +857,9 @@ export default function DashboardPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  color: '#FFFFFF',
-                  border: '1px solid rgba(255, 255, 255, 0.18)',
+                  backgroundColor: '#eff6ff',
+                  color: '#2563eb',
+                  border: '1px solid #bfdbfe',
                   padding: '0.2rem 0.55rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
@@ -877,7 +877,7 @@ export default function DashboardPage() {
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: '#A1A1AA',
+                  color: '#64748b',
                 }}
               >
                 {viewMode === 'executive' ? 'Staff Present Today' : 'Attendance (Month)'}
@@ -886,7 +886,7 @@ export default function DashboardPage() {
                 style={{
                   fontSize: '2.1rem',
                   fontWeight: 900,
-                  color: '#FFFFFF',
+                  color: '#0f172a',
                   lineHeight: 1.1,
                   marginTop: '0.35rem',
                   letterSpacing: '-0.03em',
@@ -897,7 +897,7 @@ export default function DashboardPage() {
               <div
                 style={{
                   fontSize: '0.75rem',
-                  color: '#FFFFFF',
+                  color: '#2563eb',
                   fontWeight: 700,
                   marginTop: '0.65rem',
                   display: 'flex',
@@ -918,8 +918,8 @@ export default function DashboardPage() {
             className="bento-card"
             style={{
               padding: '1.5rem',
-              backgroundColor: '#121314',
-              borderTop: '3px solid #C6F432',
+              backgroundColor: '#ffffff',
+              borderTop: '3px solid #8b5cf6',
               position: 'relative',
               cursor: 'pointer',
             }}
@@ -930,8 +930,8 @@ export default function DashboardPage() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg, #C6F432 0%, #FFFFFF 100%)',
-                  color: '#0B0B0C',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -947,9 +947,9 @@ export default function DashboardPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  backgroundColor: 'rgba(198, 244, 50, 0.10)',
-                  color: '#C6F432',
-                  border: '1px solid rgba(198, 244, 50, 0.28)',
+                  backgroundColor: '#faf5ff',
+                  color: '#7e22ce',
+                  border: '1px solid #e9d5ff',
                   padding: '0.2rem 0.55rem',
                   borderRadius: '9999px',
                   fontSize: '0.725rem',
@@ -967,7 +967,7 @@ export default function DashboardPage() {
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: '#A1A1AA',
+                  color: '#64748b',
                 }}
               >
                 Company Notices
@@ -976,7 +976,7 @@ export default function DashboardPage() {
                 style={{
                   fontSize: '2.35rem',
                   fontWeight: 900,
-                  color: '#FFFFFF',
+                  color: '#0f172a',
                   lineHeight: 1.1,
                   marginTop: '0.35rem',
                   letterSpacing: '-0.03em',
@@ -987,7 +987,7 @@ export default function DashboardPage() {
               <div
                 style={{
                   fontSize: '0.75rem',
-                  color: '#C6F432',
+                  color: '#7e22ce',
                   fontWeight: 700,
                   marginTop: '0.65rem',
                   display: 'flex',
@@ -1034,12 +1034,12 @@ export default function DashboardPage() {
                 className="genz-tab-pill"
                 style={{
                   padding: '0.55rem 1rem',
-                  backgroundColor: 'rgba(250, 204, 21, 0.12)',
-                  color: '#FDE047',
-                  borderColor: 'rgba(250, 204, 21, 0.32)',
+                  backgroundColor: '#fffbeb',
+                  color: '#b45309',
+                  borderColor: '#fde68a',
                 }}
               >
-                <ClipboardList size={15} color="#FDE047" />
+                <ClipboardList size={15} color="#b45309" />
                 <span>Pending Reviews ({leaveStats.pending})</span>
               </button>
             </Link>
@@ -1070,10 +1070,10 @@ export default function DashboardPage() {
                   className="genz-tab-pill"
                   style={{
                     padding: '0.55rem 1rem',
-                    background: '#C6F432',
-                    color: '#0B0B0C',
+                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                    color: '#ffffff',
                     border: 'none',
-                    boxShadow: '0 4px 14px rgba(198, 244, 50, 0.28)',
+                    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
                   }}
                 >
                   <Crown size={15} />
@@ -1135,7 +1135,7 @@ export default function DashboardPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
                 <div>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Department Distribution</h3>
-                  <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Employees allocated per functional unit</p>
+                  <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Employees allocated per functional unit</p>
                 </div>
                 <Link to="/departments" style={{ fontSize: '0.825rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   Manage <ArrowRight size={14} />
@@ -1148,7 +1148,7 @@ export default function DashboardPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
                 <div>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Employment Status Overview</h3>
-                  <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Active, Inactive, and On-Leave workforce</p>
+                  <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Active, Inactive, and On-Leave workforce</p>
                 </div>
                 <Link to="/employees" style={{ fontSize: '0.825rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   Directory <ArrowRight size={14} />
@@ -1162,12 +1162,12 @@ export default function DashboardPage() {
           <div className="card" style={{ marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <ClipboardList size={22} color="#FDE047" />
+                <ClipboardList size={22} color="#f59e0b" />
                 <div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>
                     Pending Leave Approvals ({pendingLeavesList.length})
                   </h3>
-                  <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>
+                  <p style={{ fontSize: '0.825rem', color: '#64748b' }}>
                     Staff requests awaiting your administrative review
                   </p>
                 </div>
@@ -1178,8 +1178,8 @@ export default function DashboardPage() {
             </div>
 
             {pendingLeavesList.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '2.5rem', color: '#A1A1AA', fontSize: '0.9rem' }}>
-                <CheckCircle2 size={32} color="#C6F432" style={{ margin: '0 auto 0.5rem', display: 'block' }} />
+              <div style={{ textAlign: 'center', padding: '2.5rem', color: '#64748b', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={32} color="#10b981" style={{ margin: '0 auto 0.5rem', display: 'block' }} />
                 All caught up! There are no pending leave requests waiting for approval.
               </div>
             ) : (
@@ -1204,8 +1204,8 @@ export default function DashboardPage() {
                                 width: '34px',
                                 height: '34px',
                                 borderRadius: '8px',
-                                background: '#C6F432',
-                                color: '#0B0B0C',
+                                background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                                color: '#ffffff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -1217,8 +1217,8 @@ export default function DashboardPage() {
                               {l.employeeName?.charAt(0) || 'E'}
                             </div>
                             <div>
-                              <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.9rem' }}>{l.employeeName}</div>
-                              <div style={{ fontSize: '0.725rem', color: '#A1A1AA' }}>{l.department || l.employeeEmail}</div>
+                              <div style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.9rem' }}>{l.employeeName}</div>
+                              <div style={{ fontSize: '0.725rem', color: '#64748b' }}>{l.department || l.employeeEmail}</div>
                             </div>
                           </div>
                         </td>
@@ -1226,15 +1226,15 @@ export default function DashboardPage() {
                           <span
                             style={{
                               backgroundColor: (l.leaveType || '').toLowerCase().includes('sick')
-                                ? 'rgba(239, 68, 68, 0.14)'
+                                ? '#fff1f2'
                                 : (l.leaveType || '').toLowerCase().includes('casual')
-                                ? 'rgba(255, 255, 255, 0.08)'
-                                : 'rgba(198, 244, 50, 0.14)',
+                                ? '#eef2ff'
+                                : '#ecfdf5',
                               color: (l.leaveType || '').toLowerCase().includes('sick')
-                                ? '#FCA5A5'
+                                ? '#be123c'
                                 : (l.leaveType || '').toLowerCase().includes('casual')
-                                ? '#FFFFFF'
-                                : '#C6F432',
+                                ? '#4338ca'
+                                : '#047857',
                               border: '1px solid currentColor',
                               opacity: 0.95,
                               padding: '0.25rem 0.6rem',
@@ -1249,7 +1249,7 @@ export default function DashboardPage() {
                         </td>
                         <td>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                            <span style={{ fontSize: '0.825rem', fontWeight: 600, color: '#FFFFFF', whiteSpace: 'nowrap' }}>
+                            <span style={{ fontSize: '0.825rem', fontWeight: 600, color: '#0f172a', whiteSpace: 'nowrap' }}>
                               {formatDate(l.startDate)} &rarr; {formatDate(l.endDate)}
                             </span>
                             <span
@@ -1258,9 +1258,9 @@ export default function DashboardPage() {
                                 width: 'fit-content',
                                 fontSize: '0.7rem',
                                 fontWeight: 700,
-                                color: '#C6F432',
-                                backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                                border: '1px solid rgba(198, 244, 50, 0.30)',
+                                color: '#15803d',
+                                backgroundColor: '#f0fdf4',
+                                border: '1px solid #bbf7d0',
                                 padding: '1px 6px',
                                 borderRadius: '9999px',
                               }}
@@ -1273,9 +1273,9 @@ export default function DashboardPage() {
                           <div
                             style={{
                               fontSize: '0.8rem',
-                              color: '#E4E4E7',
-                              backgroundColor: '#161816',
-                              border: '1px solid rgba(255, 255, 255, 0.10)',
+                              color: '#334155',
+                              backgroundColor: '#f8fafc',
+                              border: '1px solid #e2e8f0',
                               borderRadius: '6px',
                               padding: '0.4rem 0.65rem',
                               lineHeight: '1.4',
@@ -1297,9 +1297,9 @@ export default function DashboardPage() {
                                 gap: '0.25rem',
                                 padding: '0.35rem 0.7rem',
                                 borderRadius: '6px',
-                                border: '1px solid rgba(198, 244, 50, 0.45)',
-                                backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                                color: '#C6F432',
+                                border: '1px solid #10b981',
+                                backgroundColor: '#ecfdf5',
+                                color: '#047857',
                                 fontSize: '0.75rem',
                                 fontWeight: 700,
                                 cursor: 'pointer',
@@ -1316,9 +1316,9 @@ export default function DashboardPage() {
                                 gap: '0.25rem',
                                 padding: '0.35rem 0.7rem',
                                 borderRadius: '6px',
-                                border: '1px solid rgba(239, 68, 68, 0.40)',
-                                backgroundColor: 'rgba(239, 68, 68, 0.14)',
-                                color: '#FCA5A5',
+                                border: '1px solid #ef4444',
+                                backgroundColor: '#fef2f2',
+                                color: '#b91c1c',
                                 fontSize: '0.75rem',
                                 fontWeight: 700,
                                 cursor: 'pointer',
@@ -1340,10 +1340,10 @@ export default function DashboardPage() {
           <div className="card" style={{ marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Activity size={20} color="#C6F432" />
+                <Activity size={20} color="#4f46e5" />
                 <div>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Recent System Activities</h3>
-                  <p style={{ fontSize: '0.825rem', color: '#A1A1AA' }}>Audit trail of recent system modifications</p>
+                  <p style={{ fontSize: '0.825rem', color: '#64748b' }}>Audit trail of recent system modifications</p>
                 </div>
               </div>
               <Link to="/activity-logs" style={{ fontSize: '0.825rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
@@ -1361,17 +1361,17 @@ export default function DashboardPage() {
                     justifyContent: 'space-between',
                     padding: '0.75rem 1rem',
                     borderRadius: '8px',
-                    backgroundColor: '#161816',
-                    border: '1px solid rgba(255, 255, 255, 0.07)',
+                    backgroundColor: '#f8fafc',
+                    border: '1px solid #f1f5f9',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#C6F432' }} />
-                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#FFFFFF' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4f46e5' }} />
+                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1e293b' }}>
                       {act.action ? act.action.replace(/_/g, ' ') : 'System Action'} &bull; {act.entityType || 'General'}
                     </span>
                   </div>
-                  <span style={{ fontSize: '0.775rem', color: '#71717A' }}>{formatDate(act.createdAt)}</span>
+                  <span style={{ fontSize: '0.775rem', color: '#94a3b8' }}>{formatDate(act.createdAt)}</span>
                 </div>
               ))}
             </div>
@@ -1395,8 +1395,8 @@ export default function DashboardPage() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <CalendarClock size={20} color="#FDE047" />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>
+                <CalendarClock size={20} color="#f59e0b" />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>
                   Recent Time-Off Requests
                 </h3>
               </div>
@@ -1409,7 +1409,7 @@ export default function DashboardPage() {
             </div>
 
             {myLeaves.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '2rem', color: '#71717A', fontSize: '0.85rem' }}>
+              <div style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8', fontSize: '0.85rem' }}>
                 No leave requests filed yet. Click "+ Apply Leave" to request time off.
               </div>
             ) : (
@@ -1423,15 +1423,15 @@ export default function DashboardPage() {
                       justifyContent: 'space-between',
                       padding: '0.75rem 1rem',
                       borderRadius: '8px',
-                      backgroundColor: '#161816',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                      backgroundColor: '#f8fafc',
+                      border: '1px solid #f1f5f9',
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: 600, color: '#FFFFFF', fontSize: '0.875rem' }}>
+                      <div style={{ fontWeight: 600, color: '#0f172a', fontSize: '0.875rem' }}>
                         {l.leaveType} &bull; {l.days} {l.days === 1 ? 'Day' : 'Days'}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#A1A1AA', marginTop: '0.2rem' }}>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.2rem' }}>
                         {formatDate(l.startDate)} &rarr; {formatDate(l.endDate)}
                       </div>
                     </div>
@@ -1440,8 +1440,8 @@ export default function DashboardPage() {
                       {l.status === 'Approved' ? (
                         <span
                           style={{
-                            backgroundColor: 'rgba(198, 244, 50, 0.14)',
-                            color: '#C6F432',
+                            backgroundColor: '#dcfce7',
+                            color: '#166534',
                             padding: '0.2rem 0.55rem',
                             borderRadius: '9999px',
                             fontSize: '0.75rem',
@@ -1456,8 +1456,8 @@ export default function DashboardPage() {
                       ) : l.status === 'Pending' ? (
                         <span
                           style={{
-                            backgroundColor: 'rgba(250, 204, 21, 0.14)',
-                            color: '#FDE047',
+                            backgroundColor: '#fef3c7',
+                            color: '#b45309',
                             padding: '0.2rem 0.55rem',
                             borderRadius: '9999px',
                             fontSize: '0.75rem',
@@ -1472,8 +1472,8 @@ export default function DashboardPage() {
                       ) : (
                         <span
                           style={{
-                            backgroundColor: 'rgba(239, 68, 68, 0.14)',
-                            color: '#FCA5A5',
+                            backgroundColor: '#fee2e2',
+                            color: '#991b1b',
                             padding: '0.2rem 0.55rem',
                             borderRadius: '9999px',
                             fontSize: '0.75rem',
@@ -1504,8 +1504,8 @@ export default function DashboardPage() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <Megaphone size={20} color="#C6F432" />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>
+                <Megaphone size={20} color="#a855f7" />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>
                   Company Broadcasts & Notices
                 </h3>
               </div>
@@ -1518,7 +1518,7 @@ export default function DashboardPage() {
             </div>
 
             {announcements.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '2rem', color: '#71717A', fontSize: '0.85rem' }}>
+              <div style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8', fontSize: '0.85rem' }}>
                 No active announcements right now.
               </div>
             ) : (
@@ -1529,15 +1529,15 @@ export default function DashboardPage() {
                     style={{
                       padding: '0.85rem 1rem',
                       borderRadius: '8px',
-                      backgroundColor: item.isPinned ? 'rgba(198, 244, 50, 0.07)' : '#161816',
-                      border: item.isPinned ? '1px solid rgba(198, 244, 50, 0.28)' : '1px solid rgba(255, 255, 255, 0.07)',
+                      backgroundColor: item.isPinned ? '#faf5ff' : '#f8fafc',
+                      border: item.isPinned ? '1px solid #e9d5ff' : '1px solid #f1f5f9',
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
                       <span
                         style={{
-                          backgroundColor: item.category === 'Urgent Notice' ? 'rgba(239, 68, 68, 0.14)' : 'rgba(198, 244, 50, 0.12)',
-                          color: item.category === 'Urgent Notice' ? '#FCA5A5' : '#C6F432',
+                          backgroundColor: item.category === 'Urgent Notice' ? '#fee2e2' : '#e0e7ff',
+                          color: item.category === 'Urgent Notice' ? '#991b1b' : '#4338ca',
                           padding: '0.15rem 0.5rem',
                           borderRadius: '4px',
                           fontSize: '0.72rem',
@@ -1546,13 +1546,13 @@ export default function DashboardPage() {
                       >
                         {item.category}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: '#71717A' }}>{item.date}</span>
+                      <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{item.date}</span>
                     </div>
 
-                    <h4 style={{ fontSize: '0.925rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.25rem' }}>
+                    <h4 style={{ fontSize: '0.925rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.25rem' }}>
                       {item.title}
                     </h4>
-                    <p style={{ fontSize: '0.8rem', color: '#A1A1AA', lineHeight: 1.4, margin: 0 }}>
+                    <p style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: 1.4, margin: 0 }}>
                       {item.content && item.content.length > 120 ? item.content.slice(0, 120) + '...' : item.content}
                     </p>
                   </div>
@@ -1627,9 +1627,7 @@ export default function DashboardPage() {
                   width: '100%',
                   padding: '0.6rem 0.75rem',
                   borderRadius: '6px',
-                  border: '1px solid rgba(255, 255, 255, 0.14)',
-                  backgroundColor: '#161816',
-                  color: '#FFFFFF',
+                  border: '1px solid #cbd5e1',
                   fontSize: '0.85rem',
                   fontFamily: 'inherit',
                 }}

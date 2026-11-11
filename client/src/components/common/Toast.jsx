@@ -52,34 +52,29 @@ export function ToastProvider({ children }) {
         {toasts.map((toast) => {
           const typeConfig = {
             success: {
-              icon: <CheckCircle2 size={20} color="#C6F432" />,
-              border: 'rgba(198, 244, 50, 0.35)',
-              accent: '#C6F432',
-              bg: '#141614',
+              icon: <CheckCircle2 size={20} color="#10b981" />,
+              border: '#a7f3d0',
+              bg: '#ffffff',
             },
             error: {
-              icon: <AlertCircle size={20} color="#FCA5A5" />,
-              border: 'rgba(239, 68, 68, 0.35)',
-              accent: '#EF4444',
-              bg: '#141614',
+              icon: <AlertCircle size={20} color="#ef4444" />,
+              border: '#fecaca',
+              bg: '#ffffff',
             },
             warning: {
-              icon: <AlertTriangle size={20} color="#FDE047" />,
-              border: 'rgba(250, 204, 21, 0.35)',
-              accent: '#FDE047',
-              bg: '#141614',
+              icon: <AlertTriangle size={20} color="#f59e0b" />,
+              border: '#fde68a',
+              bg: '#ffffff',
             },
             info: {
-              icon: <Info size={20} color="#FFFFFF" />,
-              border: 'rgba(255, 255, 255, 0.22)',
-              accent: '#FFFFFF',
-              bg: '#141614',
+              icon: <Info size={20} color="#3b82f6" />,
+              border: '#bfdbfe',
+              bg: '#ffffff',
             },
           }[toast.type] || {
-            icon: <Info size={20} color="#FFFFFF" />,
-            border: 'rgba(255, 255, 255, 0.22)',
-            accent: '#FFFFFF',
-            bg: '#141614',
+            icon: <Info size={20} color="#3b82f6" />,
+            border: '#e2e8f0',
+            bg: '#ffffff',
           };
 
           return (
@@ -89,10 +84,18 @@ export function ToastProvider({ children }) {
                 pointerEvents: 'auto',
                 backgroundColor: typeConfig.bg,
                 border: `1px solid ${typeConfig.border}`,
-                borderLeft: `4px solid ${typeConfig.accent}`,
-                borderRadius: '12px',
+                borderLeft: `4px solid ${
+                  toast.type === 'success'
+                    ? '#10b981'
+                    : toast.type === 'error'
+                    ? '#ef4444'
+                    : toast.type === 'warning'
+                    ? '#f59e0b'
+                    : '#3b82f6'
+                }`,
+                borderRadius: '8px',
                 padding: '0.9rem 1.1rem',
-                boxShadow: '0 20px 44px rgba(0, 0, 0, 0.65)',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '0.75rem',
@@ -102,11 +105,11 @@ export function ToastProvider({ children }) {
               <div style={{ flexShrink: 0, marginTop: '2px' }}>{typeConfig.icon}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 {toast.title && (
-                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: '#FFFFFF', marginBottom: '0.2rem' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.875rem', color: '#0f172a', marginBottom: '0.2rem' }}>
                     {toast.title}
                   </div>
                 )}
-                <div style={{ fontSize: '0.85rem', color: '#A1A1AA', wordBreak: 'break-word', lineHeight: 1.4 }}>
+                <div style={{ fontSize: '0.85rem', color: '#475569', wordBreak: 'break-word', lineHeight: 1.4 }}>
                   {toast.message}
                 </div>
               </div>
@@ -116,7 +119,7 @@ export function ToastProvider({ children }) {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: '#71717A',
+                  color: '#94a3b8',
                   padding: '2px',
                   display: 'flex',
                   alignItems: 'center',

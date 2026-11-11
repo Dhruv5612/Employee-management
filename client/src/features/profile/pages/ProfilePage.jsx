@@ -63,8 +63,8 @@ export default function ProfilePage() {
               width: '68px',
               height: '68px',
               borderRadius: '50%',
-              background: '#C6F432',
-              color: '#0B0B0C',
+              background: 'linear-gradient(135deg, #4f46e5, #4338ca)',
+              color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -83,17 +83,17 @@ export default function ProfilePage() {
                 style={{
                   fontSize: '0.75rem',
                   fontWeight: 700,
-                  backgroundColor: 'rgba(198, 244, 50, 0.12)',
-                  color: '#C6F432',
+                  backgroundColor: '#eef2ff',
+                  color: '#4f46e5',
                   padding: '0.2rem 0.6rem',
                   borderRadius: '9999px',
-                  border: '1px solid rgba(198, 244, 50, 0.30)',
+                  border: '1px solid #c7d2fe',
                 }}
               >
                 {user?.role || 'Viewer'}
               </span>
             </div>
-            <p style={{ fontSize: '0.875rem', color: '#A1A1AA', marginTop: '0.2rem' }}>
+            <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.2rem' }}>
               {user?.email}
             </p>
           </div>
@@ -131,17 +131,17 @@ export default function ProfilePage() {
                 style={{
                   padding: '0.65rem 0.9rem',
                   borderRadius: '8px',
-                  backgroundColor: '#171918',
+                  backgroundColor: '#f8fafc',
                   border: '1px solid var(--border-color)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
                   fontSize: '0.9rem',
                   fontWeight: 600,
-                  color: '#E4E4E7',
+                  color: '#334155',
                 }}
               >
-                <ShieldCheck size={18} color="#C6F432" />
+                <ShieldCheck size={18} color="#10b981" />
                 <span>{user?.role || 'Viewer'} Role Clearance</span>
               </div>
             </div>
